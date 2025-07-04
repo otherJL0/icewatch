@@ -197,6 +197,102 @@ def download_ice_detention_stats(url=None, output_dir="data", auto_find_link=Tru
         return None
 
 
+def extract_facilities_data(filepath):
+    """
+    Extract facilities data from the "Facilities FY25" tab and convert to JSON.
+
+    Args:
+        filepath (str): Path to the downloaded Excel file.
+
+    Returns:
+        dict: Dictionary containing the facilities data, or None if extraction failed.
+    """
+    try:
+        import pandas as pd
+
+        # Read the "Facilities FY25" sheet, starting from row 7 (index 6)
+        df = pd.read_excel(filepath, sheet_name="Facilities FY25", header=6)
+
+        breakpoint()
+        # Expected column names
+        expected_columns = ["Name", "Address", "City", "State", "Zip", "Male Crim", "Male Non-Crim", "Female Crim", "Female Non-Crim"]
+
+        # Check if we have the expected columns
+        missing_columns = [col for col in expected_columns if col not in df.columns]
+        if missing_columns:
+            logger.warning(f"Missing expected columns: {missing_columns}")
+            logger.info(f"Available columns: {list(df.columns)}")
+
+        # Clean the data
+        # Remove rows where all values are NaN
+        df = df.dropna(how='all')
+
+        # Convert to list of dictionaries
+        facilities_data = []
+        for index, row in df.iterrows():
+            facility = {}
+            for col in expected_columns:
+                if col in df.columns:
+                    value = row[col]
+                    # Convert NaN to None for JSON serialization
+                    if pd.isna(value):
+                        facility[col] = None
+                    else:
+                        facility[col] = value
+                else:
+                    facility[col] = None
+            facilities_data.append(facility)
+
+        logger.info(f"Extracted {len(facilities_data)} facilities from the Excel file")
+
+        return {
+            "metadata": {
+                "source_file": filepath,
+                "extraction_date": datetime.now().isoformat(),
+                "total_facilities": len(facilities_data)
+            },
+            "facilities": facilities_data
+        }
+
+    except Exception as e:
+        logger.error(f"Failed to extract facilities data: {e}")
+        return None
+
+
+def save_facilities_json(data, output_dir="data"):
+    """
+    Save facilities data to a JSON file.
+
+    Args:
+        data (dict): Facilities data dictionary.
+        output_dir (str): Directory to save the JSON file.
+
+    Returns:
+        str: Path to the saved JSON file, or None if save failed.
+    """
+    try:
+        import json
+
+        # Create output directory if it doesn't exist
+        Path(output_dir).mkdir(parents=True, exist_ok=True)
+
+        # Generate filename with timestamp
+        timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+        filename = f"ice_facilities_{timestamp}.json"
+        filepath = os.path.join(output_dir, filename)
+
+        # Save to JSON file
+        with open(filepath, 'w', encoding='utf-8') as f:
+            json.dump(data, f, indent=2, ensure_ascii=False)
+
+        logger.info(f"Facilities data saved to: {filepath}")
+        return filepath
+
+    except Exception as e:
+        logger.error(f"Failed to save facilities JSON: {e}")
+        return None
+
+
 def verify_download(filepath):
     """
     Verify that the downloaded file is a valid Excel file.
@@ -239,6 +335,8 @@ Examples:
   python ice_detention_scraper.py --output-dir ./data --verify
   python ice_detention_scraper.py --url "https://custom-url.xlsx"
   python ice_detention_scraper.py --no-auto-find
+  python ice_detention_scraper.py --extract-json
+  python ice_detention_scraper.py --extract-from-file "path/to/existing/excel.xlsx"
         """
     )
 
@@ -266,10 +364,41 @@ Examples:
         help='Verify the downloaded file by attempting to read it'
     )
 
+    parser.add_argument(
+        '--extract-json',
+        action='store_true',
+        help='Extract facilities data to JSON file after downloading'
+    )
+
+    parser.add_argument(
+        '--extract-from-file',
+        help='Extract facilities data to JSON from an existing Excel file'
+    )
+
     args = parser.parse_args()
 
     logger.info("ICE Detention Statistics Scraper and Downloader")
     logger.info("=" * 50)
+
+    # Handle extraction from existing file
+    if args.extract_from_file:
+        logger.info(f"Extracting facilities data from existing file: {args.extract_from_file}")
+        if not os.path.exists(args.extract_from_file):
+            logger.error(f"File not found: {args.extract_from_file}")
+            sys.exit(1)
+
+        facilities_data = extract_facilities_data(args.extract_from_file)
+        if facilities_data:
+            json_filepath = save_facilities_json(facilities_data, args.output_dir)
+            if json_filepath:
+                logger.info("JSON extraction completed successfully!")
+                return
+            else:
+                logger.error("Failed to save JSON file!")
+                sys.exit(1)
+        else:
+            logger.error("Failed to extract facilities data!")
+            sys.exit(1)
 
     # Download the file
     filepath = download_ice_detention_stats(
@@ -288,6 +417,21 @@ Examples:
                 logger.info("File verification successful!")
             else:
                 logger.error("File verification failed!")
+                sys.exit(1)
+
+        # Extract JSON if requested
+        if args.extract_json:
+            logger.info("Extracting facilities data to JSON...")
+            facilities_data = extract_facilities_data(filepath)
+            if facilities_data:
+                json_filepath = save_facilities_json(facilities_data, args.output_dir)
+                if json_filepath:
+                    logger.info("JSON extraction completed successfully!")
+                else:
+                    logger.error("Failed to save JSON file!")
+                    sys.exit(1)
+            else:
+                logger.error("Failed to extract facilities data!")
                 sys.exit(1)
     else:
         logger.error("Download failed!")

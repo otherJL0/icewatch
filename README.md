@@ -47,6 +47,8 @@ The script supports the following options:
 - `--output-dir`: Directory to save the downloaded file (default: data)
 - `--verify`: Verify the downloaded file by attempting to read it
 - `--no-auto-find`: Disable auto-finding the latest link (use default URL instead)
+- `--extract-json`: Extract facilities data to JSON file after downloading
+- `--extract-from-file`: Extract facilities data to JSON from an existing Excel file
 
 ### Examples
 
@@ -65,6 +67,12 @@ python ice_detention_scraper.py --output-dir .
 
 # Disable auto-find and use default URL
 python ice_detention_scraper.py --no-auto-find
+
+# Download and extract facilities data to JSON
+python ice_detention_scraper.py --extract-json
+
+# Extract JSON from an existing Excel file
+python ice_detention_scraper.py --extract-from-file "path/to/existing/file.xlsx"
 ```
 
 ## File Structure
