@@ -193,7 +193,7 @@ def render_html(facilities, output_path):
     </div>
     <div id="map"></div>
     <div class="legend">
-        <div style="font-weight:600; margin-bottom:0.5em;">Facility Size & Color Legend</div>
+        <div style="font-weight:600; margin-bottom:0.5em;">Legend</div>
         <div class="legend-row"><span class="legend-icon" style="background:rgba(76,175,80,0.7);width:12px;height:12px;border-radius:50%;border:2px solid #222;"></span><span class="legend-label">&lt; 50 people</span></div>
         <div class="legend-row"><span class="legend-icon" style="background:rgba(255,235,59,0.7);width:18px;height:18px;border-radius:50%;border:2px solid #222;"></span><span class="legend-label">50–199 people</span></div>
         <div class="legend-row"><span class="legend-icon" style="background:rgba(255,152,0,0.7);width:24px;height:24px;border-radius:50%;border:2px solid #222;"></span><span class="legend-label">200–499 people</span></div>

@@ -54,8 +54,8 @@
       "Male Non-Crim": 176.689243027876,
       "Female Crim": 0.0637450199203187,
       "Female Non-Crim": 0.147410358565737,
-      "latitude": null,
-      "longitude": null
+      "latitude": 31.31763134573915,
+      "longitude": -92.53646128616465
     },
     {
       "Name": "ALLEGANY COUNTY JAIL",
@@ -67,8 +67,8 @@
       "Male Non-Crim": 0.0956175298804781,
       "Female Crim": 0.306772908366534,
       "Female Non-Crim": 3.25099601593625,
-      "latitude": null,
-      "longitude": null
+      "latitude": 42.212952098118315,
+      "longitude": -78.01655374441145
     },
     {
       "Name": "ALLEN PARISH PUBLIC SAFETY COMPLEX",
@@ -80,8 +80,8 @@
       "Male Non-Crim": 122.326693227092,
       "Female Crim": 0.0,
       "Female Non-Crim": 0.0,
-      "latitude": null,
-      "longitude": null
+      "latitude": 30.624697320076855,
+      "longitude": -92.78388873123045
     },
     {
       "Name": "ATLANTA US PEN",
@@ -93,8 +93,8 @@
       "Male Non-Crim": 30.2231075697213,
       "Female Crim": 0.215139442231076,
       "Female Non-Crim": 0.0,
-      "latitude": null,
-      "longitude": null
+      "latitude": 33.71204679097549,
+      "longitude": -84.37111710232016
     },
     {
       "Name": "BAKER COUNTY SHERIFF DEPT.",
@@ -106,8 +106,8 @@
       "Male Non-Crim": 58.9362549800799,
       "Female Crim": 22.2350597609562,
       "Female Non-Crim": 21.4940239043825,
-      "latitude": null,
-      "longitude": null
+      "latitude": 30.296199564670268,
+      "longitude": -82.12165470055466
     },
     {
       "Name": "BERLIN FED. CORR. INST.",
@@ -119,8 +119,8 @@
       "Male Non-Crim": 60.8007968127492,
       "Female Crim": 0.0438247011952191,
       "Female Non-Crim": 0.107569721115538,
-      "latitude": null,
-      "longitude": null
+      "latitude": 44.52160410997109,
+      "longitude": -71.15084393084551
     },
     {
       "Name": "BLUEBONNET DETENTION FACILITY",
@@ -158,8 +158,8 @@
       "Male Non-Crim": 2.24701195219123,
       "Female Crim": 0.0,
       "Female Non-Crim": 0.0557768924302789,
-      "latitude": null,
-      "longitude": null
+      "latitude": 42.13112754376308,
+      "longitude": -75.91372588859112
     },
     {
       "Name": "BROWARD COUNTY JAIL",
@@ -249,8 +249,8 @@
       "Male Non-Crim": 149.179282868526,
       "Female Crim": 8.11952191235059,
       "Female Non-Crim": 5.59362549800797,
-      "latitude": null,
-      "longitude": null
+      "latitude": 38.111865502490836,
+      "longitude": -77.26723215987357
     },
     {
       "Name": "CASS COUNTY JAIL",
@@ -301,8 +301,8 @@
       "Male Non-Crim": 40.2788844621515,
       "Female Crim": 4.16334661354581,
       "Female Non-Crim": 4.23107569721115,
-      "latitude": null,
-      "longitude": null
+      "latitude": 38.36801388495829,
+      "longitude": -96.53868750219544
     },
     {
       "Name": "CHIPPEWA COUNTY SSM",
@@ -340,8 +340,8 @@
       "Male Non-Crim": 195.378486055778,
       "Female Crim": 0.0717131474103586,
       "Female Non-Crim": 0.0,
-      "latitude": null,
-      "longitude": null
+      "latitude": 35.18004057943829,
+      "longitude": -107.9072294599532
     },
     {
       "Name": "CIMMARRON CORR FACILITY",
@@ -431,8 +431,8 @@
       "Male Non-Crim": 11.0278884462153,
       "Female Crim": 0.286852589641434,
       "Female Non-Crim": 1.65737051792829,
-      "latitude": null,
-      "longitude": null
+      "latitude": 27.737232588266924,
+      "longitude": -97.75467600061113
     },
     {
       "Name": "COLLIER COUNTY NAPLES JAIL CENTER",
@@ -457,8 +457,8 @@
       "Male Non-Crim": 12.3625498007968,
       "Female Crim": 0.685258964143426,
       "Female Non-Crim": 4.16733067729084,
-      "latitude": null,
-      "longitude": null
+      "latitude": 41.46614644488944,
+      "longitude": -84.35637935792789
     },
     {
       "Name": "CUMBERLAND COUNTY JAIL",
@@ -483,8 +483,8 @@
       "Male Non-Crim": 4.7410358565737,
       "Female Crim": 0.187250996015936,
       "Female Non-Crim": 1.08764940239044,
-      "latitude": null,
-      "longitude": null
+      "latitude": 42.416218260076164,
+      "longitude": -96.4198282400598
     },
     {
       "Name": "DALLAS COUNTY JAIL - LEW STERRETT JUSTICE CENTER",
@@ -535,8 +535,8 @@
       "Male Non-Crim": 1.42629482071713,
       "Female Crim": 0.0,
       "Female Non-Crim": 0.0,
-      "latitude": null,
-      "longitude": null
+      "latitude": 13.474342702816681,
+      "longitude": 144.75024740290328
     },
     {
       "Name": "DESERT VIEW ANNEX",
@@ -561,8 +561,8 @@
       "Male Non-Crim": 23.0796812749005,
       "Female Crim": 0.107569721115538,
       "Female Non-Crim": 26.6294820717133,
-      "latitude": null,
-      "longitude": null
+      "latitude": 28.658091009808814,
+      "longitude": -99.20042911778089
     },
     {
       "Name": "DODGE COUNTY JAIL",
@@ -574,8 +574,8 @@
       "Male Non-Crim": 27.195219123506,
       "Female Crim": 0.434262948207171,
       "Female Non-Crim": 0.936254980079681,
-      "latitude": null,
-      "longitude": null
+      "latitude": 43.40855649830141,
+      "longitude": -88.70504618075388
     },
     {
       "Name": "EAST HIDALGO DETENTION CENTER",
@@ -587,8 +587,8 @@
       "Male Non-Crim": 5.76494023904382,
       "Female Crim": 0.199203187250996,
       "Female Non-Crim": 0.752988047808764,
-      "latitude": null,
-      "longitude": null
+      "latitude": 26.295748678577546,
+      "longitude": -97.91819101612627
     },
     {
       "Name": "EDEN DETENTION CTR",
@@ -639,8 +639,8 @@
       "Male Non-Crim": 278.027888446216,
       "Female Crim": 22.0278884462152,
       "Female Non-Crim": 400.808764940239,
-      "latitude": null,
-      "longitude": null
+      "latitude": 26.467581958871495,
+      "longitude": -97.76228788899171
     },
     {
       "Name": "ELIZABETH CONTRACT DETENTION FACILITY",
@@ -678,8 +678,8 @@
       "Male Non-Crim": 7.63346613545816,
       "Female Crim": 0.0,
       "Female Non-Crim": 0.203187250996016,
-      "latitude": null,
-      "longitude": null
+      "latitude": 42.12425044860252,
+      "longitude": -80.06653529654119
     },
     {
       "Name": "ETOWAH COUNTY JAIL (ALABAMA)",
@@ -704,8 +704,8 @@
       "Male Non-Crim": 0.525896414342629,
       "Female Crim": 0.0119521912350598,
       "Female Non-Crim": 0.0438247011952191,
-      "latitude": null,
-      "longitude": null
+      "latitude": 38.06555828124883,
+      "longitude": -84.54565987336858
     },
     {
       "Name": "FDC PHILADELPHIA",
@@ -782,8 +782,8 @@
       "Male Non-Crim": 210.18326693227,
       "Female Crim": 0.0,
       "Female Non-Crim": 0.155378486055777,
-      "latitude": null,
-      "longitude": null
+      "latitude": 30.875036792616953,
+      "longitude": -81.98072458889538
     },
     {
       "Name": "FOLKSTON MAIN IPC",
@@ -795,8 +795,8 @@
       "Male Non-Crim": 455.2390438247,
       "Female Crim": 0.430278884462151,
       "Female Non-Crim": 0.047808764940239,
-      "latitude": null,
-      "longitude": null
+      "latitude": 30.876482215607357,
+      "longitude": -81.9779839158829
     },
     {
       "Name": "FREEBORN COUNTY ADULT DETENTION CENTER",
@@ -821,8 +821,8 @@
       "Male Non-Crim": 19.0916334661355,
       "Female Crim": 1.16334661354582,
       "Female Non-Crim": 6.99601593625498,
-      "latitude": null,
-      "longitude": null
+      "latitude": 41.504827833000164,
+      "longitude": -81.19154084443294
     },
     {
       "Name": "GLADES COUNTY DETENTION CENTER",
@@ -834,8 +834,8 @@
       "Male Non-Crim": 24.972111553785,
       "Female Crim": 0.262948207171315,
       "Female Non-Crim": 0.0,
-      "latitude": null,
-      "longitude": null
+      "latitude": 26.83880034675664,
+      "longitude": -81.12392113131328
     },
     {
       "Name": "GOLDEN STATE ANNEX",
@@ -899,8 +899,8 @@
       "Male Non-Crim": 14.1713147410363,
       "Female Crim": 0.314741035856574,
       "Female Non-Crim": 1.90836653386454,
-      "latitude": null,
-      "longitude": null
+      "latitude": 30.303815869350622,
+      "longitude": -89.4759421177441
     },
     {
       "Name": "HARDIN COUNTY JAIL",
@@ -951,8 +951,8 @@
       "Male Non-Crim": 5.25896414342629,
       "Female Crim": 0.0756972111553785,
       "Female Non-Crim": 0.709163346613546,
-      "latitude": null,
-      "longitude": null
+      "latitude": 37.337886976243404,
+      "longitude": -87.54013518688257
     },
     {
       "Name": "HOUSTON CONTRACT DETENTION FACILITY",
@@ -990,8 +990,8 @@
       "Male Non-Crim": 519.023904382469,
       "Female Crim": 1.35856573705179,
       "Female Non-Crim": 59.8645418326694,
-      "latitude": null,
-      "longitude": null
+      "latitude": 32.69032325025824,
+      "longitude": -115.39756848885183
     },
     {
       "Name": "JACKSON PARISH CORRECTIONAL CENTER",
@@ -1081,8 +1081,8 @@
       "Male Non-Crim": 55.9681274900401,
       "Female Crim": 0.0,
       "Female Non-Crim": 0.0717131474103586,
-      "latitude": null,
-      "longitude": null
+      "latitude": 36.86806507097945,
+      "longitude": -97.06923720408514
     },
     {
       "Name": "KENTON COUNTY JAIL",
@@ -1133,8 +1133,8 @@
       "Male Non-Crim": 45.1035856573707,
       "Female Crim": 0.0,
       "Female Non-Crim": 0.0,
-      "latitude": null,
-      "longitude": null
+      "latitude": 28.045392301310212,
+      "longitude": -99.33614721779425
     },
     {
       "Name": "LAREDO PROCESSING CENTER",
@@ -1250,8 +1250,8 @@
       "Male Non-Crim": 2.67330677290836,
       "Female Crim": 0.0358565737051793,
       "Female Non-Crim": 0.262948207171315,
-      "latitude": null,
-      "longitude": null
+      "latitude": 32.58677735093389,
+      "longitude": -90.04526320050026
     },
     {
       "Name": "MAHONING COUNTY JAIL",
@@ -1302,8 +1302,8 @@
       "Male Non-Crim": 80.0199203187253,
       "Female Crim": 0.270916334661355,
       "Female Non-Crim": 0.0,
-      "latitude": null,
-      "longitude": null
+      "latitude": 25.778835871616227,
+      "longitude": -80.19334441968891
     },
     {
       "Name": "MIAMI STAGING FACILITY",
@@ -1380,8 +1380,8 @@
       "Male Non-Crim": 562.131474103583,
       "Female Crim": 26.3505976095618,
       "Female Non-Crim": 22.6573705179283,
-      "latitude": null,
-      "longitude": null
+      "latitude": 40.921386200722395,
+      "longitude": -78.24213641561506
     },
     {
       "Name": "MUSCATINE COUNTY JAIL",
@@ -1432,8 +1432,8 @@
       "Male Non-Crim": 0.581673306772908,
       "Female Crim": 0.0119521912350598,
       "Female Non-Crim": 0.0159362549800797,
-      "latitude": null,
-      "longitude": null
+      "latitude": 34.325340041511325,
+      "longitude": -77.89457245997536
     },
     {
       "Name": "NORTHEAST OHIO CORRECTIONAL CENTER",
@@ -1471,8 +1471,8 @@
       "Male Non-Crim": 8.28685258964143,
       "Female Crim": 0.0,
       "Female Non-Crim": 0.0318725099601594,
-      "latitude": null,
-      "longitude": null
+      "latitude": 44.850597782512054,
+      "longitude": -73.13323107316418
     },
     {
       "Name": "OLDHAM COUNTY JAIL",
@@ -1497,8 +1497,8 @@
       "Male Non-Crim": 5.19123505976095,
       "Female Crim": 0.49402390438247,
       "Female Non-Crim": 1.35059760956175,
-      "latitude": null,
-      "longitude": null
+      "latitude": 28.50402318562143,
+      "longitude": -81.41636787360717
     },
     {
       "Name": "ORANGE COUNTY JAIL (NY)",
@@ -1562,8 +1562,8 @@
       "Male Non-Crim": 1.05179282868526,
       "Female Crim": 0.0,
       "Female Non-Crim": 0.0159362549800797,
-      "latitude": null,
-      "longitude": null
+      "latitude": 44.07844295797259,
+      "longitude": -103.22212620387216
     },
     {
       "Name": "PHELPS COUNTY JAIL (MO)",
@@ -1614,8 +1614,8 @@
       "Male Non-Crim": 114.768924302789,
       "Female Crim": 0.0,
       "Female Non-Crim": 0.0159362549800797,
-      "latitude": null,
-      "longitude": null
+      "latitude": 41.3892641952419,
+      "longitude": -75.071309115601
     },
     {
       "Name": "PINE PRAIRIE ICE PROCESSING CENTER",
@@ -1640,8 +1640,8 @@
       "Male Non-Crim": 5.54183266932271,
       "Female Crim": 0.207171314741036,
       "Female Non-Crim": 0.549800796812749,
-      "latitude": null,
-      "longitude": null
+      "latitude": 27.903511036240065,
+      "longitude": -82.70346139830698
     },
     {
       "Name": "PLATTE COUNTY JAIL",
@@ -1757,8 +1757,8 @@
       "Male Non-Crim": 72.1992031872509,
       "Female Crim": 19.2310756972112,
       "Female Non-Crim": 739.677290836651,
-      "latitude": null,
-      "longitude": null
+      "latitude": 32.45717553802827,
+      "longitude": -92.079859671668
     },
     {
       "Name": "RIO GRANDE DETENTION CENTER",
@@ -1783,8 +1783,8 @@
       "Male Non-Crim": 530.179282868525,
       "Female Crim": 0.207171314741036,
       "Female Non-Crim": 0.430278884462151,
-      "latitude": null,
-      "longitude": null
+      "latitude": 31.597253400688896,
+      "longitude": -91.55806052381577
     },
     {
       "Name": "SAIPAN DEPARTMENT OF CORRECTIONS (SUSUPE)",
@@ -1796,8 +1796,8 @@
       "Male Non-Crim": 2.27490039840637,
       "Female Crim": 0.0,
       "Female Non-Crim": 0.733067729083665,
-      "latitude": null,
-      "longitude": null
+      "latitude": 15.158907917922077,
+      "longitude": 145.70544921267373
     },
     {
       "Name": "SALT LAKE COUNTY METRO JAIL",
@@ -1822,8 +1822,8 @@
       "Male Non-Crim": 97.7768924302794,
       "Female Crim": 1.0597609561753,
       "Female Non-Crim": 28.4501992031873,
-      "latitude": null,
-      "longitude": null
+      "latitude": 32.483025880176186,
+      "longitude": -114.68349442933823
     },
     {
       "Name": "SARPY COUNTY JAIL",
@@ -1861,8 +1861,8 @@
       "Male Non-Crim": 22.1633466135459,
       "Female Crim": 2.34262948207171,
       "Female Non-Crim": 1.94422310756972,
-      "latitude": null,
-      "longitude": null
+      "latitude": 41.079506331622774,
+      "longitude": -83.15386397328119
     },
     {
       "Name": "SHERBURNE COUNTY JAIL",
@@ -1887,8 +1887,8 @@
       "Male Non-Crim": 5.0996015936255,
       "Female Crim": 0.0,
       "Female Non-Crim": 0.0358565737051793,
-      "latitude": null,
-      "longitude": null
+      "latitude": 38.31113857008232,
+      "longitude": -81.71099978870323
     },
     {
       "Name": "SOUTH LOUISIANA ICE PROCESSING CENTER",
@@ -1952,8 +1952,8 @@
       "Male Non-Crim": 876.286852589632,
       "Female Crim": 48.9083665338646,
       "Female Non-Crim": 166.00796812749,
-      "latitude": null,
-      "longitude": null
+      "latitude": 32.036729905551354,
+      "longitude": -84.77148464340088
     },
     {
       "Name": "STRAFFORD COUNTY CORRECTIONS",
@@ -1978,8 +1978,8 @@
       "Male Non-Crim": 0.338645418326693,
       "Female Crim": 0.047808764940239,
       "Female Non-Crim": 0.0796812749003984,
-      "latitude": null,
-      "longitude": null
+      "latitude": 41.5371934874891,
+      "longitude": -109.30126553093841
     },
     {
       "Name": "T DON HUTTO DETENTION CENTER",
@@ -2004,8 +2004,8 @@
       "Male Non-Crim": 370.127490039842,
       "Female Crim": 0.0,
       "Female Non-Crim": 0.00398406374501992,
-      "latitude": null,
-      "longitude": null
+      "latitude": 34.76832244015224,
+      "longitude": -106.01873793112864
     },
     {
       "Name": "TULSA COUNTY JAIL (DAVID L. MOSS JUSTICE CTR)",
@@ -2043,8 +2043,8 @@
       "Male Non-Crim": 2.08366533864542,
       "Female Crim": 0.00398406374501992,
       "Female Non-Crim": 0.0,
-      "latitude": null,
-      "longitude": null
+      "latitude": 30.78363619823702,
+      "longitude": -86.1039227599523
     },
     {
       "Name": "WASHINGTON COUNTY DETENTION CENTER",
@@ -2069,8 +2069,8 @@
       "Male Non-Crim": 2.39442231075697,
       "Female Crim": 0.410358565737052,
       "Female Non-Crim": 0.342629482071713,
-      "latitude": null,
-      "longitude": null
+      "latitude": 39.57445694817889,
+      "longitude": -119.81272011554243
     },
     {
       "Name": "WEBB COUNTY DETENTION CENTER (CCA)",
@@ -2095,8 +2095,8 @@
       "Male Non-Crim": 1208.63346613545,
       "Female Crim": 0.541832669322709,
       "Female Non-Crim": 0.557768924302789,
-      "latitude": null,
-      "longitude": null
+      "latitude": 31.8504715684334,
+      "longitude": -92.78135647527058
     },
     {
       "Name": "WOODBURY COUNTY JAIL",

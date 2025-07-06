@@ -117,7 +117,7 @@
     </div>
     <div id="map"></div>
     <div class="legend">
-        <div style="font-weight:600; margin-bottom:0.5em;">Facility Size & Color Legend</div>
+        <div style="font-weight:600; margin-bottom:0.5em;">Legend</div>
         <div class="legend-row"><span class="legend-icon" style="background:rgba(76,175,80,0.7);width:12px;height:12px;border-radius:50%;border:2px solid #222;"></span><span class="legend-label">&lt; 50 people</span></div>
         <div class="legend-row"><span class="legend-icon" style="background:rgba(255,235,59,0.7);width:18px;height:18px;border-radius:50%;border:2px solid #222;"></span><span class="legend-label">50–199 people</span></div>
         <div class="legend-row"><span class="legend-icon" style="background:rgba(255,152,0,0.7);width:24px;height:24px;border-radius:50%;border:2px solid #222;"></span><span class="legend-label">200–499 people</span></div>
@@ -160,6 +160,54 @@
     }).addTo(map)
         .bindPopup('<b>ALAMANCE COUNTY DETENTION FACILITY</b><br/>109 SOUTH MAPLE STREET, GRAHAM, NC 27253<br/>Criminals: <b>13</b><br/>Non-Criminals: <b>7</b><br/>Percentage Criminal: <b>65%</b>');
     
+    L.marker([31.31763134573915, -92.53646128616465], {
+        icon: L.divIcon({
+            className: 'custom-marker',
+            html: `<span style="display:inline-block;width:24px;height:24px;background:rgba(255,152,0,0.7);opacity:0.7;border:2px solid #222;border-radius:50%;box-shadow:0 1px 4px rgba(0,0,0,0.12);"></span>`
+        })
+    }).addTo(map)
+        .bindPopup('<b>ALEXANDRIA STAGING FACILITY</b><br/>96 GEORGE THOMPSON DRIVE, ALEXANDRIA, LA 71303<br/>Criminals: <b>144</b><br/>Non-Criminals: <b>177</b><br/>Percentage Criminal: <b>45%</b>');
+    
+    L.marker([42.212952098118315, -78.01655374441145], {
+        icon: L.divIcon({
+            className: 'custom-marker',
+            html: `<span style="display:inline-block;width:12px;height:12px;background:rgba(76,175,80,0.7);opacity:0.7;border:2px solid #222;border-radius:50%;box-shadow:0 1px 4px rgba(0,0,0,0.12);"></span>`
+        })
+    }).addTo(map)
+        .bindPopup('<b>ALLEGANY COUNTY JAIL</b><br/>4884 STATE ROUTE 19, BELMONT, NY 14813<br/>Criminals: <b>0</b><br/>Non-Criminals: <b>3</b><br/>Percentage Criminal: <b>0%</b>');
+    
+    L.marker([30.624697320076855, -92.78388873123045], {
+        icon: L.divIcon({
+            className: 'custom-marker',
+            html: `<span style="display:inline-block;width:18px;height:18px;background:rgba(255,235,59,0.7);opacity:0.7;border:2px solid #222;border-radius:50%;box-shadow:0 1px 4px rgba(0,0,0,0.12);"></span>`
+        })
+    }).addTo(map)
+        .bindPopup('<b>ALLEN PARISH PUBLIC SAFETY COMPLEX</b><br/>7340 HIGHWAY 26 WEST, OBERLIN, LA 70655<br/>Criminals: <b>51</b><br/>Non-Criminals: <b>122</b><br/>Percentage Criminal: <b>29%</b>');
+    
+    L.marker([33.71204679097549, -84.37111710232016], {
+        icon: L.divIcon({
+            className: 'custom-marker',
+            html: `<span style="display:inline-block;width:18px;height:18px;background:rgba(255,235,59,0.7);opacity:0.7;border:2px solid #222;border-radius:50%;box-shadow:0 1px 4px rgba(0,0,0,0.12);"></span>`
+        })
+    }).addTo(map)
+        .bindPopup('<b>ATLANTA US PEN</b><br/>601 MCDONOUGH BOULEVARD, SE, ATLANTA, GA 30315<br/>Criminals: <b>20</b><br/>Non-Criminals: <b>30</b><br/>Percentage Criminal: <b>40%</b>');
+    
+    L.marker([30.296199564670268, -82.12165470055466], {
+        icon: L.divIcon({
+            className: 'custom-marker',
+            html: `<span style="display:inline-block;width:24px;height:24px;background:rgba(255,152,0,0.7);opacity:0.7;border:2px solid #222;border-radius:50%;box-shadow:0 1px 4px rgba(0,0,0,0.12);"></span>`
+        })
+    }).addTo(map)
+        .bindPopup('<b>BAKER COUNTY SHERIFF DEPT.</b><br/>1 SHERIFF OFFICE DRIVE, MACCLENNY, FL 32063<br/>Criminals: <b>169</b><br/>Non-Criminals: <b>80</b><br/>Percentage Criminal: <b>68%</b>');
+    
+    L.marker([44.52160410997109, -71.15084393084551], {
+        icon: L.divIcon({
+            className: 'custom-marker',
+            html: `<span style="display:inline-block;width:18px;height:18px;background:rgba(255,235,59,0.7);opacity:0.7;border:2px solid #222;border-radius:50%;box-shadow:0 1px 4px rgba(0,0,0,0.12);"></span>`
+        })
+    }).addTo(map)
+        .bindPopup('<b>BERLIN FED. CORR. INST.</b><br/>1 SUCCESS LOOP DR., BERLIN, NH 3570<br/>Criminals: <b>21</b><br/>Non-Criminals: <b>61</b><br/>Percentage Criminal: <b>26%</b>');
+    
     L.marker([32.7667663, -99.8888312], {
         icon: L.divIcon({
             className: 'custom-marker',
@@ -175,6 +223,14 @@
         })
     }).addTo(map)
         .bindPopup('<b>BOONE COUNTY JAIL</b><br/>3020 CONRAD LANE, BURLINGTON, KY 41005<br/>Criminals: <b>115</b><br/>Non-Criminals: <b>40</b><br/>Percentage Criminal: <b>74%</b>');
+    
+    L.marker([42.13112754376308, -75.91372588859112], {
+        icon: L.divIcon({
+            className: 'custom-marker',
+            html: `<span style="display:inline-block;width:12px;height:12px;background:rgba(76,175,80,0.7);opacity:0.7;border:2px solid #222;border-radius:50%;box-shadow:0 1px 4px rgba(0,0,0,0.12);"></span>`
+        })
+    }).addTo(map)
+        .bindPopup('<b>BROOME COUNTY JAIL</b><br/>897 FRONT STREET, BINGHAMPTON, NY 13905<br/>Criminals: <b>0</b><br/>Non-Criminals: <b>2</b><br/>Percentage Criminal: <b>0%</b>');
     
     L.marker([26.1162336, -80.1423181], {
         icon: L.divIcon({
@@ -224,6 +280,14 @@
     }).addTo(map)
         .bindPopup('<b>CAMPBELL CO DET CTR</b><br/>601 CENTRAL AVE, NEWPORT, KY 41071<br/>Criminals: <b>7</b><br/>Non-Criminals: <b>11</b><br/>Percentage Criminal: <b>39%</b>');
     
+    L.marker([38.111865502490836, -77.26723215987357], {
+        icon: L.divIcon({
+            className: 'custom-marker',
+            html: `<span style="display:inline-block;width:24px;height:24px;background:rgba(255,152,0,0.7);opacity:0.7;border:2px solid #222;border-radius:50%;box-shadow:0 1px 4px rgba(0,0,0,0.12);"></span>`
+        })
+    }).addTo(map)
+        .bindPopup('<b>CAROLINE DETENTION FACILITY</b><br/>11093 S.W. LEWIS MEMORIAL DRIVE, BOWLING GREEN, VA 22427<br/>Criminals: <b>139</b><br/>Non-Criminals: <b>155</b><br/>Percentage Criminal: <b>47%</b>');
+    
     L.marker([41.0112468, -95.8831012], {
         icon: L.divIcon({
             className: 'custom-marker',
@@ -248,6 +312,14 @@
     }).addTo(map)
         .bindPopup('<b>CENTRAL LOUISIANA ICE PROCESSING CENTER (CLIPC)</b><br/>830 PINEHILL ROAD, JENA, LA 71342<br/>Criminals: <b>495</b><br/>Non-Criminals: <b>682</b><br/>Percentage Criminal: <b>42%</b>');
     
+    L.marker([38.36801388495829, -96.53868750219544], {
+        icon: L.divIcon({
+            className: 'custom-marker',
+            html: `<span style="display:inline-block;width:18px;height:18px;background:rgba(255,235,59,0.7);opacity:0.7;border:2px solid #222;border-radius:50%;box-shadow:0 1px 4px rgba(0,0,0,0.12);"></span>`
+        })
+    }).addTo(map)
+        .bindPopup('<b>CHASE COUNTY JAIL</b><br/>301 SOUTH WALNUT STREET, COTTONWOOD FALL, KS 66845<br/>Criminals: <b>56</b><br/>Non-Criminals: <b>44</b><br/>Percentage Criminal: <b>56%</b>');
+    
     L.marker([46.4977347, -84.3459656], {
         icon: L.divIcon({
             className: 'custom-marker',
@@ -263,6 +335,14 @@
         })
     }).addTo(map)
         .bindPopup('<b>CHITTENDEN REGIONAL CORRECTIONAL FACILITY</b><br/>7 FARRELL STREET, SOUTH BURLINGTON, VT 5403<br/>Criminals: <b>0</b><br/>Non-Criminals: <b>3</b><br/>Percentage Criminal: <b>0%</b>');
+    
+    L.marker([35.18004057943829, -107.9072294599532], {
+        icon: L.divIcon({
+            className: 'custom-marker',
+            html: `<span style="display:inline-block;width:24px;height:24px;background:rgba(255,152,0,0.7);opacity:0.7;border:2px solid #222;border-radius:50%;box-shadow:0 1px 4px rgba(0,0,0,0.12);"></span>`
+        })
+    }).addTo(map)
+        .bindPopup('<b>CIBOLA COUNTY CORRECTIONAL CENTER</b><br/>2000 CIBOLA LOOP, MILAN, NM 87021<br/>Criminals: <b>32</b><br/>Non-Criminals: <b>195</b><br/>Percentage Criminal: <b>14%</b>');
     
     L.marker([35.961173, -96.7848408], {
         icon: L.divIcon({
@@ -312,6 +392,14 @@
     }).addTo(map)
         .bindPopup('<b>CLINTON COUNTY JAIL</b><br/>301 E WALNUT STREET, FRANKFORT, IN 46041<br/>Criminals: <b>0</b><br/>Non-Criminals: <b>1</b><br/>Percentage Criminal: <b>0%</b>');
     
+    L.marker([27.737232588266924, -97.75467600061113], {
+        icon: L.divIcon({
+            className: 'custom-marker',
+            html: `<span style="display:inline-block;width:12px;height:12px;background:rgba(76,175,80,0.7);opacity:0.7;border:2px solid #222;border-radius:50%;box-shadow:0 1px 4px rgba(0,0,0,0.12);"></span>`
+        })
+    }).addTo(map)
+        .bindPopup('<b>COASTAL BEND DETENTION FACILITY</b><br/>4909 FM 2826, ROBSTOWN, TX 78380<br/>Criminals: <b>5</b><br/>Non-Criminals: <b>13</b><br/>Percentage Criminal: <b>28%</b>');
+    
     L.marker([26.1257654, -81.7651214], {
         icon: L.divIcon({
             className: 'custom-marker',
@@ -320,6 +408,14 @@
     }).addTo(map)
         .bindPopup('<b>COLLIER COUNTY NAPLES JAIL CENTER</b><br/>3347 TAMIAMI TRAIL E, NAPLES, FL 34112<br/>Criminals: <b>6</b><br/>Non-Criminals: <b>6</b><br/>Percentage Criminal: <b>50%</b>');
     
+    L.marker([41.46614644488944, -84.35637935792789], {
+        icon: L.divIcon({
+            className: 'custom-marker',
+            html: `<span style="display:inline-block;width:12px;height:12px;background:rgba(76,175,80,0.7);opacity:0.7;border:2px solid #222;border-radius:50%;box-shadow:0 1px 4px rgba(0,0,0,0.12);"></span>`
+        })
+    }).addTo(map)
+        .bindPopup('<b>CORR. CTR OF NORTHWEST OHIO</b><br/>3151 ROAD 24.25, ROUTE 1, STRYKER, OH 43557<br/>Criminals: <b>7</b><br/>Non-Criminals: <b>16</b><br/>Percentage Criminal: <b>30%</b>');
+    
     L.marker([43.6508623, -70.2816197], {
         icon: L.divIcon({
             className: 'custom-marker',
@@ -327,6 +423,14 @@
         })
     }).addTo(map)
         .bindPopup('<b>CUMBERLAND COUNTY JAIL</b><br/>50 COUNTY WAY, PORTLAND, ME 4102<br/>Criminals: <b>26</b><br/>Non-Criminals: <b>28</b><br/>Percentage Criminal: <b>48%</b>');
+    
+    L.marker([42.416218260076164, -96.4198282400598], {
+        icon: L.divIcon({
+            className: 'custom-marker',
+            html: `<span style="display:inline-block;width:12px;height:12px;background:rgba(76,175,80,0.7);opacity:0.7;border:2px solid #222;border-radius:50%;box-shadow:0 1px 4px rgba(0,0,0,0.12);"></span>`
+        })
+    }).addTo(map)
+        .bindPopup('<b>DAKOTA COUNTY JAIL</b><br/>1601 BROADWAY, DAKOTA CITY, NE 68731<br/>Criminals: <b>11</b><br/>Non-Criminals: <b>6</b><br/>Percentage Criminal: <b>65%</b>');
     
     L.marker([32.7746483, -96.8243069], {
         icon: L.divIcon({
@@ -352,6 +456,14 @@
     }).addTo(map)
         .bindPopup('<b>DENVER CONTRACT DETENTION FACILITY</b><br/>3130 OAKLAND ST, AURORA, CO 80010<br/>Criminals: <b>324</b><br/>Non-Criminals: <b>824</b><br/>Percentage Criminal: <b>28%</b>');
     
+    L.marker([13.474342702816681, 144.75024740290328], {
+        icon: L.divIcon({
+            className: 'custom-marker',
+            html: `<span style="display:inline-block;width:12px;height:12px;background:rgba(76,175,80,0.7);opacity:0.7;border:2px solid #222;border-radius:50%;box-shadow:0 1px 4px rgba(0,0,0,0.12);"></span>`
+        })
+    }).addTo(map)
+        .bindPopup('<b>DEPARTMENT OF CORRECTIONS HAGATNA</b><br/>203 ASPINAL AVE. PO BOX 3236, HAGATNA, GU 96910<br/>Criminals: <b>5</b><br/>Non-Criminals: <b>1</b><br/>Percentage Criminal: <b>83%</b>');
+    
     L.marker([34.5599404, -117.4372813], {
         icon: L.divIcon({
             className: 'custom-marker',
@@ -359,6 +471,30 @@
         })
     }).addTo(map)
         .bindPopup('<b>DESERT VIEW ANNEX</b><br/>10450 RANCHO ROAD, ADELANTO, CA 92301<br/>Criminals: <b>149</b><br/>Non-Criminals: <b>261</b><br/>Percentage Criminal: <b>36%</b>');
+    
+    L.marker([28.658091009808814, -99.20042911778089], {
+        icon: L.divIcon({
+            className: 'custom-marker',
+            html: `<span style="display:inline-block;width:18px;height:18px;background:rgba(255,235,59,0.7);opacity:0.7;border:2px solid #222;border-radius:50%;box-shadow:0 1px 4px rgba(0,0,0,0.12);"></span>`
+        })
+    }).addTo(map)
+        .bindPopup('<b>DILLEY IMMIGRATION PROCESSING CENTER</b><br/>300 EL RANCHO WAY, DILLEY, TX 78017<br/>Criminals: <b>0</b><br/>Non-Criminals: <b>50</b><br/>Percentage Criminal: <b>0%</b>');
+    
+    L.marker([43.40855649830141, -88.70504618075388], {
+        icon: L.divIcon({
+            className: 'custom-marker',
+            html: `<span style="display:inline-block;width:18px;height:18px;background:rgba(255,235,59,0.7);opacity:0.7;border:2px solid #222;border-radius:50%;box-shadow:0 1px 4px rgba(0,0,0,0.12);"></span>`
+        })
+    }).addTo(map)
+        .bindPopup('<b>DODGE COUNTY JAIL</b><br/>215 WEST CENTRAL STREET, JUNEAU, WI 53039<br/>Criminals: <b>84</b><br/>Non-Criminals: <b>28</b><br/>Percentage Criminal: <b>75%</b>');
+    
+    L.marker([26.295748678577546, -97.91819101612627], {
+        icon: L.divIcon({
+            className: 'custom-marker',
+            html: `<span style="display:inline-block;width:12px;height:12px;background:rgba(76,175,80,0.7);opacity:0.7;border:2px solid #222;border-radius:50%;box-shadow:0 1px 4px rgba(0,0,0,0.12);"></span>`
+        })
+    }).addTo(map)
+        .bindPopup('<b>EAST HIDALGO DETENTION CENTER</b><br/>1330 HIGHWAY 107, LA VILLA, TX 78562<br/>Criminals: <b>5</b><br/>Non-Criminals: <b>7</b><br/>Percentage Criminal: <b>42%</b>');
     
     L.marker([31.2175083, -99.8339599], {
         icon: L.divIcon({
@@ -384,6 +520,14 @@
     }).addTo(map)
         .bindPopup('<b>EL PASO SOFT SIDED FACILITY</b><br/>12501 GATEWAY BLVD S, EL PASO, TX 79934<br/>Criminals: <b>30</b><br/>Non-Criminals: <b>44</b><br/>Percentage Criminal: <b>41%</b>');
     
+    L.marker([26.467581958871495, -97.76228788899171], {
+        icon: L.divIcon({
+            className: 'custom-marker',
+            html: `<span style="display:inline-block;width:30px;height:30px;background:rgba(244,67,54,0.7);opacity:0.7;border:2px solid #222;border-radius:50%;box-shadow:0 1px 4px rgba(0,0,0,0.12);"></span>`
+        })
+    }).addTo(map)
+        .bindPopup('<b>EL VALLE DETENTION FACILITY</b><br/>1800 INDUSTRIAL DRIVE, RAYMONDVILLE, TX 78580<br/>Criminals: <b>153</b><br/>Non-Criminals: <b>679</b><br/>Percentage Criminal: <b>18%</b>');
+    
     L.marker([40.6662036, -74.1896718], {
         icon: L.divIcon({
             className: 'custom-marker',
@@ -400,6 +544,14 @@
     }).addTo(map)
         .bindPopup('<b>ELOY FEDERAL CONTRACT FACILITY</b><br/>1705 EAST HANNA RD., ELOY, AZ 85131<br/>Criminals: <b>265</b><br/>Non-Criminals: <b>1105</b><br/>Percentage Criminal: <b>19%</b>');
     
+    L.marker([42.12425044860252, -80.06653529654119], {
+        icon: L.divIcon({
+            className: 'custom-marker',
+            html: `<span style="display:inline-block;width:12px;height:12px;background:rgba(76,175,80,0.7);opacity:0.7;border:2px solid #222;border-radius:50%;box-shadow:0 1px 4px rgba(0,0,0,0.12);"></span>`
+        })
+    }).addTo(map)
+        .bindPopup('<b>ERIE COUNTY JAIL</b><br/>DEPARTMENT OF CORRECTIONS 1618 ASH STREET, ERIE, PA 16503<br/>Criminals: <b>2</b><br/>Non-Criminals: <b>8</b><br/>Percentage Criminal: <b>20%</b>');
+    
     L.marker([34.0161208, -86.012499], {
         icon: L.divIcon({
             className: 'custom-marker',
@@ -407,6 +559,14 @@
         })
     }).addTo(map)
         .bindPopup('<b>ETOWAH COUNTY JAIL (ALABAMA)</b><br/>827 FORREST AVENUE, GADSDEN, AL 35901<br/>Criminals: <b>9</b><br/>Non-Criminals: <b>13</b><br/>Percentage Criminal: <b>41%</b>');
+    
+    L.marker([38.06555828124883, -84.54565987336858], {
+        icon: L.divIcon({
+            className: 'custom-marker',
+            html: `<span style="display:inline-block;width:12px;height:12px;background:rgba(76,175,80,0.7);opacity:0.7;border:2px solid #222;border-radius:50%;box-shadow:0 1px 4px rgba(0,0,0,0.12);"></span>`
+        })
+    }).addTo(map)
+        .bindPopup('<b>FAYETTE COUNTY DETENTION CENTER</b><br/>600 OLD FRANKFORD CR, LEXINGTON, KY 40510<br/>Criminals: <b>1</b><br/>Non-Criminals: <b>1</b><br/>Percentage Criminal: <b>50%</b>');
     
     L.marker([39.9525541, -75.1520216], {
         icon: L.divIcon({
@@ -448,6 +608,22 @@
     }).addTo(map)
         .bindPopup('<b>FLOYD COUNTY JAIL</b><br/>2526 NEW CALHOUN HWY, ROME, GA 30161<br/>Criminals: <b>0</b><br/>Non-Criminals: <b>1</b><br/>Percentage Criminal: <b>0%</b>');
     
+    L.marker([30.875036792616953, -81.98072458889538], {
+        icon: L.divIcon({
+            className: 'custom-marker',
+            html: `<span style="display:inline-block;width:24px;height:24px;background:rgba(255,152,0,0.7);opacity:0.7;border:2px solid #222;border-radius:50%;box-shadow:0 1px 4px rgba(0,0,0,0.12);"></span>`
+        })
+    }).addTo(map)
+        .bindPopup('<b>FOLKSTON ANNEX IPC</b><br/>3424 HIGHWAY 252 EAST, FOLKSTON, GA 31537<br/>Criminals: <b>67</b><br/>Non-Criminals: <b>210</b><br/>Percentage Criminal: <b>24%</b>');
+    
+    L.marker([30.876482215607357, -81.9779839158829], {
+        icon: L.divIcon({
+            className: 'custom-marker',
+            html: `<span style="display:inline-block;width:30px;height:30px;background:rgba(244,67,54,0.7);opacity:0.7;border:2px solid #222;border-radius:50%;box-shadow:0 1px 4px rgba(0,0,0,0.12);"></span>`
+        })
+    }).addTo(map)
+        .bindPopup('<b>FOLKSTON MAIN IPC</b><br/>3026 HWY 252 EAST, FOLKSTON, GA 31537<br/>Criminals: <b>176</b><br/>Non-Criminals: <b>455</b><br/>Percentage Criminal: <b>28%</b>');
+    
     L.marker([43.6461475, -93.3680658], {
         icon: L.divIcon({
             className: 'custom-marker',
@@ -455,6 +631,22 @@
         })
     }).addTo(map)
         .bindPopup('<b>FREEBORN COUNTY ADULT DETENTION CENTER</b><br/>411 SOUTH BROADWAY AVENUE, ALBERT LEA, MN 56007<br/>Criminals: <b>44</b><br/>Non-Criminals: <b>34</b><br/>Percentage Criminal: <b>56%</b>');
+    
+    L.marker([41.504827833000164, -81.19154084443294], {
+        icon: L.divIcon({
+            className: 'custom-marker',
+            html: `<span style="display:inline-block;width:12px;height:12px;background:rgba(76,175,80,0.7);opacity:0.7;border:2px solid #222;border-radius:50%;box-shadow:0 1px 4px rgba(0,0,0,0.12);"></span>`
+        })
+    }).addTo(map)
+        .bindPopup('<b>GEAUGA COUNTY JAIL</b><br/>12450 MERRITT DR, CHARDON, OH 44024<br/>Criminals: <b>16</b><br/>Non-Criminals: <b>26</b><br/>Percentage Criminal: <b>38%</b>');
+    
+    L.marker([26.83880034675664, -81.12392113131328], {
+        icon: L.divIcon({
+            className: 'custom-marker',
+            html: `<span style="display:inline-block;width:18px;height:18px;background:rgba(255,235,59,0.7);opacity:0.7;border:2px solid #222;border-radius:50%;box-shadow:0 1px 4px rgba(0,0,0,0.12);"></span>`
+        })
+    }).addTo(map)
+        .bindPopup('<b>GLADES COUNTY DETENTION CENTER</b><br/>1297 EAST SR 78, MOORE HAVEN, FL 33471<br/>Criminals: <b>28</b><br/>Non-Criminals: <b>25</b><br/>Percentage Criminal: <b>53%</b>');
     
     L.marker([35.667329, -119.225036], {
         icon: L.divIcon({
@@ -488,6 +680,14 @@
     }).addTo(map)
         .bindPopup('<b>GREENE COUNTY JAIL</b><br/>1199 N HASELTINE RD, SPRINGFIELD, MO 65802<br/>Criminals: <b>47</b><br/>Non-Criminals: <b>54</b><br/>Percentage Criminal: <b>47%</b>');
     
+    L.marker([30.303815869350622, -89.4759421177441], {
+        icon: L.divIcon({
+            className: 'custom-marker',
+            html: `<span style="display:inline-block;width:12px;height:12px;background:rgba(76,175,80,0.7);opacity:0.7;border:2px solid #222;border-radius:50%;box-shadow:0 1px 4px rgba(0,0,0,0.12);"></span>`
+        })
+    }).addTo(map)
+        .bindPopup('<b>HANCOCK COUNTY PUBLIC SAFETY COMPLEX</b><br/>8450 HIGHWAY 90, BAY ST. LOUIS, MS 39520<br/>Criminals: <b>5</b><br/>Non-Criminals: <b>16</b><br/>Percentage Criminal: <b>24%</b>');
+    
     L.marker([42.3598449, -93.0973711], {
         icon: L.divIcon({
             className: 'custom-marker',
@@ -512,6 +712,14 @@
     }).addTo(map)
         .bindPopup('<b>HONOLULU FEDERAL DETENTION CENTER</b><br/>351 ELLIOTT ST., HONOLULU, HI 96819<br/>Criminals: <b>19</b><br/>Non-Criminals: <b>16</b><br/>Percentage Criminal: <b>54%</b>');
     
+    L.marker([37.337886976243404, -87.54013518688257], {
+        icon: L.divIcon({
+            className: 'custom-marker',
+            html: `<span style="display:inline-block;width:12px;height:12px;background:rgba(76,175,80,0.7);opacity:0.7;border:2px solid #222;border-radius:50%;box-shadow:0 1px 4px rgba(0,0,0,0.12);"></span>`
+        })
+    }).addTo(map)
+        .bindPopup('<b>HOPKINS COUNTY JAIL</b><br/>2250 LAFOON TRAIL, MADISONVILLE, KY 42431<br/>Criminals: <b>4</b><br/>Non-Criminals: <b>6</b><br/>Percentage Criminal: <b>40%</b>');
+    
     L.marker([29.9508332, -95.3121699], {
         icon: L.divIcon({
             className: 'custom-marker',
@@ -527,6 +735,14 @@
         })
     }).addTo(map)
         .bindPopup('<b>IAH SECURE ADULT DETENTION FACILITY (POLK)</b><br/>3400 FM 350 SOUTH, LIVINGSTON, TX 77351<br/>Criminals: <b>95</b><br/>Non-Criminals: <b>704</b><br/>Percentage Criminal: <b>12%</b>');
+    
+    L.marker([32.69032325025824, -115.39756848885183], {
+        icon: L.divIcon({
+            className: 'custom-marker',
+            html: `<span style="display:inline-block;width:30px;height:30px;background:rgba(244,67,54,0.7);opacity:0.7;border:2px solid #222;border-radius:50%;box-shadow:0 1px 4px rgba(0,0,0,0.12);"></span>`
+        })
+    }).addTo(map)
+        .bindPopup('<b>IMPERIAL REGIONAL DETENTION FACILITY</b><br/>1572 GATEWAY, CALEXICO, CA 92231<br/>Criminals: <b>86</b><br/>Non-Criminals: <b>579</b><br/>Percentage Criminal: <b>13%</b>');
     
     L.marker([32.2158449, -92.7178317], {
         icon: L.divIcon({
@@ -568,6 +784,14 @@
     }).addTo(map)
         .bindPopup('<b>KARNES COUNTY IMMIGRATION PROCESSING CENTER</b><br/>409 FM 1144, KARNES CITY, TX 78118<br/>Criminals: <b>43</b><br/>Non-Criminals: <b>818</b><br/>Percentage Criminal: <b>5%</b>');
     
+    L.marker([36.86806507097945, -97.06923720408514], {
+        icon: L.divIcon({
+            className: 'custom-marker',
+            html: `<span style="display:inline-block;width:18px;height:18px;background:rgba(255,235,59,0.7);opacity:0.7;border:2px solid #222;border-radius:50%;box-shadow:0 1px 4px rgba(0,0,0,0.12);"></span>`
+        })
+    }).addTo(map)
+        .bindPopup('<b>KAY CO JUSTICE FACILITY</b><br/>1101 WEST DRY ROAD, NEWKIRK, OK 74647<br/>Criminals: <b>48</b><br/>Non-Criminals: <b>56</b><br/>Percentage Criminal: <b>46%</b>');
+    
     L.marker([39.0885257, -84.5087427], {
         icon: L.divIcon({
             className: 'custom-marker',
@@ -591,6 +815,14 @@
         })
     }).addTo(map)
         .bindPopup('<b>LA PAZ COUNTY ADULT DETENTION FACILITY</b><br/>1109 ARIZONA AVE., PARKER, AZ 85344<br/>Criminals: <b>1</b><br/>Non-Criminals: <b>0</b><br/>Percentage Criminal: <b>100%</b>');
+    
+    L.marker([28.045392301310212, -99.33614721779425], {
+        icon: L.divIcon({
+            className: 'custom-marker',
+            html: `<span style="display:inline-block;width:18px;height:18px;background:rgba(255,235,59,0.7);opacity:0.7;border:2px solid #222;border-radius:50%;box-shadow:0 1px 4px rgba(0,0,0,0.12);"></span>`
+        })
+    }).addTo(map)
+        .bindPopup('<b>LA SALLE COUNTY REGIONAL DETENTION CENTER</b><br/>832 EAST TEXAS STATE HIGHWAY 44, ENCINAL, TX 78019<br/>Criminals: <b>5</b><br/>Non-Criminals: <b>45</b><br/>Percentage Criminal: <b>10%</b>');
     
     L.marker([27.5294764, -99.4477731], {
         icon: L.divIcon({
@@ -656,6 +888,14 @@
     }).addTo(map)
         .bindPopup('<b>LUBBOCK COUNTY DETENTION CENTER</b><br/>811 MAIN STREET, LUBBOCK, TX 79401<br/>Criminals: <b>1</b><br/>Non-Criminals: <b>1</b><br/>Percentage Criminal: <b>50%</b>');
     
+    L.marker([32.58677735093389, -90.04526320050026], {
+        icon: L.divIcon({
+            className: 'custom-marker',
+            html: `<span style="display:inline-block;width:12px;height:12px;background:rgba(76,175,80,0.7);opacity:0.7;border:2px solid #222;border-radius:50%;box-shadow:0 1px 4px rgba(0,0,0,0.12);"></span>`
+        })
+    }).addTo(map)
+        .bindPopup('<b>MADISON COUNTY JAIL</b><br/>2935 HIGHWAY 51, CANTON, MS 39046<br/>Criminals: <b>2</b><br/>Non-Criminals: <b>3</b><br/>Percentage Criminal: <b>40%</b>');
+    
     L.marker([41.103708, -80.6545051], {
         icon: L.divIcon({
             className: 'custom-marker',
@@ -679,6 +919,14 @@
         })
     }).addTo(map)
         .bindPopup('<b>MESA VERDE ICE PROCESSING CENTER</b><br/>425 GOLDEN STATE AVE, BAKERSFIELD, CA 93301<br/>Criminals: <b>51</b><br/>Non-Criminals: <b>0</b><br/>Percentage Criminal: <b>100%</b>');
+    
+    L.marker([25.778835871616227, -80.19334441968891], {
+        icon: L.divIcon({
+            className: 'custom-marker',
+            html: `<span style="display:inline-block;width:18px;height:18px;background:rgba(255,235,59,0.7);opacity:0.7;border:2px solid #222;border-radius:50%;box-shadow:0 1px 4px rgba(0,0,0,0.12);"></span>`
+        })
+    }).addTo(map)
+        .bindPopup('<b>MIAMI FEDERAL DETENTION</b><br/>33 NE 4 STREET, MIAMI, FL 33132<br/>Criminals: <b>92</b><br/>Non-Criminals: <b>80</b><br/>Percentage Criminal: <b>53%</b>');
     
     L.marker([33.401201, -94.0225542], {
         icon: L.divIcon({
@@ -704,6 +952,14 @@
     }).addTo(map)
         .bindPopup('<b>MONTGOMERY ICE PROCESSING CENTER</b><br/>806 HILBIG RD, CONROE, TX 77301<br/>Criminals: <b>669</b><br/>Non-Criminals: <b>544</b><br/>Percentage Criminal: <b>55%</b>');
     
+    L.marker([40.921386200722395, -78.24213641561506], {
+        icon: L.divIcon({
+            className: 'custom-marker',
+            html: `<span style="display:inline-block;width:30px;height:30px;background:rgba(244,67,54,0.7);opacity:0.7;border:2px solid #222;border-radius:50%;box-shadow:0 1px 4px rgba(0,0,0,0.12);"></span>`
+        })
+    }).addTo(map)
+        .bindPopup('<b>MOSHANNON VALLEY PROCESSING CENTER</b><br/>555 GEO DRIVE, PHILIPSBURG, PA 16866<br/>Criminals: <b>735</b><br/>Non-Criminals: <b>585</b><br/>Percentage Criminal: <b>56%</b>');
+    
     L.marker([41.4243549, -91.0446662], {
         icon: L.divIcon({
             className: 'custom-marker',
@@ -728,6 +984,14 @@
     }).addTo(map)
         .bindPopup('<b>NEVADA SOUTHERN DETENTION CENTER</b><br/>2190 EAST MESQUITE AVENUE, PAHRUMP, NV 89060<br/>Criminals: <b>202</b><br/>Non-Criminals: <b>121</b><br/>Percentage Criminal: <b>63%</b>');
     
+    L.marker([34.325340041511325, -77.89457245997536], {
+        icon: L.divIcon({
+            className: 'custom-marker',
+            html: `<span style="display:inline-block;width:12px;height:12px;background:rgba(76,175,80,0.7);opacity:0.7;border:2px solid #222;border-radius:50%;box-shadow:0 1px 4px rgba(0,0,0,0.12);"></span>`
+        })
+    }).addTo(map)
+        .bindPopup('<b>NEW HANOVER COUNTY JAIL</b><br/>3950 JUVENILE RD, CASTLE HAYNE, NC 28429<br/>Criminals: <b>1</b><br/>Non-Criminals: <b>1</b><br/>Percentage Criminal: <b>50%</b>');
+    
     L.marker([41.1288515, -80.6267877], {
         icon: L.divIcon({
             className: 'custom-marker',
@@ -744,6 +1008,14 @@
     }).addTo(map)
         .bindPopup('<b>NORTHWEST ICE PROCESSSING CENTER</b><br/>1623 E. J STREET, TACOMA, WA 98421<br/>Criminals: <b>416</b><br/>Non-Criminals: <b>636</b><br/>Percentage Criminal: <b>40%</b>');
     
+    L.marker([44.850597782512054, -73.13323107316418], {
+        icon: L.divIcon({
+            className: 'custom-marker',
+            html: `<span style="display:inline-block;width:12px;height:12px;background:rgba(76,175,80,0.7);opacity:0.7;border:2px solid #222;border-radius:50%;box-shadow:0 1px 4px rgba(0,0,0,0.12);"></span>`
+        })
+    }).addTo(map)
+        .bindPopup('<b>NORTHWEST STATE CORRECTIONAL CENTER</b><br/>3649 LOWER NEWTON ROAD, SWANTON, VT 5488<br/>Criminals: <b>1</b><br/>Non-Criminals: <b>8</b><br/>Percentage Criminal: <b>11%</b>');
+    
     L.marker([38.407579, -85.378999], {
         icon: L.divIcon({
             className: 'custom-marker',
@@ -751,6 +1023,14 @@
         })
     }).addTo(map)
         .bindPopup('<b>OLDHAM COUNTY JAIL</b><br/>100 W MAIN STREET, LA GRANGE, KY 40031<br/>Criminals: <b>18</b><br/>Non-Criminals: <b>17</b><br/>Percentage Criminal: <b>51%</b>');
+    
+    L.marker([28.50402318562143, -81.41636787360717], {
+        icon: L.divIcon({
+            className: 'custom-marker',
+            html: `<span style="display:inline-block;width:12px;height:12px;background:rgba(76,175,80,0.7);opacity:0.7;border:2px solid #222;border-radius:50%;box-shadow:0 1px 4px rgba(0,0,0,0.12);"></span>`
+        })
+    }).addTo(map)
+        .bindPopup('<b>ORANGE COUNTY JAIL (FL)</b><br/>3855 SOUTH JOHN YOUNG PARKWAY, ORLANDO, FL 32839<br/>Criminals: <b>3</b><br/>Non-Criminals: <b>6</b><br/>Percentage Criminal: <b>33%</b>');
     
     L.marker([41.4042394, -74.3606249], {
         icon: L.divIcon({
@@ -784,6 +1064,14 @@
     }).addTo(map)
         .bindPopup('<b>OZARK COUNTY SHERIFF&#39;S OFFICE</b><br/>1818 COUNTY ROAD 806, GAINESVILLE, MO 65655<br/>Criminals: <b>0</b><br/>Non-Criminals: <b>1</b><br/>Percentage Criminal: <b>0%</b>');
     
+    L.marker([44.07844295797259, -103.22212620387216], {
+        icon: L.divIcon({
+            className: 'custom-marker',
+            html: `<span style="display:inline-block;width:12px;height:12px;background:rgba(76,175,80,0.7);opacity:0.7;border:2px solid #222;border-radius:50%;box-shadow:0 1px 4px rgba(0,0,0,0.12);"></span>`
+        })
+    }).addTo(map)
+        .bindPopup('<b>PENNINGTON COUNTY JAIL (SOUTH DAKOTA)</b><br/>300 KANSAS CITY STREET NONE, RAPID CITY, SD 57701<br/>Criminals: <b>1</b><br/>Non-Criminals: <b>1</b><br/>Percentage Criminal: <b>50%</b>');
+    
     L.marker([37.9454138, -91.7739843], {
         icon: L.divIcon({
             className: 'custom-marker',
@@ -808,6 +1096,14 @@
     }).addTo(map)
         .bindPopup('<b>PICKENS COUNTY DET CTR</b><br/>188 CEMETERY ST, CARROLLTON, AL 35447<br/>Criminals: <b>16</b><br/>Non-Criminals: <b>21</b><br/>Percentage Criminal: <b>43%</b>');
     
+    L.marker([41.3892641952419, -75.071309115601], {
+        icon: L.divIcon({
+            className: 'custom-marker',
+            html: `<span style="display:inline-block;width:18px;height:18px;background:rgba(255,235,59,0.7);opacity:0.7;border:2px solid #222;border-radius:50%;box-shadow:0 1px 4px rgba(0,0,0,0.12);"></span>`
+        })
+    }).addTo(map)
+        .bindPopup('<b>PIKE COUNTY JAIL</b><br/>175 PIKE COUNTY BOULEVARD, LORDS VALLEY, PA 18428<br/>Criminals: <b>70</b><br/>Non-Criminals: <b>115</b><br/>Percentage Criminal: <b>38%</b>');
+    
     L.marker([30.7884208, -92.4227559], {
         icon: L.divIcon({
             className: 'custom-marker',
@@ -815,6 +1111,14 @@
         })
     }).addTo(map)
         .bindPopup('<b>PINE PRAIRIE ICE PROCESSING CENTER</b><br/>1133 HAMPTON DUPRE ROAD, PINE PRAIRIE, LA 70576<br/>Criminals: <b>280</b><br/>Non-Criminals: <b>452</b><br/>Percentage Criminal: <b>38%</b>');
+    
+    L.marker([27.903511036240065, -82.70346139830698], {
+        icon: L.divIcon({
+            className: 'custom-marker',
+            html: `<span style="display:inline-block;width:12px;height:12px;background:rgba(76,175,80,0.7);opacity:0.7;border:2px solid #222;border-radius:50%;box-shadow:0 1px 4px rgba(0,0,0,0.12);"></span>`
+        })
+    }).addTo(map)
+        .bindPopup('<b>PINELLAS COUNTY JAIL</b><br/>14400 49TH STREET NORTH, CLEARWATER, FL 33762<br/>Criminals: <b>4</b><br/>Non-Criminals: <b>7</b><br/>Percentage Criminal: <b>36%</b>');
     
     L.marker([42.0555979, -104.9522457], {
         icon: L.divIcon({
@@ -880,6 +1184,14 @@
     }).addTo(map)
         .bindPopup('<b>PUTNAM COUNTY SHERIFF</b><br/>421 E SPRING ST., COOKEVILLE, TN 38501<br/>Criminals: <b>1</b><br/>Non-Criminals: <b>1</b><br/>Percentage Criminal: <b>50%</b>');
     
+    L.marker([32.45717553802827, -92.079859671668], {
+        icon: L.divIcon({
+            className: 'custom-marker',
+            html: `<span style="display:inline-block;width:30px;height:30px;background:rgba(244,67,54,0.7);opacity:0.7;border:2px solid #222;border-radius:50%;box-shadow:0 1px 4px rgba(0,0,0,0.12);"></span>`
+        })
+    }).addTo(map)
+        .bindPopup('<b>RICHWOOD CORRECTIONAL CENTER</b><br/>180 PINE BAYOU CIRCLE, MONROE, LA 71202<br/>Criminals: <b>66</b><br/>Non-Criminals: <b>812</b><br/>Percentage Criminal: <b>8%</b>');
+    
     L.marker([27.379978, -99.486229], {
         icon: L.divIcon({
             className: 'custom-marker',
@@ -888,6 +1200,22 @@
     }).addTo(map)
         .bindPopup('<b>RIO GRANDE DETENTION CENTER</b><br/>1001 SAN RIO BOULEVARD, LAREDO, TX 78046<br/>Criminals: <b>32</b><br/>Non-Criminals: <b>595</b><br/>Percentage Criminal: <b>5%</b>');
     
+    L.marker([31.597253400688896, -91.55806052381577], {
+        icon: L.divIcon({
+            className: 'custom-marker',
+            html: `<span style="display:inline-block;width:30px;height:30px;background:rgba(244,67,54,0.7);opacity:0.7;border:2px solid #222;border-radius:50%;box-shadow:0 1px 4px rgba(0,0,0,0.12);"></span>`
+        })
+    }).addTo(map)
+        .bindPopup('<b>RIVER CORRECTIONAL CENTER</b><br/>26362 HIGHWAY 15, FERRIDAY, LA 71334<br/>Criminals: <b>24</b><br/>Non-Criminals: <b>530</b><br/>Percentage Criminal: <b>4%</b>');
+    
+    L.marker([15.158907917922077, 145.70544921267373], {
+        icon: L.divIcon({
+            className: 'custom-marker',
+            html: `<span style="display:inline-block;width:12px;height:12px;background:rgba(76,175,80,0.7);opacity:0.7;border:2px solid #222;border-radius:50%;box-shadow:0 1px 4px rgba(0,0,0,0.12);"></span>`
+        })
+    }).addTo(map)
+        .bindPopup('<b>SAIPAN DEPARTMENT OF CORRECTIONS (SUSUPE)</b><br/>VICENTE T. SEMAN BLDG, CIVIC CENTER, SAIPAN, MP 96950<br/>Criminals: <b>3</b><br/>Non-Criminals: <b>3</b><br/>Percentage Criminal: <b>50%</b>');
+    
     L.marker([40.7259591, -111.9169442], {
         icon: L.divIcon({
             className: 'custom-marker',
@@ -895,6 +1223,14 @@
         })
     }).addTo(map)
         .bindPopup('<b>SALT LAKE COUNTY METRO JAIL</b><br/>3415 SOUTH 900 WEST, SALT LAKE CITY, UT 84119<br/>Criminals: <b>4</b><br/>Non-Criminals: <b>2</b><br/>Percentage Criminal: <b>67%</b>');
+    
+    L.marker([32.483025880176186, -114.68349442933823], {
+        icon: L.divIcon({
+            className: 'custom-marker',
+            html: `<span style="display:inline-block;width:18px;height:18px;background:rgba(255,235,59,0.7);opacity:0.7;border:2px solid #222;border-radius:50%;box-shadow:0 1px 4px rgba(0,0,0,0.12);"></span>`
+        })
+    }).addTo(map)
+        .bindPopup('<b>SAN LUIS REGIONAL DETENTION CENTER</b><br/>406 NORTH AVENUE D, SAN LUIS, AZ 85349<br/>Criminals: <b>19</b><br/>Non-Criminals: <b>126</b><br/>Percentage Criminal: <b>13%</b>');
     
     L.marker([41.1434535, -96.0419407], {
         icon: L.divIcon({
@@ -912,6 +1248,14 @@
     }).addTo(map)
         .bindPopup('<b>SEBASTIAN COUNTY DETENTION CENTER</b><br/>801 SOUTH A STREET, FORT SMITH, AR 72901<br/>Criminals: <b>1</b><br/>Non-Criminals: <b>1</b><br/>Percentage Criminal: <b>50%</b>');
     
+    L.marker([41.079506331622774, -83.15386397328119], {
+        icon: L.divIcon({
+            className: 'custom-marker',
+            html: `<span style="display:inline-block;width:18px;height:18px;background:rgba(255,235,59,0.7);opacity:0.7;border:2px solid #222;border-radius:50%;box-shadow:0 1px 4px rgba(0,0,0,0.12);"></span>`
+        })
+    }).addTo(map)
+        .bindPopup('<b>SENECA COUNTY JAIL</b><br/>3040 SOUTH STATE HIGHWAY 100, TIFFIN, OH 44883<br/>Criminals: <b>36</b><br/>Non-Criminals: <b>24</b><br/>Percentage Criminal: <b>60%</b>');
+    
     L.marker([45.3037535, -93.6200234], {
         icon: L.divIcon({
             className: 'custom-marker',
@@ -919,6 +1263,14 @@
         })
     }).addTo(map)
         .bindPopup('<b>SHERBURNE COUNTY JAIL</b><br/>13880 BUSINESS CENTER DRIVE, ELK RIVER, MN 55330<br/>Criminals: <b>26</b><br/>Non-Criminals: <b>22</b><br/>Percentage Criminal: <b>54%</b>');
+    
+    L.marker([38.31113857008232, -81.71099978870323], {
+        icon: L.divIcon({
+            className: 'custom-marker',
+            html: `<span style="display:inline-block;width:12px;height:12px;background:rgba(76,175,80,0.7);opacity:0.7;border:2px solid #222;border-radius:50%;box-shadow:0 1px 4px rgba(0,0,0,0.12);"></span>`
+        })
+    }).addTo(map)
+        .bindPopup('<b>SOUTH CENTRAL REGIONAL JAIL</b><br/>1001 CENTER WAY, CHARLESTON, WV 25309<br/>Criminals: <b>5</b><br/>Non-Criminals: <b>5</b><br/>Percentage Criminal: <b>50%</b>');
     
     L.marker([30.4866896, -92.5818666], {
         icon: L.divIcon({
@@ -952,6 +1304,14 @@
     }).addTo(map)
         .bindPopup('<b>STE. GENEVIEVE COUNTY SHERIFF/JAIL</b><br/>5 BASLER DR., STE. GENEVIEVE, MO 63670<br/>Criminals: <b>6</b><br/>Non-Criminals: <b>12</b><br/>Percentage Criminal: <b>33%</b>');
     
+    L.marker([32.036729905551354, -84.77148464340088], {
+        icon: L.divIcon({
+            className: 'custom-marker',
+            html: `<span style="display:inline-block;width:30px;height:30px;background:rgba(244,67,54,0.7);opacity:0.7;border:2px solid #222;border-radius:50%;box-shadow:0 1px 4px rgba(0,0,0,0.12);"></span>`
+        })
+    }).addTo(map)
+        .bindPopup('<b>STEWART DETENTION CENTER</b><br/>146 CCA ROAD, LUMPKIN, GA 31815<br/>Criminals: <b>786</b><br/>Non-Criminals: <b>1042</b><br/>Percentage Criminal: <b>43%</b>');
+    
     L.marker([43.2192302, -70.9386083], {
         icon: L.divIcon({
             className: 'custom-marker',
@@ -960,6 +1320,14 @@
     }).addTo(map)
         .bindPopup('<b>STRAFFORD COUNTY CORRECTIONS</b><br/>266 COUNTY FARM ROAD, DOVER, NH 3820<br/>Criminals: <b>50</b><br/>Non-Criminals: <b>51</b><br/>Percentage Criminal: <b>50%</b>');
     
+    L.marker([41.5371934874891, -109.30126553093841], {
+        icon: L.divIcon({
+            className: 'custom-marker',
+            html: `<span style="display:inline-block;width:12px;height:12px;background:rgba(76,175,80,0.7);opacity:0.7;border:2px solid #222;border-radius:50%;box-shadow:0 1px 4px rgba(0,0,0,0.12);"></span>`
+        })
+    }).addTo(map)
+        .bindPopup('<b>SWEETWATER COUNTY JAIL</b><br/>50140 UNITED STATES HIGHWAY 191 SOUTH, ROCK SPRINGS, WY 82935<br/>Criminals: <b>1</b><br/>Non-Criminals: <b>0</b><br/>Percentage Criminal: <b>100%</b>');
+    
     L.marker([30.5647288, -97.4194342], {
         icon: L.divIcon({
             className: 'custom-marker',
@@ -967,6 +1335,14 @@
         })
     }).addTo(map)
         .bindPopup('<b>T DON HUTTO DETENTION CENTER</b><br/>1001 WELCH STREET, TAYLOR, TX 76574<br/>Criminals: <b>232</b><br/>Non-Criminals: <b>196</b><br/>Percentage Criminal: <b>54%</b>');
+    
+    L.marker([34.76832244015224, -106.01873793112864], {
+        icon: L.divIcon({
+            className: 'custom-marker',
+            html: `<span style="display:inline-block;width:24px;height:24px;background:rgba(255,152,0,0.7);opacity:0.7;border:2px solid #222;border-radius:50%;box-shadow:0 1px 4px rgba(0,0,0,0.12);"></span>`
+        })
+    }).addTo(map)
+        .bindPopup('<b>TORRANCE/ESTANCIA, NM</b><br/>209 COUNTY ROAD 49, ESTANCIA, NM 87016<br/>Criminals: <b>66</b><br/>Non-Criminals: <b>370</b><br/>Percentage Criminal: <b>15%</b>');
     
     L.marker([36.1572816, -95.9990129], {
         icon: L.divIcon({
@@ -984,6 +1360,14 @@
     }).addTo(map)
         .bindPopup('<b>TWO BRIDGES REGIONAL JAIL</b><br/>522 BATH RD, WISCASSET, ME 4578<br/>Criminals: <b>4</b><br/>Non-Criminals: <b>4</b><br/>Percentage Criminal: <b>50%</b>');
     
+    L.marker([30.78363619823702, -86.1039227599523], {
+        icon: L.divIcon({
+            className: 'custom-marker',
+            html: `<span style="display:inline-block;width:12px;height:12px;background:rgba(76,175,80,0.7);opacity:0.7;border:2px solid #222;border-radius:50%;box-shadow:0 1px 4px rgba(0,0,0,0.12);"></span>`
+        })
+    }).addTo(map)
+        .bindPopup('<b>WALTON COUNTY JAIL</b><br/>40 SHERIFF CIR, DEFUNIAK SPRINGS, FL 32433<br/>Criminals: <b>1</b><br/>Non-Criminals: <b>2</b><br/>Percentage Criminal: <b>33%</b>');
+    
     L.marker([36.0340715, -94.175948], {
         icon: L.divIcon({
             className: 'custom-marker',
@@ -992,6 +1376,14 @@
     }).addTo(map)
         .bindPopup('<b>WASHINGTON COUNTY DETENTION CENTER</b><br/>1155 WEST CLYDESDALE DRIVE, FAYETTEVILLE, AR 72701<br/>Criminals: <b>1</b><br/>Non-Criminals: <b>2</b><br/>Percentage Criminal: <b>33%</b>');
     
+    L.marker([39.57445694817889, -119.81272011554243], {
+        icon: L.divIcon({
+            className: 'custom-marker',
+            html: `<span style="display:inline-block;width:12px;height:12px;background:rgba(76,175,80,0.7);opacity:0.7;border:2px solid #222;border-radius:50%;box-shadow:0 1px 4px rgba(0,0,0,0.12);"></span>`
+        })
+    }).addTo(map)
+        .bindPopup('<b>WASHOE COUNTY JAIL</b><br/>911 PARR BLVD 775 328 3308, RENO, NV 89506<br/>Criminals: <b>8</b><br/>Non-Criminals: <b>2</b><br/>Percentage Criminal: <b>80%</b>');
+    
     L.marker([27.377731, -99.471644], {
         icon: L.divIcon({
             className: 'custom-marker',
@@ -999,6 +1391,14 @@
         })
     }).addTo(map)
         .bindPopup('<b>WEBB COUNTY DETENTION CENTER (CCA)</b><br/>9998 SOUTH HIGHWAY 83, LAREDO, TX 78041<br/>Criminals: <b>49</b><br/>Non-Criminals: <b>312</b><br/>Percentage Criminal: <b>14%</b>');
+    
+    L.marker([31.8504715684334, -92.78135647527058], {
+        icon: L.divIcon({
+            className: 'custom-marker',
+            html: `<span style="display:inline-block;width:30px;height:30px;background:rgba(244,67,54,0.7);opacity:0.7;border:2px solid #222;border-radius:50%;box-shadow:0 1px 4px rgba(0,0,0,0.12);"></span>`
+        })
+    }).addTo(map)
+        .bindPopup('<b>WINN CORRECTIONAL CENTER</b><br/>560 GUM SPRING ROAD, WINNFIELD, LA 71483<br/>Criminals: <b>336</b><br/>Non-Criminals: <b>1210</b><br/>Percentage Criminal: <b>22%</b>');
     
     L.marker([42.4975021, -96.4062738], {
         icon: L.divIcon({
