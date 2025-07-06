@@ -129,3 +129,15 @@ USER_AGENT = "icewatch/1.0 (your_email@example.com)"
 ```
 
 Replace `your_email@example.com` with your actual email or project contact. This is required by the [Nominatim Usage Policy](https://operations.osmfoundation.org/policies/nominatim/).
+
+## Rendering and Viewing the Facilities Map
+
+You can create a static interactive map of all geocoded facilities using the provided script. The map will show each facility as a marker, with popups displaying the name, address, and rounded counts of criminal and non-criminal detainees.
+
+### Render the Map
+
+```bash
+python render_facilities_map.py --input data/facilities_geocoded_YYYYMMDD.json
+```
+- By default, this will create `docs/index.html` (and the `docs` directory if it doesn't exist).
+- You can specify a custom output path with `--output` if desired.
