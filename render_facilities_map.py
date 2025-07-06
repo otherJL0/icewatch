@@ -44,6 +44,18 @@ def make_popup(fac):
     return '<br/>'.join(lines)
 
 def render_html(facilities, output_path):
+    # Calculate totals
+    total_criminals = 0
+    total_noncriminals = 0
+    for fac in facilities:
+        total_criminals += safe_int(fac.get('Male Crim')) + safe_int(fac.get('Female Crim'))
+        total_noncriminals += safe_int(fac.get('Male Non-Crim')) + safe_int(fac.get('Female Non-Crim'))
+    total_people = total_criminals + total_noncriminals
+    if total_people > 0:
+        pct_criminal = f"{round(100 * total_criminals / total_people)}%"
+    else:
+        pct_criminal = "N/A"
+
     # Center on US
     center_lat, center_lon = 39.8283, -98.5795
     html = f'''<!DOCTYPE html>
@@ -82,6 +94,17 @@ def render_html(facilities, output_path):
             font-weight: 700;
             letter-spacing: 0.01em;
             color: #222;
+        }}
+        #header-stats {{
+            font-size: 1.1em;
+            font-weight: 500;
+            margin-top: 0.2em;
+            color: #444;
+        }}
+        #header-left {{
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
         }}
         #donate-link {{
             background: #ff5a1f;
@@ -128,7 +151,10 @@ def render_html(facilities, output_path):
 </head>
 <body>
     <div id="header-bar">
-        <div id="header-title">ICE Custody Data</div>
+        <div id="header-left">
+            <div id="header-title">ICE Custody Data</div>
+            <div id="header-stats">Total in ICE detention: <b>{total_people:,}</b> &nbsp;|&nbsp; Percentage criminal: <b>{pct_criminal}</b></div>
+        </div>
         <a id="donate-link" href="https://opencollective.com/lockdown-systems" target="_blank" rel="noopener">Donate</a>
     </div>
     <div id="map"></div>

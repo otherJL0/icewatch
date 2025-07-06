@@ -35,6 +35,17 @@
             letter-spacing: 0.01em;
             color: #222;
         }
+        #header-stats {
+            font-size: 1.1em;
+            font-weight: 500;
+            margin-top: 0.2em;
+            color: #444;
+        }
+        #header-left {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
         #donate-link {
             background: #ff5a1f;
             color: #fff;
@@ -80,7 +91,10 @@
 </head>
 <body>
     <div id="header-bar">
-        <div id="header-title">ICE Custody Data</div>
+        <div id="header-left">
+            <div id="header-title">ICE Custody Data</div>
+            <div id="header-stats">Total in ICE detention: <b>43,507</b> &nbsp;|&nbsp; Percentage criminal: <b>29%</b></div>
+        </div>
         <a id="donate-link" href="https://opencollective.com/lockdown-systems" target="_blank" rel="noopener">Donate</a>
     </div>
     <div id="map"></div>
