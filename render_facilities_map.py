@@ -43,6 +43,22 @@ def make_popup(fac):
     ]
     return '<br/>'.join(lines)
 
+def get_marker_style(total):
+    # Define thresholds for color and size (smaller, semi-transparent)
+    if total < 50:
+        color = 'rgba(76,175,80,0.7)'  # green
+        size = 12
+    elif total < 200:
+        color = 'rgba(255,235,59,0.7)'  # yellow
+        size = 18
+    elif total < 500:
+        color = 'rgba(255,152,0,0.7)'  # orange
+        size = 24
+    else:
+        color = 'rgba(244,67,54,0.7)'  # red
+        size = 30
+    return color, size
+
 def render_html(facilities, output_path):
     # Calculate totals
     total_criminals = 0
@@ -141,11 +157,29 @@ def render_html(facilities, output_path):
             width: auto;
             margin-bottom: 0.5em;
         }}
+        .legend {{
+            position: absolute;
+            bottom: 100px;
+            left: 20px;
+            background: #fff;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            padding: 1em 1.2em 1em 1em;
+            font-size: 1em;
+            color: #222;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+            z-index: 1000;
+        }}
+        .legend-row {{ display: flex; align-items: center; margin-bottom: 0.4em; }}
+        .legend-icon {{ display: inline-block; border: 2px solid #222; margin-right: 0.7em; }}
+        .legend-label {{ font-size: 0.98em; }}
+        .legend-row .legend-icon {{ opacity: 0.7; }}
         @media (max-width: 600px) {{
             #header-bar {{ flex-direction: column; height: auto; padding: 1em; }}
             #header-title {{ font-size: 1.3em; }}
             #map {{ height: 70vh; }}
             #footer-logo {{ height: 48px; }}
+            .legend {{ left: 5px; right: 5px; font-size: 0.95em; }}
         }}
     </style>
 </head>
@@ -158,6 +192,13 @@ def render_html(facilities, output_path):
         <a id="donate-link" href="https://opencollective.com/lockdown-systems" target="_blank" rel="noopener">Donate</a>
     </div>
     <div id="map"></div>
+    <div class="legend">
+        <div style="font-weight:600; margin-bottom:0.5em;">Facility Size & Color Legend</div>
+        <div class="legend-row"><span class="legend-icon" style="background:rgba(76,175,80,0.7);width:12px;height:12px;border-radius:50%;border:2px solid #222;"></span><span class="legend-label">&lt; 50 people</span></div>
+        <div class="legend-row"><span class="legend-icon" style="background:rgba(255,235,59,0.7);width:18px;height:18px;border-radius:50%;border:2px solid #222;"></span><span class="legend-label">50–199 people</span></div>
+        <div class="legend-row"><span class="legend-icon" style="background:rgba(255,152,0,0.7);width:24px;height:24px;border-radius:50%;border:2px solid #222;"></span><span class="legend-label">200–499 people</span></div>
+        <div class="legend-row"><span class="legend-icon" style="background:rgba(244,67,54,0.7);width:30px;height:30px;border-radius:50%;border:2px solid #222;"></span><span class="legend-label">500+ people</span></div>
+    </div>
     <div id="footer-bar">
         <a href="https://lockdown.systems/" target="_blank" rel="noopener">
             <img id="footer-logo" src="img/logo-wide.svg" alt="Lockdown Systems logo" />
@@ -176,9 +217,18 @@ def render_html(facilities, output_path):
         lon = fac.get('longitude')
         if lat is None or lon is None:
             continue
+        criminals = safe_int(fac.get('Male Crim')) + safe_int(fac.get('Female Crim'))
+        noncriminals = safe_int(fac.get('Male Non-Crim')) + safe_int(fac.get('Female Non-Crim'))
+        total = criminals + noncriminals
+        color, size = get_marker_style(total)
         popup = make_popup(fac).replace("'", "&#39;").replace("\n", " ")
         html += f"""
-    L.marker([{lat}, {lon}]).addTo(map)
+    L.marker([{lat}, {lon}], {{
+        icon: L.divIcon({{
+            className: 'custom-marker',
+            html: `<span style=\"display:inline-block;width:{size}px;height:{size}px;background:{color};opacity:0.7;border:2px solid #222;border-radius:50%;box-shadow:0 1px 4px rgba(0,0,0,0.12);\"></span>`
+        }})
+    }}).addTo(map)
         .bindPopup('{popup}');
     """
     html += """
