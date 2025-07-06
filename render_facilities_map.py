@@ -247,9 +247,15 @@ def render_html(facilities, output_path):
         if (legend.style.display === 'none') {{
             legend.style.display = '';
             btn.textContent = 'Hide Legend';
+            btn.style.bottom = '90px';
+            btn.style.left = 'auto';
+            btn.style.right = '20px'; // Position button to the right of legend
         }} else {{
             legend.style.display = 'none';
             btn.textContent = 'Show Legend';
+            btn.style.bottom = '90px';
+            btn.style.left = '20px';
+            btn.style.right = 'auto'; // Return to original left position
         }}
     }}
     // On load, hide legend and show toggle on mobile
