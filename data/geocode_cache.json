@@ -1,0 +1,494 @@
+{
+  "20 HOBO FORK RD., NATCHEZ, MS, 39120": {
+    "lat": 31.5576266,
+    "lon": -91.221126
+  },
+  "10250 RANCHO ROAD, ADELANTO, CA, 92301": {
+    "lat": 34.5599467,
+    "lon": -117.4421505
+  },
+  "522 BATH RD, WISCASSET, ME, 4578": {
+    "lat": 43.9781192,
+    "lon": -69.6989264
+  },
+  "40 SHERIFF CIR, DEFUNIAK SPRINGS, FL, 32433": null,
+  "1155 WEST CLYDESDALE DRIVE, FAYETTEVILLE, AR, 72701": {
+    "lat": 36.0340715,
+    "lon": -94.175948
+  },
+  "911 PARR BLVD 775 328 3308, RENO, NV, 89506": null,
+  "9998 SOUTH HIGHWAY 83, LAREDO, TX, 78041": {
+    "lat": 27.377731,
+    "lon": -99.471644
+  },
+  "560 GUM SPRING ROAD, WINNFIELD, LA, 71483": null,
+  "407 7TH STREET, SIOUX CITY, IA, 51101": {
+    "lat": 42.4975021,
+    "lon": -96.4062738
+  },
+  "950 HIGH STREET, CENTRAL FALLS, RI, 2863": {
+    "lat": 41.8928106,
+    "lon": -71.3831998
+  },
+  "109 SOUTH MAPLE STREET, GRAHAM, NC, 27253": {
+    "lat": 36.0684989,
+    "lon": -79.4030356
+  },
+  "96 GEORGE THOMPSON DRIVE, ALEXANDRIA, LA, 71303": null,
+  "4884 STATE ROUTE 19, BELMONT, NY, 14813": null,
+  "7340 HIGHWAY 26 WEST, OBERLIN, LA, 70655": null,
+  "601 MCDONOUGH BOULEVARD, SE, ATLANTA, GA, 30315": null,
+  "1 SHERIFF OFFICE DRIVE, MACCLENNY, FL, 32063": null,
+  "1 SUCCESS LOOP DR., BERLIN, NH, 3570": null,
+  "400 2ND STREET, ANSON, TX, 79501": {
+    "lat": 32.7667663,
+    "lon": -99.8888312
+  },
+  "3020 CONRAD LANE, BURLINGTON, KY, 41005": {
+    "lat": 39.0373257,
+    "lon": -84.7236669
+  },
+  "897 FRONT STREET, BINGHAMPTON, NY, 13905": null,
+  "555 SE 1ST AVENUE, FT.LAUDERDALE, FL, 33301": {
+    "lat": 26.1162336,
+    "lon": -80.1423181
+  },
+  "3900 NORTH POWERLINE ROAD, POMPANO BEACH, FL, 33073": {
+    "lat": 26.2759099,
+    "lon": -80.15197
+  },
+  "4250 FEDERAL DRIVE, BATAVIA, NY, 14020": {
+    "lat": 43.0203104,
+    "lon": -78.2024802
+  },
+  "705 HANOVER STREET, HAMILTON, OH, 45011": {
+    "lat": 39.3881265,
+    "lon": -84.55588
+  },
+  "185 EAST MICHIGAN AVENUE, BATTLE CREEK, MI, 49014": {
+    "lat": 42.3166739,
+    "lon": -85.1758915
+  },
+  "601 CENTRAL AVE, NEWPORT, KY, 41071": {
+    "lat": 39.0887186,
+    "lon": -84.4969756
+  },
+  "11093 S.W. LEWIS MEMORIAL DRIVE, BOWLING GREEN, VA, 22427": null,
+  "336 MAIN STREET, PLATTSMOUTH, NE, 68048": {
+    "lat": 41.0112468,
+    "lon": -95.8831012
+  },
+  "1100 BOWLING ROAD, FLORENCE, AZ, 85232": {
+    "lat": 33.0438338,
+    "lon": -111.371793
+  },
+  "830 PINEHILL ROAD, JENA, LA, 71342": {
+    "lat": 31.7088575,
+    "lon": -92.1529335
+  },
+  "301 SOUTH WALNUT STREET, COTTONWOOD FALL, KS, 66845": null,
+  "325 COURT STREET, SAULT STE MARIE, MI, 49783": {
+    "lat": 46.4977347,
+    "lon": -84.3459656
+  },
+  "7 FARRELL STREET, SOUTH BURLINGTON, VT, 5403": {
+    "lat": 44.4464191,
+    "lon": -73.2054841
+  },
+  "2000 CIBOLA LOOP, MILAN, NM, 87021": null,
+  "3700 S. KINGS HWY, CUSHING, OK, 74023": {
+    "lat": 35.961173,
+    "lon": -96.7848408
+  },
+  "501 EAST COURT AVE., JEFFERSONVILLE, IN, 47130": {
+    "lat": 38.277682,
+    "lon": -85.7375976
+  },
+  "611 EAST JACKSON STREET, BRAZIL, IN, 47834": {
+    "lat": 39.5236693,
+    "lon": -87.1191065
+  },
+  "58 PINE MOUNTAIN RD., MCELHATTAN, PA, 17748": {
+    "lat": 41.1511182,
+    "lon": -77.3493663
+  },
+  "25 MCCARTHY DRIVE, PLATTSBURGH, NY, 12901": {
+    "lat": 44.7204627,
+    "lon": -73.467472
+  },
+  "301 E WALNUT STREET, FRANKFORT, IN, 46041": {
+    "lat": 40.2791153,
+    "lon": -86.5087576
+  },
+  "4909 FM 2826, ROBSTOWN, TX, 78380": null,
+  "3347 TAMIAMI TRAIL E, NAPLES, FL, 34112": {
+    "lat": 26.1257654,
+    "lon": -81.7651214
+  },
+  "3151 ROAD 24.25, ROUTE 1, STRYKER, OH, 43557": null,
+  "50 COUNTY WAY, PORTLAND, ME, 4102": {
+    "lat": 43.6508623,
+    "lon": -70.2816197
+  },
+  "1601 BROADWAY, DAKOTA CITY, NE, 68731": null,
+  "111 WEST COMMERCE STREET, DALLAS, TX, 75202": {
+    "lat": 32.7746483,
+    "lon": -96.8243069
+  },
+  "451 DOREMUS AVENUE, NEWARK, NJ, 7105": {
+    "lat": 40.7187782,
+    "lon": -74.126752
+  },
+  "3130 OAKLAND ST, AURORA, CO, 80010": {
+    "lat": 39.760875,
+    "lon": -104.849087
+  },
+  "203 ASPINAL AVE. PO BOX 3236, HAGATNA, GU, 96910": null,
+  "10450 RANCHO ROAD, ADELANTO, CA, 92301": {
+    "lat": 34.5599404,
+    "lon": -117.4372813
+  },
+  "300 EL RANCHO WAY, DILLEY, TX, 78017": null,
+  "215 WEST CENTRAL STREET, JUNEAU, WI, 53039": null,
+  "1330 HIGHWAY 107, LA VILLA, TX, 78562": null,
+  "702 E BROADWAY ST, EDEN, TX, 76837": {
+    "lat": 31.2175083,
+    "lon": -99.8339599
+  },
+  "8915 MONTANA AVE., EL PASO, TX, 79925": {
+    "lat": 31.7934217,
+    "lon": -106.3691494
+  },
+  "12501 GATEWAY BLVD S, EL PASO, TX, 79934": {
+    "lat": 31.9432041,
+    "lon": -106.4039873
+  },
+  "1800 INDUSTRIAL DRIVE, RAYMONDVILLE, TX, 78580": null,
+  "625 EVANS STREET, ELIZABETH, NJ, 7201": {
+    "lat": 40.6662036,
+    "lon": -74.1896718
+  },
+  "1705 EAST HANNA RD., ELOY, AZ, 85131": {
+    "lat": 32.8176772,
+    "lon": -111.51927
+  },
+  "DEPARTMENT OF CORRECTIONS 1618 ASH STREET, ERIE, PA, 16503": null,
+  "827 FORREST AVENUE, GADSDEN, AL, 35901": {
+    "lat": 34.0161208,
+    "lon": -86.012499
+  },
+  "600 OLD FRANKFORD CR, LEXINGTON, KY, 40510": null,
+  "700 ARCH ST., PHILADELPHIA, PA, 19106": {
+    "lat": 39.9525541,
+    "lon": -75.1520216
+  },
+  "304 N. 9TH STREET, GARDEN CITY, KS, 67846": {
+    "lat": 37.9674162,
+    "lon": -100.876362
+  },
+  "3250 NORTH PINAL PARKWAY, FLORENCE, AZ, 85132": {
+    "lat": 33.0630048,
+    "lon": -111.3790857
+  },
+  "3250 NORTH PINAL PARKWAY, FLORENCE, AZ, 85232": {
+    "lat": 33.0640298,
+    "lon": -111.3825565
+  },
+  "2526 NEW CALHOUN HWY, ROME, GA, 30161": {
+    "lat": 34.2803637,
+    "lon": -85.1428696
+  },
+  "3424 HIGHWAY 252 EAST, FOLKSTON, GA, 31537": null,
+  "3026 HWY 252 EAST, FOLKSTON, GA, 31537": null,
+  "411 SOUTH BROADWAY AVENUE, ALBERT LEA, MN, 56007": {
+    "lat": 43.6461475,
+    "lon": -93.3680658
+  },
+  "12450 MERRITT DR, CHARDON, OH, 44024": null,
+  "1297 EAST SR 78, MOORE HAVEN, FL, 33471": null,
+  "611 FRONTAGE RD, MCFARLAND, CA, 93250": {
+    "lat": 35.667329,
+    "lon": -119.225036
+  },
+  "1701 NORTH WASHINGTON ST, GRAND FORKS, ND, 58203": {
+    "lat": 47.935792,
+    "lon": -97.055851
+  },
+  "320 SHAW STATION ROAD, LEITCHFIELD, KY, 42754": {
+    "lat": 37.4890391,
+    "lon": -86.2702303
+  },
+  "1199 N HASELTINE RD, SPRINGFIELD, MO, 65802": {
+    "lat": 37.2227197,
+    "lon": -93.385532
+  },
+  "8450 HIGHWAY 90, BAY ST. LOUIS, MS, 39520": null,
+  "1116 14TH AVENUE, ELDORA, IA, 50627": {
+    "lat": 42.3598449,
+    "lon": -93.0973711
+  },
+  "18 E BASIC ROAD, HENDERSON, NV, 89015": {
+    "lat": 36.0308679,
+    "lon": -114.9780973
+  },
+  "351 ELLIOTT ST., HONOLULU, HI, 96819": {
+    "lat": 21.3332122,
+    "lon": -157.9283542
+  },
+  "2250 LAFOON TRAIL, MADISONVILLE, KY, 42431": null,
+  "15850 EXPORT PLAZA DRIVE, HOUSTON, TX, 77032": {
+    "lat": 29.9508332,
+    "lon": -95.3121699
+  },
+  "3400 FM 350 SOUTH, LIVINGSTON, TX, 77351": {
+    "lat": 30.6981513,
+    "lon": -95.0057915
+  },
+  "1572 GATEWAY, CALEXICO, CA, 92231": null,
+  "327 INDUSTRIAL DRIVE, JONESBORO, LA, 71251": {
+    "lat": 32.2158449,
+    "lon": -92.7178317
+  },
+  "219 EAST FREMONT AVENUE, RIGBY, ID, 83442": {
+    "lat": 43.6733525,
+    "lon": -111.9115662
+  },
+  "500 HILBIG RD, CONROE, TX, 77301": {
+    "lat": 30.3359939,
+    "lon": -95.4481982
+  },
+  "AVENUE C PSC 1005 BOX 55, FPO, FL, 34009": null,
+  "2201 23RD ST NE, WILLMAR, MN, 56201": {
+    "lat": 45.1458557,
+    "lon": -95.0144842
+  },
+  "409 FM 1144, KARNES CITY, TX, 78118": {
+    "lat": 28.8849121,
+    "lon": -97.8977348
+  },
+  "1101 WEST DRY ROAD, NEWKIRK, OK, 74647": null,
+  "303 COURT STREET, COVINGTON, KY, 41011": {
+    "lat": 39.0885257,
+    "lon": -84.5087427
+  },
+  "18201 SW 12TH ST, MIAMI, FL, 33194": {
+    "lat": 25.7547717,
+    "lon": -80.4908502
+  },
+  "1109 ARIZONA AVE., PARKER, AZ, 85344": {
+    "lat": 34.1454944,
+    "lon": -114.2903444
+  },
+  "832 EAST TEXAS STATE HIGHWAY 44, ENCINAL, TX, 78019": null,
+  "4702 EAST SAUNDERS STREET, LAREDO, TX, 78041": {
+    "lat": 27.5294764,
+    "lon": -99.4477731
+  },
+  "203 SOUTH BROAD ST., LONDON, KY, 40741": {
+    "lat": 37.1277507,
+    "lon": -84.0839281
+  },
+  "1300 METROPOLITAN AVE., LEAVENWORTH, KS, 66048": {
+    "lat": 39.3303867,
+    "lon": -94.9357354
+  },
+  "521 GIBSON ROAD, LEXINGTON, SC, 29072": {
+    "lat": 33.9784808,
+    "lon": -81.2508399
+  },
+  "910 NORTH TYUS STREET, GROESBECK, TX, 76642": {
+    "lat": 31.5287835,
+    "lon": -96.512347
+  },
+  "3020 N JEFFERS, NORTH PLATTE, NE, 69101": {
+    "lat": 41.1065398,
+    "lon": -100.7640382
+  },
+  "53 3RD AVENUE BRIDGE, CEDAR RAPIDS, IA, 52401": {
+    "lat": 41.9746012,
+    "lon": -91.6692502
+  },
+  "811 MAIN STREET, LUBBOCK, TX, 79401": {
+    "lat": 33.5854229,
+    "lon": -101.8434337
+  },
+  "2935 HIGHWAY 51, CANTON, MS, 39046": null,
+  "110 FIFTH AVENUE, YOUNGSTOWN, OH, 44503": {
+    "lat": 41.103708,
+    "lon": -80.6545051
+  },
+  "40 SOUTH ALABAMA STREET, INDIANAPOLIS, IN, 46204": {
+    "lat": 39.7659475,
+    "lon": -86.1528002
+  },
+  "425 GOLDEN STATE AVE, BAKERSFIELD, CA, 93301": {
+    "lat": 35.380713,
+    "lon": -119.0060804
+  },
+  "33 NE 4 STREET, MIAMI, FL, 33132": null,
+  "UNAVAILABLE, MIAMI, FL, 33101": null,
+  "2300 EAST STREET, TEXARKANA, AR, 71854": {
+    "lat": 33.401201,
+    "lon": -94.0225542
+  },
+  "7000 EAST DUNBAR ROAD, MONROE, MI, 48161": {
+    "lat": 41.89347,
+    "lon": -83.396328
+  },
+  "806 HILBIG RD, CONROE, TX, 77301": {
+    "lat": 30.3368088,
+    "lon": -95.4431046
+  },
+  "555 GEO DRIVE, PHILIPSBURG, PA, 16866": null,
+  "400 WALNUT STREET, MUSCATINE, IA, 52761": {
+    "lat": 41.4243549,
+    "lon": -91.0446662
+  },
+  "100 CARMAN AVENUE, EAST MEADOW, NY, 11554": {
+    "lat": 40.727807,
+    "lon": -73.5561653
+  },
+  "2190 EAST MESQUITE AVENUE, PAHRUMP, NV, 89060": {
+    "lat": 36.2520145,
+    "lon": -115.9770311
+  },
+  "3950 JUVENILE RD, CASTLE HAYNE, NC, 28429": null,
+  "2240 HUBBARD ROAD, YOUNGSTOWN, OH, 44505": {
+    "lat": 41.1288515,
+    "lon": -80.6267877
+  },
+  "1623 E. J STREET, TACOMA, WA, 98421": {
+    "lat": 47.2490423,
+    "lon": -122.4223947
+  },
+  "3649 LOWER NEWTON ROAD, SWANTON, VT, 5488": null,
+  "100 W MAIN STREET, LA GRANGE, KY, 40031": {
+    "lat": 38.407579,
+    "lon": -85.378999
+  },
+  "3855 SOUTH JOHN YOUNG PARKWAY, ORLANDO, FL, 32839": null,
+  "110 WELLS FARM ROAD, GOSHEN, NY, 10924": {
+    "lat": 41.4042394,
+    "lon": -74.3606249
+  },
+  "7488 CALZADA DE LA FUENTE, SAN DIEGO, CA, 92154": {
+    "lat": 32.5765248,
+    "lon": -116.9154777
+  },
+  "26 MCGREGOR RANGE ROAD, CHAPARRAL, NM, 88081": {
+    "lat": 32.0786798,
+    "lon": -106.2779169
+  },
+  "1818 COUNTY ROAD 806, GAINESVILLE, MO, 65655": {
+    "lat": 36.6014034,
+    "lon": -92.4516834
+  },
+  "300 KANSAS CITY STREET NONE, RAPID CITY, SD, 57701": null,
+  "301 W. 2ND, ROLLA, MO, 65401": {
+    "lat": 37.9454138,
+    "lon": -91.7739843
+  },
+  "715 5TH AVENUE, HOLDREGE, NE, 68949": {
+    "lat": 40.4390467,
+    "lon": -99.3704014
+  },
+  "188 CEMETERY ST, CARROLLTON, AL, 35447": {
+    "lat": 33.2603007,
+    "lon": -88.0959216
+  },
+  "175 PIKE COUNTY BOULEVARD, LORDS VALLEY, PA, 18428": null,
+  "1133 HAMPTON DUPRE ROAD, PINE PRAIRIE, LA, 70576": {
+    "lat": 30.7884208,
+    "lon": -92.4227559
+  },
+  "14400 49TH STREET NORTH, CLEARWATER, FL, 33762": null,
+  "850 MAPLE STREET, WHEATLAND, WY, 82201": {
+    "lat": 42.0555979,
+    "lon": -104.9522457
+  },
+  "26 LONG POND ROAD, PLYMOUTH, MA, 2360": {
+    "lat": 41.9318079,
+    "lon": -70.6512992
+  },
+  "1985 NE 51ST PLACE, DES MOINES, IA, 50313": {
+    "lat": 41.6534505,
+    "lon": -93.5877727
+  },
+  "27991 BUENA VISTA BOULEVARD, LOS FRESNOS, TX, 78566": {
+    "lat": 26.1563622,
+    "lon": -97.337839
+  },
+  "1400 BIG LAKE ROAD, COUNCIL BLUFFS, IA, 51501": {
+    "lat": 41.284196,
+    "lon": -95.864127
+  },
+  "1209 SUNFLOWER LN, ALVARADO, TX, 76009": {
+    "lat": 32.4217035,
+    "lon": -97.1958971
+  },
+  "508 WATERWORKS ROAD, FARMVILLE, VA, 23901": {
+    "lat": 37.3193665,
+    "lon": -78.4382314
+  },
+  "421 E SPRING ST., COOKEVILLE, TN, 38501": {
+    "lat": 36.1617449,
+    "lon": -85.4983817
+  },
+  "180 PINE BAYOU CIRCLE, MONROE, LA, 71202": null,
+  "1001 SAN RIO BOULEVARD, LAREDO, TX, 78046": {
+    "lat": 27.379978,
+    "lon": -99.486229
+  },
+  "26362 HIGHWAY 15, FERRIDAY, LA, 71334": null,
+  "VICENTE T. SEMAN BLDG, CIVIC CENTER, SAIPAN, MP, 96950": null,
+  "3415 SOUTH 900 WEST, SALT LAKE CITY, UT, 84119": {
+    "lat": 40.7259591,
+    "lon": -111.9169442
+  },
+  "406 NORTH AVENUE D, SAN LUIS, AZ, 85349": null,
+  "1208 GOLDEN GATE DRIVE, PAPILLION, NE, 68046": {
+    "lat": 41.1434535,
+    "lon": -96.0419407
+  },
+  "801 SOUTH A STREET, FORT SMITH, AR, 72901": {
+    "lat": 35.3822229,
+    "lon": -94.422565
+  },
+  "3040 SOUTH STATE HIGHWAY 100, TIFFIN, OH, 44883": null,
+  "13880 BUSINESS CENTER DRIVE, ELK RIVER, MN, 55330": {
+    "lat": 45.3037535,
+    "lon": -93.6200234
+  },
+  "1001 CENTER WAY, CHARLESTON, WV, 25309": null,
+  "3843 STAGG AVENUE, BASILE, LA, 70515": {
+    "lat": 30.4866896,
+    "lon": -92.5818666
+  },
+  "566 VETERANS DRIVE, PEARSALL, TX, 78061": {
+    "lat": 28.8946514,
+    "lon": -99.1219428
+  },
+  "1170 MICHIGAN ROAD, PORT HURON, MI, 48060": {
+    "lat": 42.9426053,
+    "lon": -82.4799303
+  },
+  "5 BASLER DR., STE. GENEVIEVE, MO, 63670": {
+    "lat": 37.965677,
+    "lon": -90.0551125
+  },
+  "146 CCA ROAD, LUMPKIN, GA, 31815": null,
+  "266 COUNTY FARM ROAD, DOVER, NH, 3820": {
+    "lat": 43.2192302,
+    "lon": -70.9386083
+  },
+  "50140 UNITED STATES HIGHWAY 191 SOUTH, ROCK SPRINGS, WY, 82935": null,
+  "1001 WELCH STREET, TAYLOR, TX, 76574": {
+    "lat": 30.5647288,
+    "lon": -97.4194342
+  },
+  "209 COUNTY ROAD 49, ESTANCIA, NM, 87016": null,
+  "300 NORTH DENVER AVENUE, TULSA, OK, 74103": {
+    "lat": 36.1572816,
+    "lon": -95.9990129
+  }
+}
