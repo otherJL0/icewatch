@@ -61,7 +61,7 @@ def main():
     parser.add_argument('--input', required=True, help='Input facilities JSON file')
     parser.add_argument('--output', help='Output JSON file (default: facilities_geocoded_TIMESTAMP.json in same dir)')
     parser.add_argument('--cache', help='Geocode cache file (default: geocode_cache.json in same dir as input)')
-    parser.add_argument('--delay', type=float, default=1.1, help='Delay between API requests (seconds, default: 1.1)')
+    parser.add_argument('--delay', type=float, default=2, help='Delay between API requests (seconds, default: 2)')
     args = parser.parse_args()
 
     input_path = Path(args.input)
@@ -84,7 +84,7 @@ def main():
             facility['latitude'] = None
             facility['longitude'] = None
             continue
-        if address in cache:
+        if address in cache and cache[address] is not None:
             result = cache[address]
             print(f"[{i+1}/{len(facilities)}] Cached: {address} -> {result}")
         else:
@@ -95,8 +95,12 @@ def main():
             except Exception as e:
                 print(f"    Error geocoding '{address}': {e}")
                 result = None
-            cache[address] = result
-            updated = True
+            if result is not None:
+                cache[address] = result
+                updated = True
+            elif address in cache:
+                # Remove failed/None result from cache if present
+                del cache[address]
         if result:
             facility['latitude'] = result['lat']
             facility['longitude'] = result['lon']
