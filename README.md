@@ -4,7 +4,7 @@ A Python project for downloading ICE (U.S. Immigration and Customs Enforcement) 
 
 ## Overview
 
-This project provides a Python script for downloading ICE detention statistics:
+This project provides Python scripts for downloading ICE detention statistics:
 
 **`ice_detention_scraper.py`** - Downloads ICE detention statistics Excel files with automatic link discovery
 
@@ -97,3 +97,35 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 ## Disclaimer
 
 This tool is for educational and research purposes. Please ensure compliance with the ICE website's terms of service and respect rate limiting when using this tool.
+
+## Geocoding Facilities
+
+You can geocode the facilities in your JSON file using OpenStreetMap Nominatim with caching. This will add latitude and longitude to each facility and store address lookups in a cache file to avoid unnecessary API requests.
+
+### Usage
+
+```bash
+python geocode_facilities.py --input data/ice_facilities_YYYYMMDD.json
+```
+
+- By default, this will create a new file like `data/facilities_geocoded_YYYYMMDD_HHMMSS.json` and update (or create) `data/geocode_cache.json` in the same directory.
+- You can specify custom output or cache files with `--output` and `--cache`.
+- You can adjust the delay between API requests (default: 1.1 seconds) with `--delay`.
+
+### Example
+
+```bash
+python geocode_facilities.py --input data/ice_facilities_20240627.json --output data/facilities_geocoded_20240627.json --cache data/geocode_cache.json
+```
+
+### User-Agent Requirement
+
+**You must set a valid User-Agent string in the script before running it.**
+
+Edit the `USER_AGENT` variable in `geocode_facilities.py`:
+
+```python
+USER_AGENT = "icewatch/1.0 (your_email@example.com)"
+```
+
+Replace `your_email@example.com` with your actual email or project contact. This is required by the [Nominatim Usage Policy](https://operations.osmfoundation.org/policies/nominatim/).
