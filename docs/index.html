@@ -5,10 +5,90 @@
     <title>ICE Facilities Map</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
-    <style> #map { height: 100vh; width: 100vw; } </style>
+    <style>
+        html, body {
+            margin: 0;
+            padding: 0;
+            font-family: system-ui, sans-serif;
+            background: #f8f9fa;
+            height: 100%;
+        }
+        body {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        #header-bar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: #f5f5f5;
+            color: #222;
+            padding: 0.5em 1.5em;
+            height: 64px;
+            border-bottom: 1px solid #e0e0e0;
+            flex-shrink: 0;
+        }
+        #header-title {
+            font-size: 2em;
+            font-weight: 700;
+            letter-spacing: 0.01em;
+            color: #222;
+        }
+        #donate-link {
+            background: #ff5a1f;
+            color: #fff;
+            text-decoration: none;
+            padding: 0.5em 1.2em;
+            border-radius: 24px;
+            font-weight: 600;
+            font-size: 1em;
+            transition: background 0.2s;
+            border: none;
+        }
+        #donate-link:hover {
+            background: #e04a13;
+        }
+        #map {
+            flex: 1 1 auto;
+            height: 100%;
+            width: 100vw;
+        }
+        #footer-bar {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: #f5f5f5;
+            color: #222;
+            padding: 1.5em 0 1em 0;
+            border-top: 1px solid #e0e0e0;
+            flex-shrink: 0;
+        }
+        #footer-logo {
+            height: 80px;
+            width: auto;
+            margin-bottom: 0.5em;
+        }
+        @media (max-width: 600px) {
+            #header-bar { flex-direction: column; height: auto; padding: 1em; }
+            #header-title { font-size: 1.3em; }
+            #map { height: 70vh; }
+            #footer-logo { height: 48px; }
+        }
+    </style>
 </head>
 <body>
+    <div id="header-bar">
+        <div id="header-title">ICE Custody Data</div>
+        <a id="donate-link" href="https://opencollective.com/lockdown-systems" target="_blank" rel="noopener">Donate</a>
+    </div>
     <div id="map"></div>
+    <div id="footer-bar">
+        <a href="https://lockdown.systems/" target="_blank" rel="noopener">
+            <img id="footer-logo" src="img/logo-wide.svg" alt="Lockdown Systems logo" />
+        </a>
+    </div>
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     <script>
     var map = L.map('map').setView([39.8283, -98.5795], 4);
@@ -18,334 +98,334 @@
     }).addTo(map);
     
     L.marker([31.5576266, -91.221126]).addTo(map)
-        .bindPopup('<b>ADAMS COUNTY DET CENTER</b><br/>20 HOBO FORK RD., NATCHEZ, MS 39120<br/>Criminals: <b>30</b><br/>Non-Criminals: <b>2136</b>');
+        .bindPopup('<b>ADAMS COUNTY DET CENTER</b><br/>20 HOBO FORK RD., NATCHEZ, MS 39120<br/>Criminals: <b>30</b><br/>Non-Criminals: <b>2136</b><br/>Percentage Criminal: <b>1%</b>');
     
     L.marker([34.5599467, -117.4421505]).addTo(map)
-        .bindPopup('<b>ADELANTO ICE PROCESSING CENTER</b><br/>10250 RANCHO ROAD, ADELANTO, CA 92301<br/>Criminals: <b>116</b><br/>Non-Criminals: <b>37</b>');
+        .bindPopup('<b>ADELANTO ICE PROCESSING CENTER</b><br/>10250 RANCHO ROAD, ADELANTO, CA 92301<br/>Criminals: <b>116</b><br/>Non-Criminals: <b>37</b><br/>Percentage Criminal: <b>76%</b>');
     
     L.marker([36.0684989, -79.4030356]).addTo(map)
-        .bindPopup('<b>ALAMANCE COUNTY DETENTION FACILITY</b><br/>109 SOUTH MAPLE STREET, GRAHAM, NC 27253<br/>Criminals: <b>13</b><br/>Non-Criminals: <b>7</b>');
+        .bindPopup('<b>ALAMANCE COUNTY DETENTION FACILITY</b><br/>109 SOUTH MAPLE STREET, GRAHAM, NC 27253<br/>Criminals: <b>13</b><br/>Non-Criminals: <b>7</b><br/>Percentage Criminal: <b>65%</b>');
     
     L.marker([32.7667663, -99.8888312]).addTo(map)
-        .bindPopup('<b>BLUEBONNET DETENTION FACILITY</b><br/>400 2ND STREET, ANSON, TX 79501<br/>Criminals: <b>356</b><br/>Non-Criminals: <b>562</b>');
+        .bindPopup('<b>BLUEBONNET DETENTION FACILITY</b><br/>400 2ND STREET, ANSON, TX 79501<br/>Criminals: <b>356</b><br/>Non-Criminals: <b>562</b><br/>Percentage Criminal: <b>39%</b>');
     
     L.marker([39.0373257, -84.7236669]).addTo(map)
-        .bindPopup('<b>BOONE COUNTY JAIL</b><br/>3020 CONRAD LANE, BURLINGTON, KY 41005<br/>Criminals: <b>115</b><br/>Non-Criminals: <b>40</b>');
+        .bindPopup('<b>BOONE COUNTY JAIL</b><br/>3020 CONRAD LANE, BURLINGTON, KY 41005<br/>Criminals: <b>115</b><br/>Non-Criminals: <b>40</b><br/>Percentage Criminal: <b>74%</b>');
     
     L.marker([26.1162336, -80.1423181]).addTo(map)
-        .bindPopup('<b>BROWARD COUNTY JAIL</b><br/>555 SE 1ST AVENUE, FT.LAUDERDALE, FL 33301<br/>Criminals: <b>0</b><br/>Non-Criminals: <b>2</b>');
+        .bindPopup('<b>BROWARD COUNTY JAIL</b><br/>555 SE 1ST AVENUE, FT.LAUDERDALE, FL 33301<br/>Criminals: <b>0</b><br/>Non-Criminals: <b>2</b><br/>Percentage Criminal: <b>0%</b>');
     
     L.marker([26.2759099, -80.15197]).addTo(map)
-        .bindPopup('<b>BROWARD TRANSITIONAL CENTER</b><br/>3900 NORTH POWERLINE ROAD, POMPANO BEACH, FL 33073<br/>Criminals: <b>133</b><br/>Non-Criminals: <b>506</b>');
+        .bindPopup('<b>BROWARD TRANSITIONAL CENTER</b><br/>3900 NORTH POWERLINE ROAD, POMPANO BEACH, FL 33073<br/>Criminals: <b>133</b><br/>Non-Criminals: <b>506</b><br/>Percentage Criminal: <b>21%</b>');
     
     L.marker([43.0203104, -78.2024802]).addTo(map)
-        .bindPopup('<b>BUFFALO SERVICE PROCESSING CENTER</b><br/>4250 FEDERAL DRIVE, BATAVIA, NY 14020<br/>Criminals: <b>256</b><br/>Non-Criminals: <b>339</b>');
+        .bindPopup('<b>BUFFALO SERVICE PROCESSING CENTER</b><br/>4250 FEDERAL DRIVE, BATAVIA, NY 14020<br/>Criminals: <b>256</b><br/>Non-Criminals: <b>339</b><br/>Percentage Criminal: <b>43%</b>');
     
     L.marker([39.3881265, -84.55588]).addTo(map)
-        .bindPopup('<b>BUTLER COUNTY JAIL</b><br/>705 HANOVER STREET, HAMILTON, OH 45011<br/>Criminals: <b>22</b><br/>Non-Criminals: <b>56</b>');
+        .bindPopup('<b>BUTLER COUNTY JAIL</b><br/>705 HANOVER STREET, HAMILTON, OH 45011<br/>Criminals: <b>22</b><br/>Non-Criminals: <b>56</b><br/>Percentage Criminal: <b>28%</b>');
     
     L.marker([42.3166739, -85.1758915]).addTo(map)
-        .bindPopup('<b>CALHOUN COUNTY CORRECTIONAL CENTER</b><br/>185 EAST MICHIGAN AVENUE, BATTLE CREEK, MI 49014<br/>Criminals: <b>51</b><br/>Non-Criminals: <b>96</b>');
+        .bindPopup('<b>CALHOUN COUNTY CORRECTIONAL CENTER</b><br/>185 EAST MICHIGAN AVENUE, BATTLE CREEK, MI 49014<br/>Criminals: <b>51</b><br/>Non-Criminals: <b>96</b><br/>Percentage Criminal: <b>35%</b>');
     
     L.marker([39.0887186, -84.4969756]).addTo(map)
-        .bindPopup('<b>CAMPBELL CO DET CTR</b><br/>601 CENTRAL AVE, NEWPORT, KY 41071<br/>Criminals: <b>7</b><br/>Non-Criminals: <b>11</b>');
+        .bindPopup('<b>CAMPBELL CO DET CTR</b><br/>601 CENTRAL AVE, NEWPORT, KY 41071<br/>Criminals: <b>7</b><br/>Non-Criminals: <b>11</b><br/>Percentage Criminal: <b>39%</b>');
     
     L.marker([41.0112468, -95.8831012]).addTo(map)
-        .bindPopup('<b>CASS COUNTY JAIL</b><br/>336 MAIN STREET, PLATTSMOUTH, NE 68048<br/>Criminals: <b>2</b><br/>Non-Criminals: <b>0</b>');
+        .bindPopup('<b>CASS COUNTY JAIL</b><br/>336 MAIN STREET, PLATTSMOUTH, NE 68048<br/>Criminals: <b>2</b><br/>Non-Criminals: <b>0</b><br/>Percentage Criminal: <b>100%</b>');
     
     L.marker([33.0438338, -111.371793]).addTo(map)
-        .bindPopup('<b>CCA, FLORENCE CORRECTIONAL CENTER</b><br/>1100 BOWLING ROAD, FLORENCE, AZ 85232<br/>Criminals: <b>260</b><br/>Non-Criminals: <b>151</b>');
+        .bindPopup('<b>CCA, FLORENCE CORRECTIONAL CENTER</b><br/>1100 BOWLING ROAD, FLORENCE, AZ 85232<br/>Criminals: <b>260</b><br/>Non-Criminals: <b>151</b><br/>Percentage Criminal: <b>63%</b>');
     
     L.marker([31.7088575, -92.1529335]).addTo(map)
-        .bindPopup('<b>CENTRAL LOUISIANA ICE PROCESSING CENTER (CLIPC)</b><br/>830 PINEHILL ROAD, JENA, LA 71342<br/>Criminals: <b>495</b><br/>Non-Criminals: <b>682</b>');
+        .bindPopup('<b>CENTRAL LOUISIANA ICE PROCESSING CENTER (CLIPC)</b><br/>830 PINEHILL ROAD, JENA, LA 71342<br/>Criminals: <b>495</b><br/>Non-Criminals: <b>682</b><br/>Percentage Criminal: <b>42%</b>');
     
     L.marker([46.4977347, -84.3459656]).addTo(map)
-        .bindPopup('<b>CHIPPEWA COUNTY SSM</b><br/>325 COURT STREET, SAULT STE MARIE, MI 49783<br/>Criminals: <b>11</b><br/>Non-Criminals: <b>19</b>');
+        .bindPopup('<b>CHIPPEWA COUNTY SSM</b><br/>325 COURT STREET, SAULT STE MARIE, MI 49783<br/>Criminals: <b>11</b><br/>Non-Criminals: <b>19</b><br/>Percentage Criminal: <b>37%</b>');
     
     L.marker([44.4464191, -73.2054841]).addTo(map)
-        .bindPopup('<b>CHITTENDEN REGIONAL CORRECTIONAL FACILITY</b><br/>7 FARRELL STREET, SOUTH BURLINGTON, VT 5403<br/>Criminals: <b>0</b><br/>Non-Criminals: <b>3</b>');
+        .bindPopup('<b>CHITTENDEN REGIONAL CORRECTIONAL FACILITY</b><br/>7 FARRELL STREET, SOUTH BURLINGTON, VT 5403<br/>Criminals: <b>0</b><br/>Non-Criminals: <b>3</b><br/>Percentage Criminal: <b>0%</b>');
     
     L.marker([35.961173, -96.7848408]).addTo(map)
-        .bindPopup('<b>CIMMARRON CORR FACILITY</b><br/>3700 S. KINGS HWY, CUSHING, OK 74023<br/>Criminals: <b>21</b><br/>Non-Criminals: <b>78</b>');
+        .bindPopup('<b>CIMMARRON CORR FACILITY</b><br/>3700 S. KINGS HWY, CUSHING, OK 74023<br/>Criminals: <b>21</b><br/>Non-Criminals: <b>78</b><br/>Percentage Criminal: <b>21%</b>');
     
     L.marker([38.277682, -85.7375976]).addTo(map)
-        .bindPopup('<b>CLARK COUNTY JAIL (IN)</b><br/>501 EAST COURT AVE., JEFFERSONVILLE, IN 47130<br/>Criminals: <b>6</b><br/>Non-Criminals: <b>13</b>');
+        .bindPopup('<b>CLARK COUNTY JAIL (IN)</b><br/>501 EAST COURT AVE., JEFFERSONVILLE, IN 47130<br/>Criminals: <b>6</b><br/>Non-Criminals: <b>13</b><br/>Percentage Criminal: <b>32%</b>');
     
     L.marker([39.5236693, -87.1191065]).addTo(map)
-        .bindPopup('<b>CLAY COUNTY JUSTICE CENTER</b><br/>611 EAST JACKSON STREET, BRAZIL, IN 47834<br/>Criminals: <b>145</b><br/>Non-Criminals: <b>109</b>');
+        .bindPopup('<b>CLAY COUNTY JUSTICE CENTER</b><br/>611 EAST JACKSON STREET, BRAZIL, IN 47834<br/>Criminals: <b>145</b><br/>Non-Criminals: <b>109</b><br/>Percentage Criminal: <b>57%</b>');
     
     L.marker([41.1511182, -77.3493663]).addTo(map)
-        .bindPopup('<b>CLINTON COUNTY CORRECTIONAL FACILITY</b><br/>58 PINE MOUNTAIN RD., MCELHATTAN, PA 17748<br/>Criminals: <b>73</b><br/>Non-Criminals: <b>9</b>');
+        .bindPopup('<b>CLINTON COUNTY CORRECTIONAL FACILITY</b><br/>58 PINE MOUNTAIN RD., MCELHATTAN, PA 17748<br/>Criminals: <b>73</b><br/>Non-Criminals: <b>9</b><br/>Percentage Criminal: <b>89%</b>');
     
     L.marker([44.7204627, -73.467472]).addTo(map)
-        .bindPopup('<b>CLINTON COUNTY JAIL</b><br/>25 MCCARTHY DRIVE, PLATTSBURGH, NY 12901<br/>Criminals: <b>1</b><br/>Non-Criminals: <b>4</b>');
+        .bindPopup('<b>CLINTON COUNTY JAIL</b><br/>25 MCCARTHY DRIVE, PLATTSBURGH, NY 12901<br/>Criminals: <b>1</b><br/>Non-Criminals: <b>4</b><br/>Percentage Criminal: <b>20%</b>');
     
     L.marker([40.2791153, -86.5087576]).addTo(map)
-        .bindPopup('<b>CLINTON COUNTY JAIL</b><br/>301 E WALNUT STREET, FRANKFORT, IN 46041<br/>Criminals: <b>0</b><br/>Non-Criminals: <b>1</b>');
+        .bindPopup('<b>CLINTON COUNTY JAIL</b><br/>301 E WALNUT STREET, FRANKFORT, IN 46041<br/>Criminals: <b>0</b><br/>Non-Criminals: <b>1</b><br/>Percentage Criminal: <b>0%</b>');
     
     L.marker([26.1257654, -81.7651214]).addTo(map)
-        .bindPopup('<b>COLLIER COUNTY NAPLES JAIL CENTER</b><br/>3347 TAMIAMI TRAIL E, NAPLES, FL 34112<br/>Criminals: <b>6</b><br/>Non-Criminals: <b>6</b>');
+        .bindPopup('<b>COLLIER COUNTY NAPLES JAIL CENTER</b><br/>3347 TAMIAMI TRAIL E, NAPLES, FL 34112<br/>Criminals: <b>6</b><br/>Non-Criminals: <b>6</b><br/>Percentage Criminal: <b>50%</b>');
     
     L.marker([43.6508623, -70.2816197]).addTo(map)
-        .bindPopup('<b>CUMBERLAND COUNTY JAIL</b><br/>50 COUNTY WAY, PORTLAND, ME 4102<br/>Criminals: <b>26</b><br/>Non-Criminals: <b>28</b>');
+        .bindPopup('<b>CUMBERLAND COUNTY JAIL</b><br/>50 COUNTY WAY, PORTLAND, ME 4102<br/>Criminals: <b>26</b><br/>Non-Criminals: <b>28</b><br/>Percentage Criminal: <b>48%</b>');
     
     L.marker([32.7746483, -96.8243069]).addTo(map)
-        .bindPopup('<b>DALLAS COUNTY JAIL - LEW STERRETT JUSTICE CENTER</b><br/>111 WEST COMMERCE STREET, DALLAS, TX 75202<br/>Criminals: <b>3</b><br/>Non-Criminals: <b>4</b>');
+        .bindPopup('<b>DALLAS COUNTY JAIL - LEW STERRETT JUSTICE CENTER</b><br/>111 WEST COMMERCE STREET, DALLAS, TX 75202<br/>Criminals: <b>3</b><br/>Non-Criminals: <b>4</b><br/>Percentage Criminal: <b>43%</b>');
     
     L.marker([40.7187782, -74.126752]).addTo(map)
-        .bindPopup('<b>DELANEY HALL DETENTION FACILITY</b><br/>451 DOREMUS AVENUE, NEWARK, NJ 7105<br/>Criminals: <b>15</b><br/>Non-Criminals: <b>49</b>');
+        .bindPopup('<b>DELANEY HALL DETENTION FACILITY</b><br/>451 DOREMUS AVENUE, NEWARK, NJ 7105<br/>Criminals: <b>15</b><br/>Non-Criminals: <b>49</b><br/>Percentage Criminal: <b>23%</b>');
     
     L.marker([39.760875, -104.849087]).addTo(map)
-        .bindPopup('<b>DENVER CONTRACT DETENTION FACILITY</b><br/>3130 OAKLAND ST, AURORA, CO 80010<br/>Criminals: <b>324</b><br/>Non-Criminals: <b>824</b>');
+        .bindPopup('<b>DENVER CONTRACT DETENTION FACILITY</b><br/>3130 OAKLAND ST, AURORA, CO 80010<br/>Criminals: <b>324</b><br/>Non-Criminals: <b>824</b><br/>Percentage Criminal: <b>28%</b>');
     
     L.marker([34.5599404, -117.4372813]).addTo(map)
-        .bindPopup('<b>DESERT VIEW ANNEX</b><br/>10450 RANCHO ROAD, ADELANTO, CA 92301<br/>Criminals: <b>149</b><br/>Non-Criminals: <b>261</b>');
+        .bindPopup('<b>DESERT VIEW ANNEX</b><br/>10450 RANCHO ROAD, ADELANTO, CA 92301<br/>Criminals: <b>149</b><br/>Non-Criminals: <b>261</b><br/>Percentage Criminal: <b>36%</b>');
     
     L.marker([31.2175083, -99.8339599]).addTo(map)
-        .bindPopup('<b>EDEN DETENTION CTR</b><br/>702 E BROADWAY ST, EDEN, TX 76837<br/>Criminals: <b>10</b><br/>Non-Criminals: <b>99</b>');
+        .bindPopup('<b>EDEN DETENTION CTR</b><br/>702 E BROADWAY ST, EDEN, TX 76837<br/>Criminals: <b>10</b><br/>Non-Criminals: <b>99</b><br/>Percentage Criminal: <b>9%</b>');
     
     L.marker([31.7934217, -106.3691494]).addTo(map)
-        .bindPopup('<b>EL PASO SERVICE PROCESSING CENTER</b><br/>8915 MONTANA AVE., EL PASO, TX 79925<br/>Criminals: <b>351</b><br/>Non-Criminals: <b>424</b>');
+        .bindPopup('<b>EL PASO SERVICE PROCESSING CENTER</b><br/>8915 MONTANA AVE., EL PASO, TX 79925<br/>Criminals: <b>351</b><br/>Non-Criminals: <b>424</b><br/>Percentage Criminal: <b>45%</b>');
     
     L.marker([31.9432041, -106.4039873]).addTo(map)
-        .bindPopup('<b>EL PASO SOFT SIDED FACILITY</b><br/>12501 GATEWAY BLVD S, EL PASO, TX 79934<br/>Criminals: <b>30</b><br/>Non-Criminals: <b>44</b>');
+        .bindPopup('<b>EL PASO SOFT SIDED FACILITY</b><br/>12501 GATEWAY BLVD S, EL PASO, TX 79934<br/>Criminals: <b>30</b><br/>Non-Criminals: <b>44</b><br/>Percentage Criminal: <b>41%</b>');
     
     L.marker([40.6662036, -74.1896718]).addTo(map)
-        .bindPopup('<b>ELIZABETH CONTRACT DETENTION FACILITY</b><br/>625 EVANS STREET, ELIZABETH, NJ 7201<br/>Criminals: <b>64</b><br/>Non-Criminals: <b>223</b>');
+        .bindPopup('<b>ELIZABETH CONTRACT DETENTION FACILITY</b><br/>625 EVANS STREET, ELIZABETH, NJ 7201<br/>Criminals: <b>64</b><br/>Non-Criminals: <b>223</b><br/>Percentage Criminal: <b>22%</b>');
     
     L.marker([32.8176772, -111.51927]).addTo(map)
-        .bindPopup('<b>ELOY FEDERAL CONTRACT FACILITY</b><br/>1705 EAST HANNA RD., ELOY, AZ 85131<br/>Criminals: <b>265</b><br/>Non-Criminals: <b>1105</b>');
+        .bindPopup('<b>ELOY FEDERAL CONTRACT FACILITY</b><br/>1705 EAST HANNA RD., ELOY, AZ 85131<br/>Criminals: <b>265</b><br/>Non-Criminals: <b>1105</b><br/>Percentage Criminal: <b>19%</b>');
     
     L.marker([34.0161208, -86.012499]).addTo(map)
-        .bindPopup('<b>ETOWAH COUNTY JAIL (ALABAMA)</b><br/>827 FORREST AVENUE, GADSDEN, AL 35901<br/>Criminals: <b>9</b><br/>Non-Criminals: <b>13</b>');
+        .bindPopup('<b>ETOWAH COUNTY JAIL (ALABAMA)</b><br/>827 FORREST AVENUE, GADSDEN, AL 35901<br/>Criminals: <b>9</b><br/>Non-Criminals: <b>13</b><br/>Percentage Criminal: <b>41%</b>');
     
     L.marker([39.9525541, -75.1520216]).addTo(map)
-        .bindPopup('<b>FDC PHILADELPHIA</b><br/>700 ARCH ST., PHILADELPHIA, PA 19106<br/>Criminals: <b>21</b><br/>Non-Criminals: <b>24</b>');
+        .bindPopup('<b>FDC PHILADELPHIA</b><br/>700 ARCH ST., PHILADELPHIA, PA 19106<br/>Criminals: <b>21</b><br/>Non-Criminals: <b>24</b><br/>Percentage Criminal: <b>47%</b>');
     
     L.marker([37.9674162, -100.876362]).addTo(map)
-        .bindPopup('<b>FINNEY COUNTY JAIL</b><br/>304 N. 9TH STREET, GARDEN CITY, KS 67846<br/>Criminals: <b>0</b><br/>Non-Criminals: <b>1</b>');
+        .bindPopup('<b>FINNEY COUNTY JAIL</b><br/>304 N. 9TH STREET, GARDEN CITY, KS 67846<br/>Criminals: <b>0</b><br/>Non-Criminals: <b>1</b><br/>Percentage Criminal: <b>0%</b>');
     
     L.marker([33.0630048, -111.3790857]).addTo(map)
-        .bindPopup('<b>FLORENCE SERVICE PROCESSING CENTER</b><br/>3250 NORTH PINAL PARKWAY, FLORENCE, AZ 85132<br/>Criminals: <b>87</b><br/>Non-Criminals: <b>301</b>');
+        .bindPopup('<b>FLORENCE SERVICE PROCESSING CENTER</b><br/>3250 NORTH PINAL PARKWAY, FLORENCE, AZ 85132<br/>Criminals: <b>87</b><br/>Non-Criminals: <b>301</b><br/>Percentage Criminal: <b>22%</b>');
     
     L.marker([33.0640298, -111.3825565]).addTo(map)
-        .bindPopup('<b>FLORENCE STAGING FACILITY</b><br/>3250 NORTH PINAL PARKWAY, FLORENCE, AZ 85232<br/>Criminals: <b>67</b><br/>Non-Criminals: <b>116</b>');
+        .bindPopup('<b>FLORENCE STAGING FACILITY</b><br/>3250 NORTH PINAL PARKWAY, FLORENCE, AZ 85232<br/>Criminals: <b>67</b><br/>Non-Criminals: <b>116</b><br/>Percentage Criminal: <b>37%</b>');
     
     L.marker([34.2803637, -85.1428696]).addTo(map)
-        .bindPopup('<b>FLOYD COUNTY JAIL</b><br/>2526 NEW CALHOUN HWY, ROME, GA 30161<br/>Criminals: <b>0</b><br/>Non-Criminals: <b>1</b>');
+        .bindPopup('<b>FLOYD COUNTY JAIL</b><br/>2526 NEW CALHOUN HWY, ROME, GA 30161<br/>Criminals: <b>0</b><br/>Non-Criminals: <b>1</b><br/>Percentage Criminal: <b>0%</b>');
     
     L.marker([43.6461475, -93.3680658]).addTo(map)
-        .bindPopup('<b>FREEBORN COUNTY ADULT DETENTION CENTER</b><br/>411 SOUTH BROADWAY AVENUE, ALBERT LEA, MN 56007<br/>Criminals: <b>44</b><br/>Non-Criminals: <b>34</b>');
+        .bindPopup('<b>FREEBORN COUNTY ADULT DETENTION CENTER</b><br/>411 SOUTH BROADWAY AVENUE, ALBERT LEA, MN 56007<br/>Criminals: <b>44</b><br/>Non-Criminals: <b>34</b><br/>Percentage Criminal: <b>56%</b>');
     
     L.marker([35.667329, -119.225036]).addTo(map)
-        .bindPopup('<b>GOLDEN STATE ANNEX</b><br/>611 FRONTAGE RD, MCFARLAND, CA 93250<br/>Criminals: <b>292</b><br/>Non-Criminals: <b>282</b>');
+        .bindPopup('<b>GOLDEN STATE ANNEX</b><br/>611 FRONTAGE RD, MCFARLAND, CA 93250<br/>Criminals: <b>292</b><br/>Non-Criminals: <b>282</b><br/>Percentage Criminal: <b>51%</b>');
     
     L.marker([47.935792, -97.055851]).addTo(map)
-        .bindPopup('<b>GRAND FORKS COUNTY CORRECTIONAL FACILITY</b><br/>1701 NORTH WASHINGTON ST, GRAND FORKS, ND 58203<br/>Criminals: <b>2</b><br/>Non-Criminals: <b>3</b>');
+        .bindPopup('<b>GRAND FORKS COUNTY CORRECTIONAL FACILITY</b><br/>1701 NORTH WASHINGTON ST, GRAND FORKS, ND 58203<br/>Criminals: <b>2</b><br/>Non-Criminals: <b>3</b><br/>Percentage Criminal: <b>40%</b>');
     
     L.marker([37.4890391, -86.2702303]).addTo(map)
-        .bindPopup('<b>GRAYSON COUNTY JAIL</b><br/>320 SHAW STATION ROAD, LEITCHFIELD, KY 42754<br/>Criminals: <b>19</b><br/>Non-Criminals: <b>21</b>');
+        .bindPopup('<b>GRAYSON COUNTY JAIL</b><br/>320 SHAW STATION ROAD, LEITCHFIELD, KY 42754<br/>Criminals: <b>19</b><br/>Non-Criminals: <b>21</b><br/>Percentage Criminal: <b>48%</b>');
     
     L.marker([37.2227197, -93.385532]).addTo(map)
-        .bindPopup('<b>GREENE COUNTY JAIL</b><br/>1199 N HASELTINE RD, SPRINGFIELD, MO 65802<br/>Criminals: <b>47</b><br/>Non-Criminals: <b>54</b>');
+        .bindPopup('<b>GREENE COUNTY JAIL</b><br/>1199 N HASELTINE RD, SPRINGFIELD, MO 65802<br/>Criminals: <b>47</b><br/>Non-Criminals: <b>54</b><br/>Percentage Criminal: <b>47%</b>');
     
     L.marker([42.3598449, -93.0973711]).addTo(map)
-        .bindPopup('<b>HARDIN COUNTY JAIL</b><br/>1116 14TH AVENUE, ELDORA, IA 50627<br/>Criminals: <b>2</b><br/>Non-Criminals: <b>2</b>');
+        .bindPopup('<b>HARDIN COUNTY JAIL</b><br/>1116 14TH AVENUE, ELDORA, IA 50627<br/>Criminals: <b>2</b><br/>Non-Criminals: <b>2</b><br/>Percentage Criminal: <b>50%</b>');
     
     L.marker([36.0308679, -114.9780973]).addTo(map)
-        .bindPopup('<b>HENDERSON DETENTION</b><br/>18 E BASIC ROAD, HENDERSON, NV 89015<br/>Criminals: <b>45</b><br/>Non-Criminals: <b>27</b>');
+        .bindPopup('<b>HENDERSON DETENTION</b><br/>18 E BASIC ROAD, HENDERSON, NV 89015<br/>Criminals: <b>45</b><br/>Non-Criminals: <b>27</b><br/>Percentage Criminal: <b>62%</b>');
     
     L.marker([21.3332122, -157.9283542]).addTo(map)
-        .bindPopup('<b>HONOLULU FEDERAL DETENTION CENTER</b><br/>351 ELLIOTT ST., HONOLULU, HI 96819<br/>Criminals: <b>19</b><br/>Non-Criminals: <b>16</b>');
+        .bindPopup('<b>HONOLULU FEDERAL DETENTION CENTER</b><br/>351 ELLIOTT ST., HONOLULU, HI 96819<br/>Criminals: <b>19</b><br/>Non-Criminals: <b>16</b><br/>Percentage Criminal: <b>54%</b>');
     
     L.marker([29.9508332, -95.3121699]).addTo(map)
-        .bindPopup('<b>HOUSTON CONTRACT DETENTION FACILITY</b><br/>15850 EXPORT PLAZA DRIVE, HOUSTON, TX 77032<br/>Criminals: <b>67</b><br/>Non-Criminals: <b>757</b>');
+        .bindPopup('<b>HOUSTON CONTRACT DETENTION FACILITY</b><br/>15850 EXPORT PLAZA DRIVE, HOUSTON, TX 77032<br/>Criminals: <b>67</b><br/>Non-Criminals: <b>757</b><br/>Percentage Criminal: <b>8%</b>');
     
     L.marker([30.6981513, -95.0057915]).addTo(map)
-        .bindPopup('<b>IAH SECURE ADULT DETENTION FACILITY (POLK)</b><br/>3400 FM 350 SOUTH, LIVINGSTON, TX 77351<br/>Criminals: <b>95</b><br/>Non-Criminals: <b>704</b>');
+        .bindPopup('<b>IAH SECURE ADULT DETENTION FACILITY (POLK)</b><br/>3400 FM 350 SOUTH, LIVINGSTON, TX 77351<br/>Criminals: <b>95</b><br/>Non-Criminals: <b>704</b><br/>Percentage Criminal: <b>12%</b>');
     
     L.marker([32.2158449, -92.7178317]).addTo(map)
-        .bindPopup('<b>JACKSON PARISH CORRECTIONAL CENTER</b><br/>327 INDUSTRIAL DRIVE, JONESBORO, LA 71251<br/>Criminals: <b>42</b><br/>Non-Criminals: <b>996</b>');
+        .bindPopup('<b>JACKSON PARISH CORRECTIONAL CENTER</b><br/>327 INDUSTRIAL DRIVE, JONESBORO, LA 71251<br/>Criminals: <b>42</b><br/>Non-Criminals: <b>996</b><br/>Percentage Criminal: <b>4%</b>');
     
     L.marker([43.6733525, -111.9115662]).addTo(map)
-        .bindPopup('<b>JEFFERSON COUNTY JAIL</b><br/>219 EAST FREMONT AVENUE, RIGBY, ID 83442<br/>Criminals: <b>3</b><br/>Non-Criminals: <b>1</b>');
+        .bindPopup('<b>JEFFERSON COUNTY JAIL</b><br/>219 EAST FREMONT AVENUE, RIGBY, ID 83442<br/>Criminals: <b>3</b><br/>Non-Criminals: <b>1</b><br/>Percentage Criminal: <b>75%</b>');
     
     L.marker([30.3359939, -95.4481982]).addTo(map)
-        .bindPopup('<b>JOE CORLEY PROCESSING CTR</b><br/>500 HILBIG RD, CONROE, TX 77301<br/>Criminals: <b>83</b><br/>Non-Criminals: <b>733</b>');
+        .bindPopup('<b>JOE CORLEY PROCESSING CTR</b><br/>500 HILBIG RD, CONROE, TX 77301<br/>Criminals: <b>83</b><br/>Non-Criminals: <b>733</b><br/>Percentage Criminal: <b>10%</b>');
     
     L.marker([45.1458557, -95.0144842]).addTo(map)
-        .bindPopup('<b>KANDIYOHI COUNTY JAIL</b><br/>2201 23RD ST NE, WILLMAR, MN 56201<br/>Criminals: <b>81</b><br/>Non-Criminals: <b>64</b>');
+        .bindPopup('<b>KANDIYOHI COUNTY JAIL</b><br/>2201 23RD ST NE, WILLMAR, MN 56201<br/>Criminals: <b>81</b><br/>Non-Criminals: <b>64</b><br/>Percentage Criminal: <b>56%</b>');
     
     L.marker([28.8849121, -97.8977348]).addTo(map)
-        .bindPopup('<b>KARNES COUNTY IMMIGRATION PROCESSING CENTER</b><br/>409 FM 1144, KARNES CITY, TX 78118<br/>Criminals: <b>43</b><br/>Non-Criminals: <b>818</b>');
+        .bindPopup('<b>KARNES COUNTY IMMIGRATION PROCESSING CENTER</b><br/>409 FM 1144, KARNES CITY, TX 78118<br/>Criminals: <b>43</b><br/>Non-Criminals: <b>818</b><br/>Percentage Criminal: <b>5%</b>');
     
     L.marker([39.0885257, -84.5087427]).addTo(map)
-        .bindPopup('<b>KENTON COUNTY JAIL</b><br/>303 COURT STREET, COVINGTON, KY 41011<br/>Criminals: <b>1</b><br/>Non-Criminals: <b>3</b>');
+        .bindPopup('<b>KENTON COUNTY JAIL</b><br/>303 COURT STREET, COVINGTON, KY 41011<br/>Criminals: <b>1</b><br/>Non-Criminals: <b>3</b><br/>Percentage Criminal: <b>25%</b>');
     
     L.marker([25.7547717, -80.4908502]).addTo(map)
-        .bindPopup('<b>KROME NORTH SERVICE PROCESSING CENTER</b><br/>18201 SW 12TH ST, MIAMI, FL 33194<br/>Criminals: <b>446</b><br/>Non-Criminals: <b>399</b>');
+        .bindPopup('<b>KROME NORTH SERVICE PROCESSING CENTER</b><br/>18201 SW 12TH ST, MIAMI, FL 33194<br/>Criminals: <b>446</b><br/>Non-Criminals: <b>399</b><br/>Percentage Criminal: <b>53%</b>');
     
     L.marker([34.1454944, -114.2903444]).addTo(map)
-        .bindPopup('<b>LA PAZ COUNTY ADULT DETENTION FACILITY</b><br/>1109 ARIZONA AVE., PARKER, AZ 85344<br/>Criminals: <b>1</b><br/>Non-Criminals: <b>0</b>');
+        .bindPopup('<b>LA PAZ COUNTY ADULT DETENTION FACILITY</b><br/>1109 ARIZONA AVE., PARKER, AZ 85344<br/>Criminals: <b>1</b><br/>Non-Criminals: <b>0</b><br/>Percentage Criminal: <b>100%</b>');
     
     L.marker([27.5294764, -99.4477731]).addTo(map)
-        .bindPopup('<b>LAREDO PROCESSING CENTER</b><br/>4702 EAST SAUNDERS STREET, LAREDO, TX 78041<br/>Criminals: <b>19</b><br/>Non-Criminals: <b>336</b>');
+        .bindPopup('<b>LAREDO PROCESSING CENTER</b><br/>4702 EAST SAUNDERS STREET, LAREDO, TX 78041<br/>Criminals: <b>19</b><br/>Non-Criminals: <b>336</b><br/>Percentage Criminal: <b>5%</b>');
     
     L.marker([37.1277507, -84.0839281]).addTo(map)
-        .bindPopup('<b>LAUREL COUNTY SHERIFFS JAIL</b><br/>203 SOUTH BROAD ST., LONDON, KY 40741<br/>Criminals: <b>1</b><br/>Non-Criminals: <b>1</b>');
+        .bindPopup('<b>LAUREL COUNTY SHERIFFS JAIL</b><br/>203 SOUTH BROAD ST., LONDON, KY 40741<br/>Criminals: <b>1</b><br/>Non-Criminals: <b>1</b><br/>Percentage Criminal: <b>50%</b>');
     
     L.marker([39.3303867, -94.9357354]).addTo(map)
-        .bindPopup('<b>LEAVENWORTH US PENITENTIARY</b><br/>1300 METROPOLITAN AVE., LEAVENWORTH, KS 66048<br/>Criminals: <b>19</b><br/>Non-Criminals: <b>12</b>');
+        .bindPopup('<b>LEAVENWORTH US PENITENTIARY</b><br/>1300 METROPOLITAN AVE., LEAVENWORTH, KS 66048<br/>Criminals: <b>19</b><br/>Non-Criminals: <b>12</b><br/>Percentage Criminal: <b>61%</b>');
     
     L.marker([33.9784808, -81.2508399]).addTo(map)
-        .bindPopup('<b>LEXINGTON COUNTY JAIL</b><br/>521 GIBSON ROAD, LEXINGTON, SC 29072<br/>Criminals: <b>2</b><br/>Non-Criminals: <b>3</b>');
+        .bindPopup('<b>LEXINGTON COUNTY JAIL</b><br/>521 GIBSON ROAD, LEXINGTON, SC 29072<br/>Criminals: <b>2</b><br/>Non-Criminals: <b>3</b><br/>Percentage Criminal: <b>40%</b>');
     
     L.marker([31.5287835, -96.512347]).addTo(map)
-        .bindPopup('<b>LIMESTONE COUNTY DETENTION CENTER</b><br/>910 NORTH TYUS STREET, GROESBECK, TX 76642<br/>Criminals: <b>9</b><br/>Non-Criminals: <b>20</b>');
+        .bindPopup('<b>LIMESTONE COUNTY DETENTION CENTER</b><br/>910 NORTH TYUS STREET, GROESBECK, TX 76642<br/>Criminals: <b>9</b><br/>Non-Criminals: <b>20</b><br/>Percentage Criminal: <b>31%</b>');
     
     L.marker([41.1065398, -100.7640382]).addTo(map)
-        .bindPopup('<b>LINCOLN COUNTY JAIL</b><br/>3020 N JEFFERS, NORTH PLATTE, NE 69101<br/>Criminals: <b>2</b><br/>Non-Criminals: <b>1</b>');
+        .bindPopup('<b>LINCOLN COUNTY JAIL</b><br/>3020 N JEFFERS, NORTH PLATTE, NE 69101<br/>Criminals: <b>2</b><br/>Non-Criminals: <b>1</b><br/>Percentage Criminal: <b>67%</b>');
     
     L.marker([41.9746012, -91.6692502]).addTo(map)
-        .bindPopup('<b>LINN COUNTY JAIL</b><br/>53 3RD AVENUE BRIDGE, CEDAR RAPIDS, IA 52401<br/>Criminals: <b>1</b><br/>Non-Criminals: <b>0</b>');
+        .bindPopup('<b>LINN COUNTY JAIL</b><br/>53 3RD AVENUE BRIDGE, CEDAR RAPIDS, IA 52401<br/>Criminals: <b>1</b><br/>Non-Criminals: <b>0</b><br/>Percentage Criminal: <b>100%</b>');
     
     L.marker([33.5854229, -101.8434337]).addTo(map)
-        .bindPopup('<b>LUBBOCK COUNTY DETENTION CENTER</b><br/>811 MAIN STREET, LUBBOCK, TX 79401<br/>Criminals: <b>1</b><br/>Non-Criminals: <b>1</b>');
+        .bindPopup('<b>LUBBOCK COUNTY DETENTION CENTER</b><br/>811 MAIN STREET, LUBBOCK, TX 79401<br/>Criminals: <b>1</b><br/>Non-Criminals: <b>1</b><br/>Percentage Criminal: <b>50%</b>');
     
     L.marker([41.103708, -80.6545051]).addTo(map)
-        .bindPopup('<b>MAHONING COUNTY JAIL</b><br/>110 FIFTH AVENUE, YOUNGSTOWN, OH 44503<br/>Criminals: <b>3</b><br/>Non-Criminals: <b>17</b>');
+        .bindPopup('<b>MAHONING COUNTY JAIL</b><br/>110 FIFTH AVENUE, YOUNGSTOWN, OH 44503<br/>Criminals: <b>3</b><br/>Non-Criminals: <b>17</b><br/>Percentage Criminal: <b>15%</b>');
     
     L.marker([39.7659475, -86.1528002]).addTo(map)
-        .bindPopup('<b>MARION COUNTY JAIL</b><br/>40 SOUTH ALABAMA STREET, INDIANAPOLIS, IN 46204<br/>Criminals: <b>17</b><br/>Non-Criminals: <b>18</b>');
+        .bindPopup('<b>MARION COUNTY JAIL</b><br/>40 SOUTH ALABAMA STREET, INDIANAPOLIS, IN 46204<br/>Criminals: <b>17</b><br/>Non-Criminals: <b>18</b><br/>Percentage Criminal: <b>49%</b>');
     
     L.marker([35.380713, -119.0060804]).addTo(map)
-        .bindPopup('<b>MESA VERDE ICE PROCESSING CENTER</b><br/>425 GOLDEN STATE AVE, BAKERSFIELD, CA 93301<br/>Criminals: <b>51</b><br/>Non-Criminals: <b>0</b>');
+        .bindPopup('<b>MESA VERDE ICE PROCESSING CENTER</b><br/>425 GOLDEN STATE AVE, BAKERSFIELD, CA 93301<br/>Criminals: <b>51</b><br/>Non-Criminals: <b>0</b><br/>Percentage Criminal: <b>100%</b>');
     
     L.marker([33.401201, -94.0225542]).addTo(map)
-        .bindPopup('<b>MILLER COUNTY JAIL</b><br/>2300 EAST STREET, TEXARKANA, AR 71854<br/>Criminals: <b>1</b><br/>Non-Criminals: <b>1</b>');
+        .bindPopup('<b>MILLER COUNTY JAIL</b><br/>2300 EAST STREET, TEXARKANA, AR 71854<br/>Criminals: <b>1</b><br/>Non-Criminals: <b>1</b><br/>Percentage Criminal: <b>50%</b>');
     
     L.marker([41.89347, -83.396328]).addTo(map)
-        .bindPopup('<b>MONROE COUNTY DETENTION-DORM</b><br/>7000 EAST DUNBAR ROAD, MONROE, MI 48161<br/>Criminals: <b>13</b><br/>Non-Criminals: <b>86</b>');
+        .bindPopup('<b>MONROE COUNTY DETENTION-DORM</b><br/>7000 EAST DUNBAR ROAD, MONROE, MI 48161<br/>Criminals: <b>13</b><br/>Non-Criminals: <b>86</b><br/>Percentage Criminal: <b>13%</b>');
     
     L.marker([30.3368088, -95.4431046]).addTo(map)
-        .bindPopup('<b>MONTGOMERY ICE PROCESSING CENTER</b><br/>806 HILBIG RD, CONROE, TX 77301<br/>Criminals: <b>669</b><br/>Non-Criminals: <b>544</b>');
+        .bindPopup('<b>MONTGOMERY ICE PROCESSING CENTER</b><br/>806 HILBIG RD, CONROE, TX 77301<br/>Criminals: <b>669</b><br/>Non-Criminals: <b>544</b><br/>Percentage Criminal: <b>55%</b>');
     
     L.marker([41.4243549, -91.0446662]).addTo(map)
-        .bindPopup('<b>MUSCATINE COUNTY JAIL</b><br/>400 WALNUT STREET, MUSCATINE, IA 52761<br/>Criminals: <b>3</b><br/>Non-Criminals: <b>2</b>');
+        .bindPopup('<b>MUSCATINE COUNTY JAIL</b><br/>400 WALNUT STREET, MUSCATINE, IA 52761<br/>Criminals: <b>3</b><br/>Non-Criminals: <b>2</b><br/>Percentage Criminal: <b>60%</b>');
     
     L.marker([40.727807, -73.5561653]).addTo(map)
-        .bindPopup('<b>NASSAU COUNTY CORRECTIONAL CENTER</b><br/>100 CARMAN AVENUE, EAST MEADOW, NY 11554<br/>Criminals: <b>2</b><br/>Non-Criminals: <b>7</b>');
+        .bindPopup('<b>NASSAU COUNTY CORRECTIONAL CENTER</b><br/>100 CARMAN AVENUE, EAST MEADOW, NY 11554<br/>Criminals: <b>2</b><br/>Non-Criminals: <b>7</b><br/>Percentage Criminal: <b>22%</b>');
     
     L.marker([36.2520145, -115.9770311]).addTo(map)
-        .bindPopup('<b>NEVADA SOUTHERN DETENTION CENTER</b><br/>2190 EAST MESQUITE AVENUE, PAHRUMP, NV 89060<br/>Criminals: <b>202</b><br/>Non-Criminals: <b>121</b>');
+        .bindPopup('<b>NEVADA SOUTHERN DETENTION CENTER</b><br/>2190 EAST MESQUITE AVENUE, PAHRUMP, NV 89060<br/>Criminals: <b>202</b><br/>Non-Criminals: <b>121</b><br/>Percentage Criminal: <b>63%</b>');
     
     L.marker([41.1288515, -80.6267877]).addTo(map)
-        .bindPopup('<b>NORTHEAST OHIO CORRECTIONAL CENTER</b><br/>2240 HUBBARD ROAD, YOUNGSTOWN, OH 44505<br/>Criminals: <b>25</b><br/>Non-Criminals: <b>54</b>');
+        .bindPopup('<b>NORTHEAST OHIO CORRECTIONAL CENTER</b><br/>2240 HUBBARD ROAD, YOUNGSTOWN, OH 44505<br/>Criminals: <b>25</b><br/>Non-Criminals: <b>54</b><br/>Percentage Criminal: <b>32%</b>');
     
     L.marker([47.2490423, -122.4223947]).addTo(map)
-        .bindPopup('<b>NORTHWEST ICE PROCESSSING CENTER</b><br/>1623 E. J STREET, TACOMA, WA 98421<br/>Criminals: <b>416</b><br/>Non-Criminals: <b>636</b>');
+        .bindPopup('<b>NORTHWEST ICE PROCESSSING CENTER</b><br/>1623 E. J STREET, TACOMA, WA 98421<br/>Criminals: <b>416</b><br/>Non-Criminals: <b>636</b><br/>Percentage Criminal: <b>40%</b>');
     
     L.marker([38.407579, -85.378999]).addTo(map)
-        .bindPopup('<b>OLDHAM COUNTY JAIL</b><br/>100 W MAIN STREET, LA GRANGE, KY 40031<br/>Criminals: <b>18</b><br/>Non-Criminals: <b>17</b>');
+        .bindPopup('<b>OLDHAM COUNTY JAIL</b><br/>100 W MAIN STREET, LA GRANGE, KY 40031<br/>Criminals: <b>18</b><br/>Non-Criminals: <b>17</b><br/>Percentage Criminal: <b>51%</b>');
     
     L.marker([41.4042394, -74.3606249]).addTo(map)
-        .bindPopup('<b>ORANGE COUNTY JAIL (NY)</b><br/>110 WELLS FARM ROAD, GOSHEN, NY 10924<br/>Criminals: <b>71</b><br/>Non-Criminals: <b>41</b>');
+        .bindPopup('<b>ORANGE COUNTY JAIL (NY)</b><br/>110 WELLS FARM ROAD, GOSHEN, NY 10924<br/>Criminals: <b>71</b><br/>Non-Criminals: <b>41</b><br/>Percentage Criminal: <b>63%</b>');
     
     L.marker([32.5765248, -116.9154777]).addTo(map)
-        .bindPopup('<b>OTAY MESA DETENTION CENTER</b><br/>7488 CALZADA DE LA FUENTE, SAN DIEGO, CA 92154<br/>Criminals: <b>192</b><br/>Non-Criminals: <b>1154</b>');
+        .bindPopup('<b>OTAY MESA DETENTION CENTER</b><br/>7488 CALZADA DE LA FUENTE, SAN DIEGO, CA 92154<br/>Criminals: <b>192</b><br/>Non-Criminals: <b>1154</b><br/>Percentage Criminal: <b>14%</b>');
     
     L.marker([32.0786798, -106.2779169]).addTo(map)
-        .bindPopup('<b>OTERO COUNTY PROCESSING CENTER</b><br/>26 MCGREGOR RANGE ROAD, CHAPARRAL, NM 88081<br/>Criminals: <b>163</b><br/>Non-Criminals: <b>669</b>');
+        .bindPopup('<b>OTERO COUNTY PROCESSING CENTER</b><br/>26 MCGREGOR RANGE ROAD, CHAPARRAL, NM 88081<br/>Criminals: <b>163</b><br/>Non-Criminals: <b>669</b><br/>Percentage Criminal: <b>20%</b>');
     
     L.marker([36.6014034, -92.4516834]).addTo(map)
-        .bindPopup('<b>OZARK COUNTY SHERIFF&#39;S OFFICE</b><br/>1818 COUNTY ROAD 806, GAINESVILLE, MO 65655<br/>Criminals: <b>0</b><br/>Non-Criminals: <b>1</b>');
+        .bindPopup('<b>OZARK COUNTY SHERIFF&#39;S OFFICE</b><br/>1818 COUNTY ROAD 806, GAINESVILLE, MO 65655<br/>Criminals: <b>0</b><br/>Non-Criminals: <b>1</b><br/>Percentage Criminal: <b>0%</b>');
     
     L.marker([37.9454138, -91.7739843]).addTo(map)
-        .bindPopup('<b>PHELPS COUNTY JAIL (MO)</b><br/>301 W. 2ND, ROLLA, MO 65401<br/>Criminals: <b>4</b><br/>Non-Criminals: <b>7</b>');
+        .bindPopup('<b>PHELPS COUNTY JAIL (MO)</b><br/>301 W. 2ND, ROLLA, MO 65401<br/>Criminals: <b>4</b><br/>Non-Criminals: <b>7</b><br/>Percentage Criminal: <b>36%</b>');
     
     L.marker([40.4390467, -99.3704014]).addTo(map)
-        .bindPopup('<b>PHELPS COUNTY JAIL (NE)</b><br/>715 5TH AVENUE, HOLDREGE, NE 68949<br/>Criminals: <b>26</b><br/>Non-Criminals: <b>5</b>');
+        .bindPopup('<b>PHELPS COUNTY JAIL (NE)</b><br/>715 5TH AVENUE, HOLDREGE, NE 68949<br/>Criminals: <b>26</b><br/>Non-Criminals: <b>5</b><br/>Percentage Criminal: <b>84%</b>');
     
     L.marker([33.2603007, -88.0959216]).addTo(map)
-        .bindPopup('<b>PICKENS COUNTY DET CTR</b><br/>188 CEMETERY ST, CARROLLTON, AL 35447<br/>Criminals: <b>16</b><br/>Non-Criminals: <b>21</b>');
+        .bindPopup('<b>PICKENS COUNTY DET CTR</b><br/>188 CEMETERY ST, CARROLLTON, AL 35447<br/>Criminals: <b>16</b><br/>Non-Criminals: <b>21</b><br/>Percentage Criminal: <b>43%</b>');
     
     L.marker([30.7884208, -92.4227559]).addTo(map)
-        .bindPopup('<b>PINE PRAIRIE ICE PROCESSING CENTER</b><br/>1133 HAMPTON DUPRE ROAD, PINE PRAIRIE, LA 70576<br/>Criminals: <b>280</b><br/>Non-Criminals: <b>452</b>');
+        .bindPopup('<b>PINE PRAIRIE ICE PROCESSING CENTER</b><br/>1133 HAMPTON DUPRE ROAD, PINE PRAIRIE, LA 70576<br/>Criminals: <b>280</b><br/>Non-Criminals: <b>452</b><br/>Percentage Criminal: <b>38%</b>');
     
     L.marker([42.0555979, -104.9522457]).addTo(map)
-        .bindPopup('<b>PLATTE COUNTY JAIL</b><br/>850 MAPLE STREET, WHEATLAND, WY 82201<br/>Criminals: <b>1</b><br/>Non-Criminals: <b>1</b>');
+        .bindPopup('<b>PLATTE COUNTY JAIL</b><br/>850 MAPLE STREET, WHEATLAND, WY 82201<br/>Criminals: <b>1</b><br/>Non-Criminals: <b>1</b><br/>Percentage Criminal: <b>50%</b>');
     
     L.marker([41.9318079, -70.6512992]).addTo(map)
-        .bindPopup('<b>PLYMOUTH COUNTY CORRECTIONAL FACILITY</b><br/>26 LONG POND ROAD, PLYMOUTH, MA 2360<br/>Criminals: <b>143</b><br/>Non-Criminals: <b>288</b>');
+        .bindPopup('<b>PLYMOUTH COUNTY CORRECTIONAL FACILITY</b><br/>26 LONG POND ROAD, PLYMOUTH, MA 2360<br/>Criminals: <b>143</b><br/>Non-Criminals: <b>288</b><br/>Percentage Criminal: <b>33%</b>');
     
     L.marker([41.6534505, -93.5877727]).addTo(map)
-        .bindPopup('<b>POLK COUNTY JAIL</b><br/>1985 NE 51ST PLACE, DES MOINES, IA 50313<br/>Criminals: <b>32</b><br/>Non-Criminals: <b>7</b>');
+        .bindPopup('<b>POLK COUNTY JAIL</b><br/>1985 NE 51ST PLACE, DES MOINES, IA 50313<br/>Criminals: <b>32</b><br/>Non-Criminals: <b>7</b><br/>Percentage Criminal: <b>82%</b>');
     
     L.marker([26.1563622, -97.337839]).addTo(map)
-        .bindPopup('<b>PORT ISABEL SPC</b><br/>27991 BUENA VISTA BOULEVARD, LOS FRESNOS, TX 78566<br/>Criminals: <b>136</b><br/>Non-Criminals: <b>902</b>');
+        .bindPopup('<b>PORT ISABEL SPC</b><br/>27991 BUENA VISTA BOULEVARD, LOS FRESNOS, TX 78566<br/>Criminals: <b>136</b><br/>Non-Criminals: <b>902</b><br/>Percentage Criminal: <b>13%</b>');
     
     L.marker([41.284196, -95.864127]).addTo(map)
-        .bindPopup('<b>POTTAWATTAMIE COUNTY JAIL</b><br/>1400 BIG LAKE ROAD, COUNCIL BLUFFS, IA 51501<br/>Criminals: <b>30</b><br/>Non-Criminals: <b>5</b>');
+        .bindPopup('<b>POTTAWATTAMIE COUNTY JAIL</b><br/>1400 BIG LAKE ROAD, COUNCIL BLUFFS, IA 51501<br/>Criminals: <b>30</b><br/>Non-Criminals: <b>5</b><br/>Percentage Criminal: <b>86%</b>');
     
     L.marker([32.4217035, -97.1958971]).addTo(map)
-        .bindPopup('<b>PRAIRIELAND DETENTION CENTER</b><br/>1209 SUNFLOWER LN, ALVARADO, TX 76009<br/>Criminals: <b>307</b><br/>Non-Criminals: <b>455</b>');
+        .bindPopup('<b>PRAIRIELAND DETENTION CENTER</b><br/>1209 SUNFLOWER LN, ALVARADO, TX 76009<br/>Criminals: <b>307</b><br/>Non-Criminals: <b>455</b><br/>Percentage Criminal: <b>40%</b>');
     
     L.marker([37.3193665, -78.4382314]).addTo(map)
-        .bindPopup('<b>PRINCE EDWARD COUNTY (FARMVILLE)</b><br/>508 WATERWORKS ROAD, FARMVILLE, VA 23901<br/>Criminals: <b>293</b><br/>Non-Criminals: <b>257</b>');
+        .bindPopup('<b>PRINCE EDWARD COUNTY (FARMVILLE)</b><br/>508 WATERWORKS ROAD, FARMVILLE, VA 23901<br/>Criminals: <b>293</b><br/>Non-Criminals: <b>257</b><br/>Percentage Criminal: <b>53%</b>');
     
     L.marker([36.1617449, -85.4983817]).addTo(map)
-        .bindPopup('<b>PUTNAM COUNTY SHERIFF</b><br/>421 E SPRING ST., COOKEVILLE, TN 38501<br/>Criminals: <b>1</b><br/>Non-Criminals: <b>1</b>');
+        .bindPopup('<b>PUTNAM COUNTY SHERIFF</b><br/>421 E SPRING ST., COOKEVILLE, TN 38501<br/>Criminals: <b>1</b><br/>Non-Criminals: <b>1</b><br/>Percentage Criminal: <b>50%</b>');
     
     L.marker([27.379978, -99.486229]).addTo(map)
-        .bindPopup('<b>RIO GRANDE DETENTION CENTER</b><br/>1001 SAN RIO BOULEVARD, LAREDO, TX 78046<br/>Criminals: <b>32</b><br/>Non-Criminals: <b>595</b>');
+        .bindPopup('<b>RIO GRANDE DETENTION CENTER</b><br/>1001 SAN RIO BOULEVARD, LAREDO, TX 78046<br/>Criminals: <b>32</b><br/>Non-Criminals: <b>595</b><br/>Percentage Criminal: <b>5%</b>');
     
     L.marker([40.7259591, -111.9169442]).addTo(map)
-        .bindPopup('<b>SALT LAKE COUNTY METRO JAIL</b><br/>3415 SOUTH 900 WEST, SALT LAKE CITY, UT 84119<br/>Criminals: <b>4</b><br/>Non-Criminals: <b>2</b>');
+        .bindPopup('<b>SALT LAKE COUNTY METRO JAIL</b><br/>3415 SOUTH 900 WEST, SALT LAKE CITY, UT 84119<br/>Criminals: <b>4</b><br/>Non-Criminals: <b>2</b><br/>Percentage Criminal: <b>67%</b>');
     
     L.marker([41.1434535, -96.0419407]).addTo(map)
-        .bindPopup('<b>SARPY COUNTY JAIL</b><br/>1208 GOLDEN GATE DRIVE, PAPILLION, NE 68046<br/>Criminals: <b>1</b><br/>Non-Criminals: <b>0</b>');
+        .bindPopup('<b>SARPY COUNTY JAIL</b><br/>1208 GOLDEN GATE DRIVE, PAPILLION, NE 68046<br/>Criminals: <b>1</b><br/>Non-Criminals: <b>0</b><br/>Percentage Criminal: <b>100%</b>');
     
     L.marker([35.3822229, -94.422565]).addTo(map)
-        .bindPopup('<b>SEBASTIAN COUNTY DETENTION CENTER</b><br/>801 SOUTH A STREET, FORT SMITH, AR 72901<br/>Criminals: <b>1</b><br/>Non-Criminals: <b>1</b>');
+        .bindPopup('<b>SEBASTIAN COUNTY DETENTION CENTER</b><br/>801 SOUTH A STREET, FORT SMITH, AR 72901<br/>Criminals: <b>1</b><br/>Non-Criminals: <b>1</b><br/>Percentage Criminal: <b>50%</b>');
     
     L.marker([45.3037535, -93.6200234]).addTo(map)
-        .bindPopup('<b>SHERBURNE COUNTY JAIL</b><br/>13880 BUSINESS CENTER DRIVE, ELK RIVER, MN 55330<br/>Criminals: <b>26</b><br/>Non-Criminals: <b>22</b>');
+        .bindPopup('<b>SHERBURNE COUNTY JAIL</b><br/>13880 BUSINESS CENTER DRIVE, ELK RIVER, MN 55330<br/>Criminals: <b>26</b><br/>Non-Criminals: <b>22</b><br/>Percentage Criminal: <b>54%</b>');
     
     L.marker([30.4866896, -92.5818666]).addTo(map)
-        .bindPopup('<b>SOUTH LOUISIANA ICE PROCESSING CENTER</b><br/>3843 STAGG AVENUE, BASILE, LA 70515<br/>Criminals: <b>134</b><br/>Non-Criminals: <b>736</b>');
+        .bindPopup('<b>SOUTH LOUISIANA ICE PROCESSING CENTER</b><br/>3843 STAGG AVENUE, BASILE, LA 70515<br/>Criminals: <b>134</b><br/>Non-Criminals: <b>736</b><br/>Percentage Criminal: <b>15%</b>');
     
     L.marker([28.8946514, -99.1219428]).addTo(map)
-        .bindPopup('<b>SOUTH TEXAS ICE PROCESSING CENTER</b><br/>566 VETERANS DRIVE, PEARSALL, TX 78061<br/>Criminals: <b>408</b><br/>Non-Criminals: <b>1255</b>');
+        .bindPopup('<b>SOUTH TEXAS ICE PROCESSING CENTER</b><br/>566 VETERANS DRIVE, PEARSALL, TX 78061<br/>Criminals: <b>408</b><br/>Non-Criminals: <b>1255</b><br/>Percentage Criminal: <b>25%</b>');
     
     L.marker([42.9426053, -82.4799303]).addTo(map)
-        .bindPopup('<b>ST. CLAIR COUNTY JAIL</b><br/>1170 MICHIGAN ROAD, PORT HURON, MI 48060<br/>Criminals: <b>21</b><br/>Non-Criminals: <b>49</b>');
+        .bindPopup('<b>ST. CLAIR COUNTY JAIL</b><br/>1170 MICHIGAN ROAD, PORT HURON, MI 48060<br/>Criminals: <b>21</b><br/>Non-Criminals: <b>49</b><br/>Percentage Criminal: <b>30%</b>');
     
     L.marker([37.965677, -90.0551125]).addTo(map)
-        .bindPopup('<b>STE. GENEVIEVE COUNTY SHERIFF/JAIL</b><br/>5 BASLER DR., STE. GENEVIEVE, MO 63670<br/>Criminals: <b>6</b><br/>Non-Criminals: <b>12</b>');
+        .bindPopup('<b>STE. GENEVIEVE COUNTY SHERIFF/JAIL</b><br/>5 BASLER DR., STE. GENEVIEVE, MO 63670<br/>Criminals: <b>6</b><br/>Non-Criminals: <b>12</b><br/>Percentage Criminal: <b>33%</b>');
     
     L.marker([43.2192302, -70.9386083]).addTo(map)
-        .bindPopup('<b>STRAFFORD COUNTY CORRECTIONS</b><br/>266 COUNTY FARM ROAD, DOVER, NH 3820<br/>Criminals: <b>50</b><br/>Non-Criminals: <b>51</b>');
+        .bindPopup('<b>STRAFFORD COUNTY CORRECTIONS</b><br/>266 COUNTY FARM ROAD, DOVER, NH 3820<br/>Criminals: <b>50</b><br/>Non-Criminals: <b>51</b><br/>Percentage Criminal: <b>50%</b>');
     
     L.marker([30.5647288, -97.4194342]).addTo(map)
-        .bindPopup('<b>T DON HUTTO DETENTION CENTER</b><br/>1001 WELCH STREET, TAYLOR, TX 76574<br/>Criminals: <b>232</b><br/>Non-Criminals: <b>196</b>');
+        .bindPopup('<b>T DON HUTTO DETENTION CENTER</b><br/>1001 WELCH STREET, TAYLOR, TX 76574<br/>Criminals: <b>232</b><br/>Non-Criminals: <b>196</b><br/>Percentage Criminal: <b>54%</b>');
     
     L.marker([36.1572816, -95.9990129]).addTo(map)
-        .bindPopup('<b>TULSA COUNTY JAIL (DAVID L. MOSS JUSTICE CTR)</b><br/>300 NORTH DENVER AVENUE, TULSA, OK 74103<br/>Criminals: <b>14</b><br/>Non-Criminals: <b>28</b>');
+        .bindPopup('<b>TULSA COUNTY JAIL (DAVID L. MOSS JUSTICE CTR)</b><br/>300 NORTH DENVER AVENUE, TULSA, OK 74103<br/>Criminals: <b>14</b><br/>Non-Criminals: <b>28</b><br/>Percentage Criminal: <b>33%</b>');
     
     L.marker([43.9781192, -69.6989264]).addTo(map)
-        .bindPopup('<b>TWO BRIDGES REGIONAL JAIL</b><br/>522 BATH RD, WISCASSET, ME 4578<br/>Criminals: <b>4</b><br/>Non-Criminals: <b>4</b>');
+        .bindPopup('<b>TWO BRIDGES REGIONAL JAIL</b><br/>522 BATH RD, WISCASSET, ME 4578<br/>Criminals: <b>4</b><br/>Non-Criminals: <b>4</b><br/>Percentage Criminal: <b>50%</b>');
     
     L.marker([36.0340715, -94.175948]).addTo(map)
-        .bindPopup('<b>WASHINGTON COUNTY DETENTION CENTER</b><br/>1155 WEST CLYDESDALE DRIVE, FAYETTEVILLE, AR 72701<br/>Criminals: <b>1</b><br/>Non-Criminals: <b>2</b>');
+        .bindPopup('<b>WASHINGTON COUNTY DETENTION CENTER</b><br/>1155 WEST CLYDESDALE DRIVE, FAYETTEVILLE, AR 72701<br/>Criminals: <b>1</b><br/>Non-Criminals: <b>2</b><br/>Percentage Criminal: <b>33%</b>');
     
     L.marker([27.377731, -99.471644]).addTo(map)
-        .bindPopup('<b>WEBB COUNTY DETENTION CENTER (CCA)</b><br/>9998 SOUTH HIGHWAY 83, LAREDO, TX 78041<br/>Criminals: <b>49</b><br/>Non-Criminals: <b>312</b>');
+        .bindPopup('<b>WEBB COUNTY DETENTION CENTER (CCA)</b><br/>9998 SOUTH HIGHWAY 83, LAREDO, TX 78041<br/>Criminals: <b>49</b><br/>Non-Criminals: <b>312</b><br/>Percentage Criminal: <b>14%</b>');
     
     L.marker([42.4975021, -96.4062738]).addTo(map)
-        .bindPopup('<b>WOODBURY COUNTY JAIL</b><br/>407 7TH STREET, SIOUX CITY, IA 51101<br/>Criminals: <b>6</b><br/>Non-Criminals: <b>2</b>');
+        .bindPopup('<b>WOODBURY COUNTY JAIL</b><br/>407 7TH STREET, SIOUX CITY, IA 51101<br/>Criminals: <b>6</b><br/>Non-Criminals: <b>2</b><br/>Percentage Criminal: <b>75%</b>');
     
     L.marker([41.8928106, -71.3831998]).addTo(map)
-        .bindPopup('<b>WYATT DETENTION CENTER</b><br/>950 HIGH STREET, CENTRAL FALLS, RI 2863<br/>Criminals: <b>58</b><br/>Non-Criminals: <b>54</b>');
+        .bindPopup('<b>WYATT DETENTION CENTER</b><br/>950 HIGH STREET, CENTRAL FALLS, RI 2863<br/>Criminals: <b>58</b><br/>Non-Criminals: <b>54</b><br/>Percentage Criminal: <b>52%</b>');
     
     </script>
 </body>
