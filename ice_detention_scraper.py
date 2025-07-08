@@ -266,7 +266,11 @@ def extract_facilities_data(filepath, source_date=None):
         # Read the "Facilities FY25" sheet, starting from row 7 (index 6)
         df = pd.read_excel(filepath, sheet_name="Facilities FY25", header=6)
         # Expected column names
-        expected_columns = ["Name", "Address", "City", "State", "Zip", "Male Crim", "Male Non-Crim", "Female Crim", "Female Non-Crim"]
+        expected_columns = [
+            "Name", "Address", "City", "State", "Zip",
+            "Male Crim", "Male Non-Crim", "Female Crim", "Female Non-Crim",
+            "ICE Threat Level 1", "ICE Threat Level 2", "ICE Threat Level 3", "No ICE Threat Level"
+        ]
 
         # Check if we have the expected columns
         missing_columns = [col for col in expected_columns if col not in df.columns]

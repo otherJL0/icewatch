@@ -43,6 +43,19 @@ def make_popup(fac):
         f'Non-Criminals: <b>{noncriminals}</b>',
         f'Percentage Criminal: <b>{pct_criminal}</b>'
     ]
+    # Add ICE Threat Level breakdown if present
+    threat_levels = [
+        ("ICE Threat Level 1", fac.get("ICE Threat Level 1")),
+        ("ICE Threat Level 2", fac.get("ICE Threat Level 2")),
+        ("ICE Threat Level 3", fac.get("ICE Threat Level 3")),
+        ("No ICE Threat Level", fac.get("No ICE Threat Level")),
+    ]
+    if any(val is not None for _, val in threat_levels):
+        lines.append('<hr style="margin:0.3em 0;">')
+        lines.append('<b>ICE Threat Level Breakdown</b>')
+        for label, val in threat_levels:
+            if val is not None:
+                lines.append(f'{label}: <b>{safe_int(val)}</b>')
     return '<br/>'.join(lines)
 
 def get_marker_style(total):
