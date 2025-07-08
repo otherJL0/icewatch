@@ -347,7 +347,6 @@
     "lat": 30.3359939,
     "lon": -95.4481982
   },
-  "AVENUE C PSC 1005 BOX 55, FPO, FL, 34009": null,
   "2201 23RD ST NE, WILLMAR, MN, 56201": {
     "lat": 45.1458557,
     "lon": -95.0144842
@@ -640,5 +639,101 @@
   "300 NORTH DENVER AVENUE, TULSA, OK, 74103": {
     "lat": 36.1572816,
     "lon": -95.9990129
+  },
+  "101 NORTH ROAD, BRENTWOOD, NH, 3833": {
+    "lat": 43.0120678,
+    "lon": -71.0472701
+  },
+  "PARK STREET, FONDA, NY, 12068": {
+    "lat": 42.9531059,
+    "lon": -74.3729461
+  },
+  "515 WEST MORELAND, WAUKESHA, WI, 53186": {
+    "lat": 43.0236491,
+    "lon": -88.228229
+  },
+  "3030 CURRY LN, GREEN BAY, WI, 54311": {
+    "lat": 44.5223753,
+    "lon": -87.9313774
+  },
+  "1300 LANGE CT., BARABOO, WI, 53913": {
+    "lat": 43.4615055,
+    "lon": -89.7672991
+  },
+  "416 W 4TH ST, DAVENPORT, IA, 52801": {
+    "lat": 41.5236168,
+    "lon": -90.5788339
+  },
+  "201 WEST GRANT AVENUE, PAULS VALLEY, OK, 73075": {
+    "lat": 34.740534,
+    "lon": -97.221544
+  },
+  "2815 CENTRAL FWY, WICHITA FALLS, TX, 76302": {
+    "lat": 33.9087422,
+    "lon": -98.501201
+  },
+  "1100 BRUCE LANE, CASPER, WY, 82601": {
+    "lat": 42.862486,
+    "lon": -106.344705
+  },
+  "3701 S. ATKINSON, ROSWELL, NM, 88201": {
+    "lat": 33.3516794,
+    "lon": -104.5055424
+  },
+  "400 S MAIN STREET, MIDLAND, TX, 79701": {
+    "lat": 31.994252,
+    "lon": -102.074372
+  },
+  "111 W. CENTRAL, BELTON, TX, 76513": {
+    "lat": 31.056693,
+    "lon": -97.464869
+  },
+  "3201 MARLIN HWY, WACO, TX, 76705": {
+    "lat": 31.5478236,
+    "lon": -97.0800166
+  },
+  "101 NORTH GLASS STREET, VICTORIA, TX, 77901": {
+    "lat": 28.8005407,
+    "lon": -97.0085472
+  },
+  "551 W. MAIN ST., TAVARES, FL, 32778": {
+    "lat": 28.8018772,
+    "lon": -81.7329614
+  },
+  "5001 MALONEYVILLE RD, KNOXVILLE, TN, 37918": {
+    "lat": 36.0850476,
+    "lon": -83.841532
+  },
+  "200 HAND AVE., BAY MINETTE, AL, 36507": {
+    "lat": 30.88454,
+    "lon": -87.774769
+  },
+  "1400 E. 4TH AVE, ANCHORAGE, AK, 99501": {
+    "lat": 61.2183804,
+    "lon": -149.857649
+  },
+  "1115 ALBANY, CALDWELL, ID, 83605": {
+    "lat": 43.6654377,
+    "lon": -116.6819705
+  },
+  "3165 KING AVENUE EAST, BILLINGS, MT, 59101": {
+    "lat": 45.7553863,
+    "lon": -108.5025062
+  },
+  "810 COMMERCE STREET, KARNES CITY, TX, 78118": {
+    "lat": 28.883485,
+    "lon": -97.9118481
+  },
+  "500 NORTH MINNESOTA AVENUE, SIOUX FALLS, SD, 57104": {
+    "lat": 43.5524104,
+    "lon": -96.731237
+  },
+  "100 S MAIN ST, OSCEOLA, IA, 50213": {
+    "lat": 41.0341692,
+    "lon": -93.7667512
+  },
+  "145 FT COLLIER RD, WINCHESTER, VA, 22603": {
+    "lat": 39.1903758,
+    "lon": -78.1410542
   }
 }

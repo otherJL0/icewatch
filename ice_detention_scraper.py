@@ -28,6 +28,48 @@ logging.basicConfig(
 logger = logging.getLogger(__name__)
 
 
+def extract_date_from_filename(url):
+    """
+    Extract the date from the Excel filename URL.
+
+    Args:
+        url (str): URL of the Excel file
+
+    Returns:
+        str: Date in YYYY-MM-DD format, or None if not found
+    """
+    try:
+        # Extract filename from URL
+        filename = os.path.basename(urlparse(url).path)
+
+        # Look for date patterns in the filename
+        # Common patterns: FY25_detentionStats06202025.xlsx, detentionStats06202025.xlsx, etc.
+        date_patterns = [
+            r'(\d{{2}})(\d{{2}})(\d{{4}})\.xlsx',  # MMDDYYYY
+            r'(\d{{4}})(\d{{2}})(\d{{2}})\.xlsx',  # YYYYMMDD
+            r'(\d{{2}})(\d{{2}})(\d{{2}})\.xlsx',  # MMDDYY
+        ]
+
+        for pattern in date_patterns:
+            match = re.search(pattern, filename)
+            if match:
+                if len(match.group(1)) == 4:  # YYYYMMDD
+                    year, month, day = match.group(1), match.group(2), match.group(3)
+                elif len(match.group(3)) == 4:  # MMDDYYYY
+                    month, day, year = match.group(1), match.group(2), match.group(3)
+                else:  # MMDDYY
+                    month, day, year = match.group(1), match.group(2), '20' + match.group(3)
+
+                return f"{year}-{month}-{day}"
+
+        logger.warning(f"Could not extract date from filename: {filename}")
+        return None
+
+    except Exception as e:
+        logger.error(f"Error extracting date from filename: {e}")
+        return None
+
+
 def find_detention_stats_link(base_url="https://www.ice.gov/detain/detention-management"):
     """
     Scrape the ICE detention management page to find the latest statistics download link.
@@ -118,7 +160,7 @@ def download_ice_detention_stats(url=None, output_dir="data", auto_find_link=Tru
         auto_find_link (bool): Whether to automatically find the latest link from the website (default: True).
 
     Returns:
-        str: Path to the downloaded file, or None if download failed.
+        tuple: (filepath, source_date) where filepath is the path to the downloaded file and source_date is the extracted date, or (None, None) if download failed.
     """
 
     # Auto-find the latest link by default
@@ -139,9 +181,17 @@ def download_ice_detention_stats(url=None, output_dir="data", auto_find_link=Tru
     # Create output directory if it doesn't exist
     Path(output_dir).mkdir(parents=True, exist_ok=True)
 
-    # Generate filename with timestamp
-    timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-    filename = f"ice_detention_stats_{timestamp}.xlsx"
+    # Extract date from the URL filename
+    source_date = extract_date_from_filename(url)
+
+    # Use original filename from URL, or generate one with timestamp
+    original_filename = os.path.basename(urlparse(url).path)
+    if original_filename and original_filename.endswith('.xlsx'):
+        filename = original_filename
+    else:
+        timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+        filename = f"ice_detention_stats_{timestamp}.xlsx"
+
     filepath = os.path.join(output_dir, filename)
 
     try:
@@ -186,23 +236,26 @@ def download_ice_detention_stats(url=None, output_dir="data", auto_find_link=Tru
         logger.info(f"Download completed successfully!")
         logger.info(f"File saved to: {filepath}")
         logger.info(f"File size: {os.path.getsize(filepath) / 1024:.1f} KB")
+        if source_date:
+            logger.info(f"Source date extracted: {source_date}")
 
-        return filepath
+        return filepath, source_date
 
     except requests.exceptions.RequestException as e:
         logger.error(f"Download failed: {e}")
-        return None
+        return None, None
     except Exception as e:
         logger.error(f"Unexpected error: {e}")
-        return None
+        return None, None
 
 
-def extract_facilities_data(filepath):
+def extract_facilities_data(filepath, source_date=None):
     """
     Extract facilities data from the "Facilities FY25" tab and convert to JSON.
 
     Args:
         filepath (str): Path to the downloaded Excel file.
+        source_date (str, optional): Source date from the Excel filename.
 
     Returns:
         dict: Dictionary containing the facilities data, or None if extraction failed.
@@ -212,8 +265,6 @@ def extract_facilities_data(filepath):
 
         # Read the "Facilities FY25" sheet, starting from row 7 (index 6)
         df = pd.read_excel(filepath, sheet_name="Facilities FY25", header=6)
-
-        breakpoint()
         # Expected column names
         expected_columns = ["Name", "Address", "City", "State", "Zip", "Male Crim", "Male Non-Crim", "Female Crim", "Female Non-Crim"]
 
@@ -245,12 +296,17 @@ def extract_facilities_data(filepath):
 
         logger.info(f"Extracted {len(facilities_data)} facilities from the Excel file")
 
+        metadata = {
+            "source_file": filepath,
+            "extraction_date": datetime.now().isoformat(),
+            "total_facilities": len(facilities_data)
+        }
+
+        if source_date:
+            metadata["source_date"] = source_date
+
         return {
-            "metadata": {
-                "source_file": filepath,
-                "extraction_date": datetime.now().isoformat(),
-                "total_facilities": len(facilities_data)
-            },
+            "metadata": metadata,
             "facilities": facilities_data
         }
 
@@ -401,13 +457,14 @@ Examples:
             sys.exit(1)
 
     # Download the file
-    filepath = download_ice_detention_stats(
+    result = download_ice_detention_stats(
         url=args.url,
         output_dir=args.output_dir,
         auto_find_link=not args.no_auto_find
     )
 
-    if filepath:
+    if result[0]:  # filepath is not None
+        filepath, source_date = result
         logger.info("Download completed successfully!")
 
         # Verify the file if requested
@@ -422,7 +479,7 @@ Examples:
         # Extract JSON if requested
         if args.extract_json:
             logger.info("Extracting facilities data to JSON...")
-            facilities_data = extract_facilities_data(filepath)
+            facilities_data = extract_facilities_data(filepath, source_date)
             if facilities_data:
                 json_filepath = save_facilities_json(facilities_data, args.output_dir)
                 if json_filepath:

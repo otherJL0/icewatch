@@ -75,17 +75,6 @@ python ice_detention_scraper.py --extract-json
 python ice_detention_scraper.py --extract-from-file "path/to/existing/file.xlsx"
 ```
 
-## File Structure
-
-```
-icewatch/
-├── ice_detention_scraper.py       # ICE detention statistics downloader
-├── requirements.txt               # Python dependencies
-├── README.md                     # This file
-└── data/                    # Default download directory (created automatically)
-    └── ice_detention_stats_YYYYMMDD_HHMMSS.xlsx
-```
-
 ## Data Source
 
 The scripts download detention data from the [ICE Detention Management page](https://www.ice.gov/detain/detention-management).

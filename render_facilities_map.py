@@ -11,7 +11,9 @@ from math import isnan
 def load_facilities(path):
     with open(path, 'r', encoding='utf-8') as f:
         data = json.load(f)
-    return data.get('facilities', [])
+    facilities = data.get('facilities', [])
+    metadata = data.get('metadata', {})
+    return facilities, metadata
 
 def safe_int(val):
     try:
@@ -59,7 +61,7 @@ def get_marker_style(total):
         size = 30
     return color, size
 
-def render_html(facilities, output_path):
+def render_html(facilities, output_path, metadata=None):
     # Calculate totals
     total_criminals = 0
     total_noncriminals = 0
@@ -72,8 +74,29 @@ def render_html(facilities, output_path):
     else:
         pct_criminal = "N/A"
 
+    # Get dates from metadata
+    source_date = None
+    extraction_date = None
+    if metadata:
+        source_date = metadata.get('source_date')
+        extraction_date = metadata.get('extraction_date')
+
     # Center on US
     center_lat, center_lon = 39.8283, -98.5795
+
+    # Build the header stats with last updated date
+    header_stats = f"Total in ICE detention: <b>{total_people:,}</b> &nbsp;|&nbsp; Percentage criminal: <b>{pct_criminal}</b>"
+    if extraction_date:
+        # Format extraction date nicely (remove time if present)
+        try:
+            from datetime import datetime
+            parsed_date = datetime.fromisoformat(extraction_date.replace('Z', '+00:00'))
+            formatted_date = parsed_date.strftime('%Y-%m-%d')
+            header_stats += f" &nbsp;|&nbsp; Last updated: <b>{formatted_date}</b>"
+        except:
+            # Fallback to showing the raw date
+            header_stats += f" &nbsp;|&nbsp; Last updated: <b>{extraction_date[:10]}</b>"
+
     html = f'''<!DOCTYPE html>
 <html>
 <head>
@@ -214,7 +237,7 @@ def render_html(facilities, output_path):
     <div id="header-bar">
         <div id="header-left">
             <div id="header-title">ICE Custody Data</div>
-            <div id="header-stats">Total in ICE detention: <b>{total_people:,}</b> &nbsp;|&nbsp; Percentage criminal: <b>{pct_criminal}</b></div>
+            <div id="header-stats">{header_stats}</div>
         </div>
         <a id="donate-link" href="https://opencollective.com/lockdown-systems" target="_blank" rel="noopener">Donate</a>
     </div>
@@ -314,8 +337,8 @@ def main():
         output_path = Path('docs/index.html')
     # Ensure the output directory exists
     Path(output_path).parent.mkdir(parents=True, exist_ok=True)
-    facilities = load_facilities(input_path)
-    render_html(facilities, output_path)
+    facilities, metadata = load_facilities(input_path)
+    render_html(facilities, output_path, metadata)
 
 if __name__ == "__main__":
     main()
