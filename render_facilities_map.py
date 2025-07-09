@@ -114,7 +114,7 @@ def render_html(facilities, output_path, metadata=None):
 <html>
 <head>
     <meta charset="utf-8" />
-    <title>ICE Facilities Map</title>
+    <title>ICEWatch</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
     <style>
@@ -141,6 +141,11 @@ def render_html(facilities, output_path, metadata=None):
             border-bottom: 1px solid #e0e0e0;
             flex-shrink: 0;
         }}
+        #header-left {{
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }}
         #header-title {{
             font-size: 1.4em;
             font-weight: 700;
@@ -153,10 +158,24 @@ def render_html(facilities, output_path, metadata=None):
             margin-top: 0.15em;
             color: #444;
         }}
-        #header-left {{
+        #header-nav {{
             display: flex;
-            flex-direction: column;
-            align-items: flex-start;
+            gap: 1.5em;
+            align-items: center;
+        }}
+        #header-nav a {{
+            color: #222;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1em;
+            transition: color 0.2s;
+        }}
+        #header-nav a.active {{
+            text-decoration: underline;
+            color: #ff5a1f;
+        }}
+        #header-nav a:hover {{
+            color: #ff5a1f;
         }}
         #donate-link {{
             background: #ff5a1f;
@@ -231,28 +250,23 @@ def render_html(facilities, output_path, metadata=None):
             #header-bar {{ flex-direction: column; height: auto; padding: 0.5em 0.5em; }}
             #header-title {{ font-size: 1.05em; }}
             #header-stats {{ font-size: 0.93em; }}
+            #header-nav {{ gap: 1em; }}
             #donate-link {{ font-size: 0.9em; padding: 0.3em 0.7em; }}
             #footer-logo {{ height: 36px; }}
-            .legend {{
-                left: 5px;
-                right: 5px;
-                font-size: 0.93em;
-                padding: 0.5em 0.7em 0.5em 0.7em;
-                max-width: 90vw;
-            }}
-            #legend-toggle {{
-                display: block;
-            }}
         }}
     </style>
 </head>
 <body>
     <div id="header-bar">
         <div id="header-left">
-            <div id="header-title">ICE Custody Data</div>
+            <div id="header-title">ICEWatch</div>
             <div id="header-stats">{header_stats}</div>
         </div>
-        <a id="donate-link" href="https://opencollective.com/lockdown-systems" target="_blank" rel="noopener">Donate</a>
+        <div id="header-nav">
+            <a href="index.html" class="active">Map</a>
+            <a href="info.html">Info</a>
+            <a id="donate-link" href="https://opencollective.com/lockdown-systems" target="_blank" rel="noopener">Donate</a>
+        </div>
     </div>
     <div id="map"></div>
     <button id="legend-toggle" onclick="toggleLegend()">Show Legend</button>

@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title>About ICEWatch</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <style>
+        html,
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: system-ui, sans-serif;
+            background: #f8f9fa;
+            height: 100%;
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        #header-bar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: #f5f5f5;
+            color: #222;
+            padding: 0.5em 1.2em;
+            height: 56px;
+            border-bottom: 1px solid #e0e0e0;
+            flex-shrink: 0;
+        }
+
+        #header-title {
+            font-size: 1.4em;
+            font-weight: 700;
+            letter-spacing: 0.01em;
+            color: #222;
+        }
+
+        #header-nav {
+            display: flex;
+            gap: 1.5em;
+            align-items: center;
+        }
+
+        #header-nav a {
+            color: #222;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1em;
+            transition: color 0.2s;
+        }
+
+        #header-nav a.active {
+            text-decoration: underline;
+            color: #ff5a1f;
+        }
+
+        #header-nav a:hover {
+            color: #ff5a1f;
+        }
+
+        #donate-link {
+            background: #ff5a1f;
+            color: #fff;
+            text-decoration: none;
+            padding: 0.4em 1em;
+            border-radius: 24px;
+            font-weight: 600;
+            font-size: 0.95em;
+            transition: background 0.2s;
+            border: none;
+        }
+
+        #donate-link:hover {
+            background: #e04a13;
+        }
+
+        #content {
+            max-width: 700px;
+            margin: 2.5em auto 2em auto;
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.07);
+            padding: 2.2em 1.7em 2em 1.7em;
+        }
+
+        h1 {
+            font-size: 2em;
+            margin-top: 0;
+        }
+
+        h2 {
+            font-size: 1.2em;
+            margin-top: 2em;
+        }
+
+        p {
+            font-size: 1.08em;
+            line-height: 1.7;
+            color: #222;
+        }
+
+        #footer-bar {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: #f5f5f5;
+            color: #222;
+            padding: 1em 0 0.7em 0;
+            border-top: 1px solid #e0e0e0;
+            flex-shrink: 0;
+        }
+
+        #footer-logo {
+            height: 60px;
+            width: auto;
+            margin-bottom: 0.5em;
+        }
+
+        @media (max-width: 700px) {
+            #header-bar {
+                flex-direction: column;
+                height: auto;
+                padding: 0.5em 0.5em;
+            }
+
+            #header-title {
+                font-size: 1.05em;
+            }
+
+            #header-nav {
+                gap: 1em;
+            }
+
+            #donate-link {
+                font-size: 0.9em;
+                padding: 0.3em 0.7em;
+            }
+
+            #footer-logo {
+                height: 36px;
+            }
+
+            #content {
+                padding: 1.2em 0.5em 1.2em 0.5em;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div id="header-bar">
+        <div id="header-title">ICEWatch</div>
+        <div id="header-nav">
+            <a href="index.html">Map</a>
+            <a href="info.html" class="active">Info</a>
+            <a id="donate-link" href="https://opencollective.com/lockdown-systems" target="_blank"
+                rel="noopener">Donate</a>
+        </div>
+    </div>
+    <div id="content">
+        <h1>About ICEWatch</h1>
+        <p>
+            Under Section 216 of <a href="https://www.congress.gov/bill/116th-congress/senate-bill/2582/text"
+                target="_blank" rel="noopener">The Fiscal Year 2020 Department of Homeland Security Appropriations
+                Bill</a>, the US government is required to publish weekly data on the population of individuals detained
+            by ICE, including the facilities where they are being held.<br><br>
+
+            The data is quietly published on the <a href="https://www.ice.gov/detain/detention-management"
+                target="_blank" rel="noopener">ICE Website</a>, where if you scroll to the bottom, you'll find a link to
+            an Excel spreadsheet. That spreadsheet shows you who is detained in ICE facilities, at the time of this
+            writing, over 47,000 people – the vast majority of whom have no criminal records. This is despite the
+            rhetoric from the Trump administration of targeting "the worst of the worst".<br><br>
+
+            Our dashboard shows each immigration detention center and their population breakdown: whether they are
+            considered "non-criminal" or "criminal", and their "ICE Threat Level". ICE's own data shows that they are
+            detaining people who apparently pose no threat at all.
+        </p>
+        <p>
+            This project was inspired by <a href="https://www.instagram.com/reel/DLiQzYVRZGv/" target="_blank"
+                rel="noopener">this Instagram Reel</a> by journalist Gustavo Solis, who first highlighted this
+            dataset and its importance.
+        </p>
+        <h2>Contributing</h2>
+        <p>
+            This project is free and open-source, and you can contribute on GitHub:<br>
+            <a href="https://github.com/lockdown-systems/icewatch" target="_blank"
+                rel="noopener">github.com/lockdown-systems/icewatch</a>
+        </p>
+        <h2>Who We Are</h2>
+        <p>
+            This project is maintained by <a href="https://lockdown.systems/" target="_blank" rel="noopener">Lockdown
+                Systems</a>, a worker-owned collective. You can donate to support our work here:
+            <a href="https://opencollective.com/lockdown-systems" target="_blank"
+                rel="noopener">opencollective.com/lockdown-systems</a>
+        </p>
+    </div>
+    <div id="footer-bar">
+        <a href="https://lockdown.systems/" target="_blank" rel="noopener">
+            <img id="footer-logo" src="img/logo-wide.svg" alt="Lockdown Systems logo" />
+        </a>
+    </div>
+</body>
+
+</html>
