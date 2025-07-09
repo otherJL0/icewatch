@@ -1,0 +1,63 @@
+name: Update ICEWatch Data
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '0 12 * * *'  # every day at noon UTC
+
+jobs:
+  update-data:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Download latest XLS
+        id: download
+        run: |
+          python ice_detention_scraper.py
+          XLS=$(ls -t data/*.xlsx | head -n1)
+          # Check if the XLS file is new or changed
+          if [ -z "$(git status --porcelain $XLS)" ]; then
+            echo "No new XLS file. Exiting workflow."
+            exit 0
+          fi
+          echo "xls_file=$XLS" >> $GITHUB_OUTPUT
+
+      - name: Parse XLS to JSON
+        id: parse
+        run: |
+          python ice_detention_scraper.py --extract-from-file "${{ steps.download.outputs.xls_file }}"
+          JSON=$(ls -t data/ice_facilities_*.json | head -n1)
+          echo "json_file=$JSON" >> $GITHUB_OUTPUT
+
+      - name: Geocode facilities
+        id: geocode
+        run: |
+          GEOJSON="data/facilities_geocoded_$(date +%Y%m%d).json"
+          python geocode_facilities.py --input "${{ steps.parse.outputs.json_file }}" --output "$GEOJSON" --cache data/geocode_cache.json
+          if grep -q '\"latitude\": null' "$GEOJSON"; then
+            echo "::error ::Some facilities could not be geocoded. Please update geocode_cache.json."
+            exit 1
+          fi
+          echo "geojson_file=$GEOJSON" >> $GITHUB_OUTPUT
+
+      - name: Render site
+        run: |
+          python render_facilities_map.py --input "${{ steps.geocode.outputs.geojson_file }}"
+
+      - name: Commit and push changes
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "Automated update: refresh ICEWatch data and site"
+          file_pattern: docs/index.html data/*.json data/*.xlsx data/geocode_cache.json
