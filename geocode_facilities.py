@@ -13,7 +13,7 @@ import requests
 
 CACHE_FILENAME = "geocode_cache.json"
 NOMINATIM_URL = "https://nominatim.openstreetmap.org/search"
-USER_AGENT = "icewatch/1.0 (jen@lockdown.systems)"
+USER_AGENT = "icewatch/1.0 (collective@lockdown.systems)"
 
 
 def load_json(path):

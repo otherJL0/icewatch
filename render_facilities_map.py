@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
 Render a static HTML map of facilities using Leaflet.js.
-Popups show name, address, and rounded criminal/non-criminal counts.
+Popups show name, address, rounded criminal/non-criminal counts, and ICE Threat Level.
 """
 import json
 import argparse
