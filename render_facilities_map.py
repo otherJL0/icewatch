@@ -117,171 +117,38 @@ def render_html(facilities, output_path, metadata=None):
     <title>ICEWatch</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
-    <style>
-        html, body {{
-            margin: 0;
-            padding: 0;
-            font-family: system-ui, sans-serif;
-            background: #f8f9fa;
-            height: 100%;
-        }}
-        body {{
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-        }}
-        #header-bar {{
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            background: #f5f5f5;
-            color: #222;
-            padding: 0.5em 1.2em;
-            height: 56px;
-            border-bottom: 1px solid #e0e0e0;
-            flex-shrink: 0;
-        }}
-        #header-left {{
-            display: flex;
-            flex-direction: column;
-            align-items: flex-start;
-        }}
-        #header-title {{
-            font-size: 1.4em;
-            font-weight: 700;
-            letter-spacing: 0.01em;
-            color: #222;
-        }}
-        #header-stats {{
-            font-size: 1em;
-            font-weight: 500;
-            margin-top: 0.15em;
-            color: #444;
-        }}
-        #header-nav {{
-            display: flex;
-            gap: 1.5em;
-            align-items: center;
-        }}
-        #header-nav a {{
-            color: #222;
-            text-decoration: none;
-            font-weight: 500;
-            font-size: 1em;
-            transition: color 0.2s;
-        }}
-        #header-nav a.active {{
-            text-decoration: underline;
-            color: #ff5a1f;
-        }}
-        #header-nav a:hover {{
-            color: #ff5a1f;
-        }}
-        #donate-link {{
-            background: #ff5a1f;
-            color: #fff;
-            text-decoration: none;
-            padding: 0.4em 1em;
-            border-radius: 24px;
-            font-weight: 600;
-            font-size: 0.95em;
-            transition: background 0.2s;
-            border: none;
-        }}
-        #donate-link:hover {{
-            background: #e04a13;
-        }}
-        #map {{
-            flex: 1 1 auto;
-            height: 100%;
-            width: 100vw;
-        }}
-        #footer-bar {{
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            background: #f5f5f5;
-            color: #222;
-            padding: 1em 0 0.7em 0;
-            border-top: 1px solid #e0e0e0;
-            flex-shrink: 0;
-        }}
-        #footer-logo {{
-            height: 60px;
-            width: auto;
-            margin-bottom: 0.5em;
-        }}
-        .legend {{
-            position: absolute;
-            bottom: 90px;
-            left: 20px;
-            background: #fff;
-            border: 1px solid #ccc;
-            border-radius: 8px;
-            padding: 0.7em 1em 0.7em 0.8em;
-            font-size: 0.98em;
-            color: #222;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.07);
-            z-index: 1000;
-            transition: opacity 0.2s;
-        }}
-        .legend-row .legend-icon {{ opacity: 0.7; }}
-        .legend-row {{ display: flex; align-items: center; margin-bottom: 0.3em; }}
-        .legend-label {{ font-size: 0.97em; }}
-        .legend-icon {{ margin-right: 0.7em; }}
-        #legend-toggle {{
-            display: none;
-            position: absolute;
-            bottom: 90px;
-            left: 20px;
-            z-index: 1100;
-            background: #fff;
-            color: #222;
-            border: 1px solid #ccc;
-            border-radius: 8px;
-            padding: 0.4em 1em;
-            font-size: 1em;
-            font-weight: 600;
-            cursor: pointer;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.07);
-        }}
-        @media (max-width: 700px) {{
-            #header-bar {{ flex-direction: column; height: auto; padding: 0.5em 0.5em; }}
-            #header-title {{ font-size: 1.05em; }}
-            #header-stats {{ font-size: 0.93em; }}
-            #header-nav {{ gap: 1em; }}
-            #donate-link {{ font-size: 0.9em; padding: 0.3em 0.7em; }}
-            #footer-logo {{ height: 36px; }}
-        }}
-    </style>
+    <link rel="stylesheet" href="css/styles.css" />
 </head>
 <body>
-    <div id="header-bar">
-        <div id="header-left">
-            <div id="header-title">ICEWatch</div>
-            <div id="header-stats">{header_stats}</div>
+    <header>
+        <nav id="header-bar">
+            <div id="header-left">
+                <div id="header-title">ICEWatch</div>
+                <div id="header-stats">{header_stats}</div>
+            </div>
+            <div id="header-nav">
+                <a href="index.html" class="active">Map</a>
+                <a href="info.html">Info</a>
+                <a id="donate-link" href="https://opencollective.com/lockdown-systems" target="_blank" rel="noopener">Donate</a>
+            </div>
+        </nav>
+    </header>
+    <main>
+        <div id="map"></div>
+        <button id="legend-toggle" onclick="toggleLegend()">Show Legend</button>
+        <div class="legend" id="legend-box">
+            <div style="font-weight:600; margin-bottom:0.5em;">Legend</div>
+            <div class="legend-row"><span class="legend-icon" style="background:rgba(76,175,80,0.7);width:12px;height:12px;border-radius:50%;border:2px solid #222;"></span><span class="legend-label">&lt; 50 people</span></div>
+            <div class="legend-row"><span class="legend-icon" style="background:rgba(255,235,59,0.7);width:18px;height:18px;border-radius:50%;border:2px solid #222;"></span><span class="legend-label">50–199 people</span></div>
+            <div class="legend-row"><span class="legend-icon" style="background:rgba(255,152,0,0.7);width:24px;height:24px;border-radius:50%;border:2px solid #222;"></span><span class="legend-label">200–499 people</span></div>
+            <div class="legend-row"><span class="legend-icon" style="background:rgba(244,67,54,0.7);width:30px;height:30px;border-radius:50%;border:2px solid #222;"></span><span class="legend-label">500+ people</span></div>
         </div>
-        <div id="header-nav">
-            <a href="index.html" class="active">Map</a>
-            <a href="info.html">Info</a>
-            <a id="donate-link" href="https://opencollective.com/lockdown-systems" target="_blank" rel="noopener">Donate</a>
-        </div>
-    </div>
-    <div id="map"></div>
-    <button id="legend-toggle" onclick="toggleLegend()">Show Legend</button>
-    <div class="legend" id="legend-box">
-        <div style="font-weight:600; margin-bottom:0.5em;">Legend</div>
-        <div class="legend-row"><span class="legend-icon" style="background:rgba(76,175,80,0.7);width:12px;height:12px;border-radius:50%;border:2px solid #222;"></span><span class="legend-label">&lt; 50 people</span></div>
-        <div class="legend-row"><span class="legend-icon" style="background:rgba(255,235,59,0.7);width:18px;height:18px;border-radius:50%;border:2px solid #222;"></span><span class="legend-label">50–199 people</span></div>
-        <div class="legend-row"><span class="legend-icon" style="background:rgba(255,152,0,0.7);width:24px;height:24px;border-radius:50%;border:2px solid #222;"></span><span class="legend-label">200–499 people</span></div>
-        <div class="legend-row"><span class="legend-icon" style="background:rgba(244,67,54,0.7);width:30px;height:30px;border-radius:50%;border:2px solid #222;"></span><span class="legend-label">500+ people</span></div>
-    </div>
-    <div id="footer-bar">
+    </main>
+    <footer id="footer-bar">
         <a href="https://lockdown.systems/" target="_blank" rel="noopener">
-            <img id="footer-logo" src="img/logo-wide.svg" alt="Lockdown Systems logo" />
+            <img id="footer-logo" src="img/logo-wide.svg" alt="Lockdown Systems homepage" />
         </a>
-    </div>
+    </footer>
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     <script>
     var map = L.map('map').setView([{center_lat}, {center_lon}], 4);
