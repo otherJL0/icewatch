@@ -71,6 +71,9 @@ body {
 #header-nav #donate-link:hover {
     background: #009865;
 }
+main {
+  height: 100%;
+}
 #map {
     flex: 1 1 auto;
     height: 100%;
