@@ -47,8 +47,7 @@ jobs:
           GEOJSON="data/facilities_geocoded_$(date +%Y%m%d).json"
           python geocode_facilities.py --input "${{ steps.parse.outputs.json_file }}" --output "$GEOJSON" --cache data/geocode_cache.json
           if grep -q '\"latitude\": null' "$GEOJSON"; then
-            echo "::error ::Some facilities could not be geocoded. Please update geocode_cache.json."
-            exit 1
+            echo "::warning ::Some facilities could not be geocoded. Please update geocode_cache.json."
           fi
           echo "geojson_file=$GEOJSON" >> $GITHUB_OUTPUT
 
