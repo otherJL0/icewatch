@@ -100,25 +100,27 @@ p {
     line-height: 1.7;
     color: #222;
 }
-#footer-bar {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    background: #f5f5f5;
-    color: #222;
-    padding: 1em 0 0.7em 0;
-    border-top: 1px solid #e0e0e0;
-    flex-shrink: 0;
+#logo-link {
+    position: fixed;
+    bottom: 17px;
+    right: 0px;
+    z-index: 1000;
+    background: rgba(255, 255, 255, 0.5);
+    padding: 2px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    transition: background 0.2s;
+}
+#logo-link:hover {
+    background: rgba(255, 255, 255, 1);
 }
 #footer-logo {
-    height: 60px;
+    height: 70px;
     width: auto;
-    margin-bottom: 0.5em;
+    display: block;
 }
 .legend {
     position: absolute;
-    bottom: 90px;
+    bottom: 20px;
     left: 20px;
     background: #fff;
     border: 1px solid #ccc;
@@ -137,7 +139,7 @@ p {
 #legend-toggle {
     display: none;
     position: absolute;
-    bottom: 90px;
+    bottom: 20px;
     left: 20px;
     z-index: 1100;
     background: #fff;
@@ -156,5 +158,10 @@ p {
     #header-stats { font-size: 0.93em; }
     #header-nav { gap: 1em; }
     #donate-link { font-size: 0.9em; padding: 0.3em 0.7em; }
-    #footer-logo { height: 36px; }
+    #logo-link {
+        bottom: 18px;
+        right: 0px;
+        padding: 0px;
+    }
+    #footer-logo { height: 50px; }
 }

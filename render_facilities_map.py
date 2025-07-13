@@ -142,11 +142,9 @@ def render_html(facilities, output_path, metadata=None):
             <div class="legend-row"><span class="legend-icon" style="background:rgba(244,67,54,0.7);width:30px;height:30px;border-radius:50%;border:2px solid #222;"></span><span class="legend-label">500+ people</span></div>
         </div>
     </main>
-    <footer id="footer-bar">
-        <a href="https://lockdown.systems/" target="_blank" rel="noopener">
-            <img id="footer-logo" src="img/logo-wide.svg" alt="Lockdown Systems homepage" />
-        </a>
-    </footer>
+    <a id="logo-link" href="https://lockdown.systems/" target="_blank" rel="noopener">
+        <img id="footer-logo" src="img/logo-wide.svg" alt="Lockdown Systems" />
+    </a>
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     <script>
     var map = L.map('map').setView([{center_lat}, {center_lon}], 4);
@@ -162,13 +160,13 @@ def render_html(facilities, output_path, metadata=None):
         if (legend.style.display === 'none') {{
             legend.style.display = '';
             btn.textContent = 'Hide Legend';
-            btn.style.bottom = '90px';
+            btn.style.bottom = '100px';
             btn.style.left = 'auto';
             btn.style.right = '20px'; // Position button to the right of legend
         }} else {{
             legend.style.display = 'none';
             btn.textContent = 'Show Legend';
-            btn.style.bottom = '90px';
+            btn.style.bottom = '20px';
             btn.style.left = '20px';
             btn.style.right = 'auto'; // Return to original left position
         }}
