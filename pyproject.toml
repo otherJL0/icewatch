@@ -24,9 +24,7 @@ issues = "https://github.com/lockdown-systems/icewatch/issues"
 funding = "https://opencollective.com/lockdown-systems"
 
 [project.scripts]
-icewatch_scrape = "icewatch.ice_detention_scraper:main"
-icewatch_geocode = "icewatch.geocode_facilities:main"
-icewatch_render = "icewatch.render_facilities_map:main"
+icewatch = "icewatch:main"
 
 [dependency-groups]
 dev = ["ruff>=0.12.3"]
