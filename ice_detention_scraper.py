@@ -50,8 +50,7 @@ def extract_date_from_filename(url):
         ]
 
         for pattern in date_patterns:
-            match = re.search(pattern, filename)
-            if match:
+            if match := re.search(pattern, filename):
                 if len(match.group(1)) == 4:  # YYYYMMDD
                     year, month, day = match.group(1), match.group(2), match.group(3)
                 elif len(match.group(3)) == 4:  # MMDDYYYY
