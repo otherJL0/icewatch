@@ -27,7 +27,7 @@ logging.basicConfig(
 logger = logging.getLogger(__name__)
 
 
-def extract_date_from_filename(url):
+def extract_date_from_filename(url: str) -> str | None:
     """
     Extract the date from the Excel filename URL.
 
