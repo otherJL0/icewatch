@@ -1,0 +1,32 @@
+[build-system]
+requires = ["uv_build>=0.7.19,<0.8.0"]
+build-backend = "uv_build"
+
+[project]
+name = "icewatch"
+version = "0.1.0"
+description = "A Python-based dashboard for ICE detention statistics"
+readme = "README.md"
+license = "GPL-3.0"
+requires-python = ">=3.11"
+dependencies = [
+  "requests>=2.31.0",
+  "pandas>=2.0.0",
+  "openpyxl>=3.1.0",
+  "beautifulsoup4>=4.12.0",
+  "lxml>=4.9.0",
+]
+
+[project.urls]
+homepage = "https://watchice.org/"
+source = "https://github.com/lockdown-systems/icewatch"
+issues = "https://github.com/lockdown-systems/icewatch/issues"
+funding = "https://opencollective.com/lockdown-systems"
+
+[project.scripts]
+icewatch_scrape = "icewatch.ice_detention_scraper:main"
+icewatch_geocode = "icewatch.geocode_facilities:main"
+icewatch_render = "icewatch.render_facilities_map:main"
+
+[dependency-groups]
+dev = ["ruff>=0.12.3"]
