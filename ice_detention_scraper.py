@@ -27,6 +27,17 @@ logging.basicConfig(
 logger = logging.getLogger(__name__)
 
 
+def is_valid_date(year: int, month: int, day: int) -> bool:
+    """
+    Determine if extracted year, month, and day are valid
+    """
+    try:
+        dt = datetime(year=year, month=month, day=day)
+        return dt > datetime(year=2025, month=1, day=1)
+    except ValueError:
+        return False
+
+
 def extract_date_from_filename(url: str) -> str | None:
     """
     Extract the date from the Excel filename URL.
@@ -43,26 +54,24 @@ def extract_date_from_filename(url: str) -> str | None:
 
         # Look for date patterns in the filename
         # Common patterns: FY25_detentionStats06202025.xlsx, detentionStats06202025.xlsx, etc.
+
         date_patterns = [
-            r"(\d{2})(\d{2})(\d{4})\.xlsx",  # MMDDYYYY
-            r"(\d{4})(\d{2})(\d{2})\.xlsx",  # YYYYMMDD
-            r"(\d{2})(\d{2})(\d{2})\.xlsx",  # MMDDYY
+            r"(?P<month>\d{2})(?P<day>\d{2})(?P<year>\d{4})\.xlsx",  # MMDDYYYY
+            r"(?P<year>\d{4})(?P<month>\d{2})(?P<day>\d{2})\.xlsx",  # YYYYMMDD
+            r"(?P<month>\d{2})(?P<day>\d{2})(?P<year>\d{2})\.xlsx",  # MMDDYY
         ]
 
         for pattern in date_patterns:
-            if match := re.search(pattern, filename):
-                if len(match.group(1)) == 4:  # YYYYMMDD
-                    year, month, day = match.group(1), match.group(2), match.group(3)
-                elif len(match.group(3)) == 4:  # MMDDYYYY
-                    month, day, year = match.group(1), match.group(2), match.group(3)
-                else:  # MMDDYY
-                    month, day, year = (
-                        match.group(1),
-                        match.group(2),
-                        "20" + match.group(3),
-                    )
-
-                return f"{year}-{month}-{day}"
+            if date_match := re.search(pattern, filename):
+                year, month, day = (
+                    int(date_match.group("year")),
+                    int(date_match.group("month")),
+                    int(date_match.group("day")),
+                )
+                if year < 100:
+                    year += 2000
+                if is_valid_date(year, month, day):
+                    return f"{year}-{month:02}-{day:02}"
 
         logger.warning(f"Could not extract date from filename: {filename}")
         return None
