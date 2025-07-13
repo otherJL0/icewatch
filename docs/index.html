@@ -13,7 +13,7 @@
             <div id="header-left">
                 <div id="header-title">ICE Detention Map</div>
             </div>
-            <div id="header-stats"><div class="stat-item">Total in ICE detention: <b>47,221</b></div><div class="stat-item">Percentage criminal: <b>29%</b></div><div class="stat-item">Last updated: <b>2025-07-13</b></div></div>
+            <div id="header-stats"><div class="stat-item"><strong>47,221</strong> people in ICE detention</div><div class="stat-item"><strong>29%</strong> with criminal records</div></div>
             <div id="header-nav">
                 <a href="index.html" class="active">Map</a>
                 <a href="info.html">Info</a>
@@ -32,6 +32,7 @@
             <div class="legend-row"><span class="legend-icon" style="background:rgba(244,67,54,0.7);width:30px;height:30px;border-radius:50%;border:2px solid #222;"></span><span class="legend-label">500+ people</span></div>
         </div>
     </main>
+    <div id="last-updated">last updated 2025-07-13</div>
     <a id="logo-link" href="https://lockdown.systems/" target="_blank" rel="noopener">
         <img id="footer-logo" src="img/logo-wide.svg" alt="Lockdown Systems" />
     </a>
@@ -52,11 +53,11 @@
             btn.textContent = 'Hide Legend';
             btn.style.bottom = '100px';
             btn.style.left = 'auto';
-            btn.style.right = '20px'; // Position button to the right of legend
+            btn.style.right = '30px'; // Position button to the right of legend
         } else {
             legend.style.display = 'none';
             btn.textContent = 'Show Legend';
-            btn.style.bottom = '20px';
+            btn.style.bottom = '30px';
             btn.style.left = '20px';
             btn.style.right = 'auto'; // Return to original left position
         }

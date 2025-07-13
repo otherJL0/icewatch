@@ -5,6 +5,7 @@ Popups show name, address, rounded criminal/non-criminal counts, and ICE Threat 
 """
 import json
 import argparse
+from datetime import datetime
 from pathlib import Path
 from math import isnan
 
@@ -96,18 +97,15 @@ def render_html(facilities, output_path, metadata=None):
     center_lat, center_lon = 39.8283, -98.5795
 
     # Build the header stats with last updated date
-    header_stats = f'<div class="stat-item">Total in ICE detention: <b>{total_people:,}</b></div>'
-    header_stats += f'<div class="stat-item">Percentage criminal: <b>{pct_criminal}</b></div>'
+    header_stats = f'<div class="stat-item"><strong>{total_people:,}</strong> people in ICE detention</div>'
+    header_stats += f'<div class="stat-item"><strong>{pct_criminal}</strong> with criminal records</div>'
     if extraction_date:
         # Format extraction date nicely (remove time if present)
         try:
-            from datetime import datetime
             parsed_date = datetime.fromisoformat(extraction_date.replace('Z', '+00:00'))
             formatted_date = parsed_date.strftime('%Y-%m-%d')
-            header_stats += f'<div class="stat-item">Last updated: <b>{formatted_date}</b></div>'
-        except:
-            # Fallback to showing the raw date
-            header_stats += f'<div class="stat-item">Last updated: <b>{extraction_date[:10]}</b></div>'
+        except ValueError:
+            formatted_date = extraction_date.split('T')[0]  # Fallback to just the date part
 
     html = f'''<!DOCTYPE html>
 <html>
@@ -143,6 +141,7 @@ def render_html(facilities, output_path, metadata=None):
             <div class="legend-row"><span class="legend-icon" style="background:rgba(244,67,54,0.7);width:30px;height:30px;border-radius:50%;border:2px solid #222;"></span><span class="legend-label">500+ people</span></div>
         </div>
     </main>
+    <div id="last-updated">last updated {formatted_date}</div>
     <a id="logo-link" href="https://lockdown.systems/" target="_blank" rel="noopener">
         <img id="footer-logo" src="img/logo-wide.svg" alt="Lockdown Systems" />
     </a>
@@ -163,11 +162,11 @@ def render_html(facilities, output_path, metadata=None):
             btn.textContent = 'Hide Legend';
             btn.style.bottom = '100px';
             btn.style.left = 'auto';
-            btn.style.right = '20px'; // Position button to the right of legend
+            btn.style.right = '30px'; // Position button to the right of legend
         }} else {{
             legend.style.display = 'none';
             btn.textContent = 'Show Legend';
-            btn.style.bottom = '20px';
+            btn.style.bottom = '30px';
             btn.style.left = '20px';
             btn.style.right = 'auto'; // Return to original left position
         }}
