@@ -44,9 +44,9 @@ def extract_date_from_filename(url):
         # Look for date patterns in the filename
         # Common patterns: FY25_detentionStats06202025.xlsx, detentionStats06202025.xlsx, etc.
         date_patterns = [
-            r"(\d{{2}})(\d{{2}})(\d{{4}})\.xlsx",  # MMDDYYYY
-            r"(\d{{4}})(\d{{2}})(\d{{2}})\.xlsx",  # YYYYMMDD
-            r"(\d{{2}})(\d{{2}})(\d{{2}})\.xlsx",  # MMDDYY
+            r"(\d{2})(\d{2})(\d{4})\.xlsx",  # MMDDYYYY
+            r"(\d{4})(\d{2})(\d{2})\.xlsx",  # YYYYMMDD
+            r"(\d{2})(\d{2})(\d{2})\.xlsx",  # MMDDYY
         ]
 
         for pattern in date_patterns:
