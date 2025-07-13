@@ -35,12 +35,21 @@ body:has(#content) {
     font-weight: 700;
     letter-spacing: 0.01em;
     color: #222;
+    text-wrap: nowrap;
 }
 #header-stats {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    column-gap: 1.5em;
+    row-gap: 0.3em;
     font-size: 1em;
     font-weight: 500;
-    margin-top: 0.15em;
     color: #444;
+    padding: 0.5em 1.2em;
+}
+.stat-item {
+    white-space: nowrap;
 }
 #header-nav {
     display: flex;
@@ -126,7 +135,7 @@ a {
 }
 a:hover {
     color: #009865;
-    text-decoration: none;
+    text-decoration: underline;
 }
 a:visited {
     color: #006640;
@@ -193,7 +202,14 @@ a:visited {
 @media (max-width: 700px) {
     #header-bar { flex-direction: column; height: auto; padding: 0.5em 0.5em; }
     #header-title { font-size: 1.05em; }
-    #header-stats { font-size: 0.93em; }
+    #header-stats { 
+        font-size: 0.93em; 
+        padding: 0.3em 0.5em;
+        flex-direction: row;
+    }
+    .stat-item {
+        font-size: 0.9em;
+    }
     #header-nav { gap: 1em; }
     #donate-link { font-size: 0.9em; padding: 0.3em 0.7em; }
     #logo-link {

@@ -96,17 +96,18 @@ def render_html(facilities, output_path, metadata=None):
     center_lat, center_lon = 39.8283, -98.5795
 
     # Build the header stats with last updated date
-    header_stats = f"Total in ICE detention: <b>{total_people:,}</b> &nbsp;|&nbsp; Percentage criminal: <b>{pct_criminal}</b>"
+    header_stats = f'<div class="stat-item">Total in ICE detention: <b>{total_people:,}</b></div>'
+    header_stats += f'<div class="stat-item">Percentage criminal: <b>{pct_criminal}</b></div>'
     if extraction_date:
         # Format extraction date nicely (remove time if present)
         try:
             from datetime import datetime
             parsed_date = datetime.fromisoformat(extraction_date.replace('Z', '+00:00'))
             formatted_date = parsed_date.strftime('%Y-%m-%d')
-            header_stats += f" &nbsp;|&nbsp; Last updated: <b>{formatted_date}</b>"
+            header_stats += f'<div class="stat-item">Last updated: <b>{formatted_date}</b></div>'
         except:
             # Fallback to showing the raw date
-            header_stats += f" &nbsp;|&nbsp; Last updated: <b>{extraction_date[:10]}</b>"
+            header_stats += f'<div class="stat-item">Last updated: <b>{extraction_date[:10]}</b></div>'
 
     html = f'''<!DOCTYPE html>
 <html>
@@ -122,8 +123,8 @@ def render_html(facilities, output_path, metadata=None):
         <nav id="header-bar">
             <div id="header-left">
                 <div id="header-title">ICE Detention Map</div>
-                <div id="header-stats">{header_stats}</div>
             </div>
+            <div id="header-stats">{header_stats}</div>
             <div id="header-nav">
                 <a href="index.html" class="active">Map</a>
                 <a href="info.html">Info</a>
