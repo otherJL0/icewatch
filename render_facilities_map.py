@@ -84,9 +84,9 @@ def render_html(facilities, output_path, metadata=None):
         total_noncriminals += safe_int(fac.get('Male Non-Crim')) + safe_int(fac.get('Female Non-Crim'))
     total_people = total_criminals + total_noncriminals
     if total_people > 0:
-        pct_criminal = f"{round(100 * total_criminals / total_people)}%"
+        pct_noncriminal = f"{round(100 * total_noncriminals / total_people)}%"
     else:
-        pct_criminal = "N/A"
+        pct_noncriminal = "N/A"
 
     # Get dates from metadata
     extraction_date = None
@@ -98,7 +98,7 @@ def render_html(facilities, output_path, metadata=None):
 
     # Build the header stats with last updated date
     header_stats = f'<div class="stat-item"><strong>{total_people:,}</strong> people in ICE detention</div>'
-    header_stats += f'<div class="stat-item"><strong>{pct_criminal}</strong> with criminal records</div>'
+    header_stats += f'<div class="stat-item"><strong>{pct_noncriminal}</strong> without criminal records</div>'
     if extraction_date:
         # Format extraction date nicely (remove time if present)
         try:
