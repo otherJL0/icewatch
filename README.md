@@ -1,4 +1,4 @@
-# ICEWatch
+# ICE Detention Map
 
 A Python-based dashboard for ICE detention statistics. This project downloads and renders publically available detention data from the [ICE Detention Management page](https://www.ice.gov/detain/detention-management).
 
@@ -13,12 +13,14 @@ This project consists of three Python scripts:
 ## Installation
 
 1. Clone this repository:
+
 ```bash
 git clone <repository-url>
 cd icewatch
 ```
 
 2. Install the required dependencies:
+
 ```bash
 pip install -r requirements.txt
 ```
@@ -74,8 +76,6 @@ python ice_detention_scraper.py --extract-json
 # Extract JSON from an existing Excel file
 python ice_detention_scraper.py --extract-from-file "path/to/existing/file.xlsx"
 ```
-
-
 
 ### Step 2: Geocode ICE facilities
 

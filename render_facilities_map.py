@@ -88,10 +88,8 @@ def render_html(facilities, output_path, metadata=None):
         pct_criminal = "N/A"
 
     # Get dates from metadata
-    source_date = None
     extraction_date = None
     if metadata:
-        source_date = metadata.get('source_date')
         extraction_date = metadata.get('extraction_date')
 
     # Center on US
@@ -114,7 +112,7 @@ def render_html(facilities, output_path, metadata=None):
 <html>
 <head>
     <meta charset="utf-8" />
-    <title>ICEWatch</title>
+    <title>ICE Detention Map</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
     <link rel="stylesheet" href="css/styles.css" />
@@ -123,7 +121,7 @@ def render_html(facilities, output_path, metadata=None):
     <header>
         <nav id="header-bar">
             <div id="header-left">
-                <div id="header-title">ICEWatch</div>
+                <div id="header-title">ICE Detention Map</div>
                 <div id="header-stats">{header_stats}</div>
             </div>
             <div id="header-nav">
