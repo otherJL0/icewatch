@@ -4,7 +4,6 @@ Geocode facilities from a JSON file using OpenStreetMap Nominatim, with caching.
 """
 
 import os
-import sys
 import json
 import time
 import argparse

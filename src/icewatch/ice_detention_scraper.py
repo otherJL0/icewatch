@@ -268,7 +268,7 @@ def download_ice_detention_stats(url=None, output_dir="data", auto_find_link=Tru
                         progress = (downloaded_size / file_size) * 100
                         logger.info(f"Download progress: {progress:.1f}%")
 
-        logger.info(f"Download completed successfully!")
+        logger.info("Download completed successfully!")
         logger.info(f"File saved to: {filepath}")
         logger.info(f"File size: {os.path.getsize(filepath) / 1024:.1f} KB")
         if source_date:
