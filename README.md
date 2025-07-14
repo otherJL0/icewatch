@@ -12,17 +12,10 @@ This project consists of three Python scripts:
 
 ## Installation
 
-1. Clone this repository:
+1. Install using pip
 
 ```bash
-git clone <repository-url>
-cd icewatch
-```
-
-2. Install the required dependencies:
-
-```bash
-pip install -r requirements.txt
+pip install git+https://github.com/lockdown-systems/icewatch.git@main
 ```
 
 ## Usage
@@ -32,13 +25,13 @@ pip install -r requirements.txt
 Download the latest detention statistics (this should auto-find the latest link):
 
 ```bash
-python ice_detention_scraper.py
+icewatch scrape
 ```
 
 Then, extract the data about facilities to a JSON file (you can also do this in one step, see options below):
 
 ```bash
-python ice_detention_scraper.py --extract-from-file data/YOUR_FILE_HERE.xlsx
+icewatch scrape --extract-from-file data/YOUR_FILE_HERE.xlsx
 ```
 
 #### Command Line Options
@@ -56,25 +49,25 @@ The script supports the following options:
 
 ```bash
 # Download to a custom directory
-python ice_detention_scraper.py --output-dir ./data
+icewatch scrape --output-dir ./data
 
 # Download and verify the file
-python ice_detention_scraper.py --verify
+icewatch scrape --verify
 
 # Use a specific URL instead of auto-finding
-python ice_detention_scraper.py --url "https://custom-url.xlsx"
+icewatch scrape --url "https://custom-url.xlsx"
 
 # Download to current directory
-python ice_detention_scraper.py --output-dir .
+icewatch scrape --output-dir .
 
 # Disable auto-find and use default URL
-python ice_detention_scraper.py --no-auto-find
+icewatch scrape --no-auto-find
 
 # Download and extract facilities data to JSON
-python ice_detention_scraper.py --extract-json
+icewatch scrape --extract-json
 
 # Extract JSON from an existing Excel file
-python ice_detention_scraper.py --extract-from-file "path/to/existing/file.xlsx"
+icewatch scrape --extract-from-file "path/to/existing/file.xlsx"
 ```
 
 ### Step 2: Geocode ICE facilities
@@ -84,7 +77,7 @@ You can geocode the facilities in your JSON file using OpenStreetMap Nominatim A
 ### Usage
 
 ```bash
-python geocode_facilities.py --input data/ice_facilities_YYYYMMDD.json
+icewatch geocode --input data/ice_facilities_YYYYMMDD.json
 ```
 
 - By default, this will create a new file like `data/facilities_geocoded_YYYYMMDD_HHMMSS.json` and update (or create) `data/geocode_cache.json` in the same directory.
@@ -94,7 +87,7 @@ python geocode_facilities.py --input data/ice_facilities_YYYYMMDD.json
 ### Example
 
 ```bash
-python geocode_facilities.py --input data/ice_facilities_YYYYMMDD.json --output data/facilities_geocoded_YYYYMMDD.json --cache data/geocode_cache.json
+icewatch geocode --input data/ice_facilities_YYYYMMDD.json --output data/facilities_geocoded_YYYYMMDD.json --cache data/geocode_cache.json
 ```
 
 ### User-Agent Requirement
@@ -116,7 +109,7 @@ You can create a static interactive map of all geocoded facilities using the pro
 #### Usage
 
 ```bash
-python render_facilities_map.py --input data/facilities_geocoded_YYYYMMDD.json
+icewatch render --input data/facilities_geocoded_YYYYMMDD.json
 ```
 
 - By default, this will create `docs/index.html` (and the `docs` directory if it doesn't exist).
