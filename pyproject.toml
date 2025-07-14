@@ -27,4 +27,7 @@ funding = "https://opencollective.com/lockdown-systems"
 icewatch = "icewatch:main"
 
 [dependency-groups]
-dev = ["ruff>=0.12.3"]
+dev = [
+    "mypy>=1.16.1",
+    "ruff>=0.12.3",
+]
