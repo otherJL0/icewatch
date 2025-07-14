@@ -22,13 +22,23 @@ from bs4 import BeautifulSoup
 
 # Configure logging
 logging.basicConfig(
-    level=logging.INFO,
-    format='%(asctime)s - %(levelname)s - %(message)s'
+    level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s"
 )
 logger = logging.getLogger(__name__)
 
 
-def extract_date_from_filename(url):
+def is_valid_date(year: int, month: int, day: int) -> bool:
+    """
+    Determine if extracted year, month, and day are valid
+    """
+    try:
+        dt = datetime(year=year, month=month, day=day)
+        return dt > datetime(year=2025, month=1, day=1)
+    except ValueError:
+        return False
+
+
+def extract_date_from_filename(url: str) -> str | None:
     """
     Extract the date from the Excel filename URL.
 
@@ -44,23 +54,24 @@ def extract_date_from_filename(url):
 
         # Look for date patterns in the filename
         # Common patterns: FY25_detentionStats06202025.xlsx, detentionStats06202025.xlsx, etc.
+
         date_patterns = [
-            r'(\d{{2}})(\d{{2}})(\d{{4}})\.xlsx',  # MMDDYYYY
-            r'(\d{{4}})(\d{{2}})(\d{{2}})\.xlsx',  # YYYYMMDD
-            r'(\d{{2}})(\d{{2}})(\d{{2}})\.xlsx',  # MMDDYY
+            r"(?P<month>\d{2})(?P<day>\d{2})(?P<year>\d{4})\.xlsx",  # MMDDYYYY
+            r"(?P<year>\d{4})(?P<month>\d{2})(?P<day>\d{2})\.xlsx",  # YYYYMMDD
+            r"(?P<month>\d{2})(?P<day>\d{2})(?P<year>\d{2})\.xlsx",  # MMDDYY
         ]
 
         for pattern in date_patterns:
-            match = re.search(pattern, filename)
-            if match:
-                if len(match.group(1)) == 4:  # YYYYMMDD
-                    year, month, day = match.group(1), match.group(2), match.group(3)
-                elif len(match.group(3)) == 4:  # MMDDYYYY
-                    month, day, year = match.group(1), match.group(2), match.group(3)
-                else:  # MMDDYY
-                    month, day, year = match.group(1), match.group(2), '20' + match.group(3)
-
-                return f"{year}-{month}-{day}"
+            if date_match := re.search(pattern, filename):
+                year, month, day = (
+                    int(date_match.group("year")),
+                    int(date_match.group("month")),
+                    int(date_match.group("day")),
+                )
+                if year < 100:
+                    year += 2000
+                if is_valid_date(year, month, day):
+                    return f"{year}-{month:02}-{day:02}"
 
         logger.warning(f"Could not extract date from filename: {filename}")
         return None
@@ -70,7 +81,9 @@ def extract_date_from_filename(url):
         return None
 
 
-def find_detention_stats_link(base_url="https://www.ice.gov/detain/detention-management"):
+def find_detention_stats_link(
+    base_url="https://www.ice.gov/detain/detention-management",
+):
     """
     Scrape the ICE detention management page to find the latest statistics download link.
 
@@ -86,12 +99,12 @@ def find_detention_stats_link(base_url="https://www.ice.gov/detain/detention-man
 
         # Set up headers to mimic a browser request
         headers = {
-            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36',
-            'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
-            'Accept-Language': 'en-US,en;q=0.9',
-            'Accept-Encoding': 'gzip, deflate, br',
-            'Connection': 'keep-alive',
-            'Upgrade-Insecure-Requests': '1',
+            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36",
+            "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8",
+            "Accept-Language": "en-US,en;q=0.9",
+            "Accept-Encoding": "gzip, deflate, br",
+            "Connection": "keep-alive",
+            "Upgrade-Insecure-Requests": "1",
         }
 
         # Get the page content
@@ -99,34 +112,47 @@ def find_detention_stats_link(base_url="https://www.ice.gov/detain/detention-man
         response.raise_for_status()
 
         # Parse the HTML
-        soup = BeautifulSoup(response.content, 'html.parser')
+        soup = BeautifulSoup(response.content, "html.parser")
 
         # Look for links containing detention statistics keywords
         keywords = [
-            'detention', 'statistics', 'FY25', 'YTD', 'xlsx', 'excel',
-            'detentionStats', 'FY2025'
+            "detention",
+            "statistics",
+            "FY25",
+            "YTD",
+            "xlsx",
+            "excel",
+            "detentionStats",
+            "FY2025",
         ]
 
         found_links = []
 
         # Search for all links on the page
-        for link in soup.find_all('a', href=True):
-            href = link.get('href', '').lower()
+        for link in soup.find_all("a", href=True):
+            href = link.get("href", "").lower()
             text = link.get_text().lower()
 
             # Check if link text or href contains relevant keywords
-            is_relevant = any(keyword.lower() in href or keyword.lower() in text
-                            for keyword in keywords)
+            is_relevant = any(
+                keyword.lower() in href or keyword.lower() in text
+                for keyword in keywords
+            )
 
             if is_relevant:
-                full_url = urljoin(base_url, link['href'])
+                full_url = urljoin(base_url, link["href"])
                 link_text = link.get_text().strip()
-                found_links.append({
-                    'url': full_url,
-                    'text': link_text,
-                    'relevance_score': sum(1 for keyword in keywords
-                                         if keyword.lower() in href or keyword.lower() in text)
-                })
+                found_links.append(
+                    {
+                        "url": full_url,
+                        "text": link_text,
+                        "relevance_score": sum(
+                            1
+                            for keyword in keywords
+                            if keyword.lower() in href or keyword.lower() in text
+                        ),
+                    }
+                )
                 logger.info(f"Found potential link: {link_text} -> {full_url}")
 
         if not found_links:
@@ -134,13 +160,16 @@ def find_detention_stats_link(base_url="https://www.ice.gov/detain/detention-man
             return None
 
         # Sort by relevance score and prefer .xlsx files
-        found_links.sort(key=lambda x: (x['relevance_score'], '.xlsx' in x['url'].lower()), reverse=True)
+        found_links.sort(
+            key=lambda x: (x["relevance_score"], ".xlsx" in x["url"].lower()),
+            reverse=True,
+        )
 
         # Return the most relevant link
         best_match = found_links[0]
         logger.info(f"Selected best match: {best_match['text']} -> {best_match['url']}")
 
-        return best_match['url']
+        return best_match["url"]
 
     except requests.exceptions.RequestException as e:
         logger.error(f"Failed to scrape page: {e}")
@@ -186,7 +215,7 @@ def download_ice_detention_stats(url=None, output_dir="data", auto_find_link=Tru
 
     # Use original filename from URL, or generate one with timestamp
     original_filename = os.path.basename(urlparse(url).path)
-    if original_filename and original_filename.endswith('.xlsx'):
+    if original_filename and original_filename.endswith(".xlsx"):
         filename = original_filename
     else:
         timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
@@ -199,12 +228,12 @@ def download_ice_detention_stats(url=None, output_dir="data", auto_find_link=Tru
 
         # Set up headers to mimic a browser request
         headers = {
-            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36',
-            'Accept': 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,application/vnd.ms-excel,application/octet-stream',
-            'Accept-Language': 'en-US,en;q=0.9',
-            'Accept-Encoding': 'gzip, deflate, br',
-            'Connection': 'keep-alive',
-            'Upgrade-Insecure-Requests': '1',
+            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36",
+            "Accept": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,application/vnd.ms-excel,application/octet-stream",
+            "Accept-Language": "en-US,en;q=0.9",
+            "Accept-Encoding": "gzip, deflate, br",
+            "Connection": "keep-alive",
+            "Upgrade-Insecure-Requests": "1",
         }
 
         # Download the file
@@ -212,16 +241,20 @@ def download_ice_detention_stats(url=None, output_dir="data", auto_find_link=Tru
         response.raise_for_status()
 
         # Check if the response contains Excel content
-        content_type = response.headers.get('content-type', '').lower()
-        if 'excel' not in content_type and 'spreadsheet' not in content_type and 'octet-stream' not in content_type:
+        content_type = response.headers.get("content-type", "").lower()
+        if (
+            "excel" not in content_type
+            and "spreadsheet" not in content_type
+            and "octet-stream" not in content_type
+        ):
             logger.warning(f"Unexpected content type: {content_type}")
 
         # Get file size
-        file_size = int(response.headers.get('content-length', 0))
+        file_size = int(response.headers.get("content-length", 0))
         logger.info(f"File size: {file_size / 1024:.1f} KB")
 
         # Save the file
-        with open(filepath, 'wb') as f:
+        with open(filepath, "wb") as f:
             downloaded_size = 0
             for chunk in response.iter_content(chunk_size=8192):
                 if chunk:
@@ -229,7 +262,9 @@ def download_ice_detention_stats(url=None, output_dir="data", auto_find_link=Tru
                     downloaded_size += len(chunk)
 
                     # Log progress for large files
-                    if file_size > 0 and downloaded_size % (1024 * 1024) == 0:  # Every MB
+                    if (
+                        file_size > 0 and downloaded_size % (1024 * 1024) == 0
+                    ):  # Every MB
                         progress = (downloaded_size / file_size) * 100
                         logger.info(f"Download progress: {progress:.1f}%")
 
@@ -267,9 +302,19 @@ def extract_facilities_data(filepath, source_date=None):
         df = pd.read_excel(filepath, sheet_name="Facilities FY25", header=6)
         # Expected column names
         expected_columns = [
-            "Name", "Address", "City", "State", "Zip",
-            "Male Crim", "Male Non-Crim", "Female Crim", "Female Non-Crim",
-            "ICE Threat Level 1", "ICE Threat Level 2", "ICE Threat Level 3", "No ICE Threat Level"
+            "Name",
+            "Address",
+            "City",
+            "State",
+            "Zip",
+            "Male Crim",
+            "Male Non-Crim",
+            "Female Crim",
+            "Female Non-Crim",
+            "ICE Threat Level 1",
+            "ICE Threat Level 2",
+            "ICE Threat Level 3",
+            "No ICE Threat Level",
         ]
 
         # Check if we have the expected columns
@@ -280,7 +325,7 @@ def extract_facilities_data(filepath, source_date=None):
 
         # Clean the data
         # Remove rows where all values are NaN
-        df = df.dropna(how='all')
+        df = df.dropna(how="all")
 
         # Convert to list of dictionaries
         facilities_data = []
@@ -303,16 +348,13 @@ def extract_facilities_data(filepath, source_date=None):
         metadata = {
             "source_file": filepath,
             "extraction_date": datetime.now().isoformat(),
-            "total_facilities": len(facilities_data)
+            "total_facilities": len(facilities_data),
         }
 
         if source_date:
             metadata["source_date"] = source_date
 
-        return {
-            "metadata": metadata,
-            "facilities": facilities_data
-        }
+        return {"metadata": metadata, "facilities": facilities_data}
 
     except Exception as e:
         logger.error(f"Failed to extract facilities data: {e}")
@@ -342,7 +384,7 @@ def save_facilities_json(data, output_dir="data"):
         filepath = os.path.join(output_dir, filename)
 
         # Save to JSON file
-        with open(filepath, 'w', encoding='utf-8') as f:
+        with open(filepath, "w", encoding="utf-8") as f:
             json.dump(data, f, indent=2, ensure_ascii=False)
 
         logger.info(f"Facilities data saved to: {filepath}")
@@ -373,7 +415,9 @@ def verify_download(filepath):
         logger.info(f"Excel file contains {len(df)} sheets:")
         for sheet_name in df.keys():
             sheet_info = df[sheet_name]
-            logger.info(f"  - {sheet_name}: {len(sheet_info)} rows, {len(sheet_info.columns)} columns")
+            logger.info(
+                f"  - {sheet_name}: {len(sheet_info)} rows, {len(sheet_info.columns)} columns"
+            )
 
         return True
 
@@ -397,42 +441,40 @@ Examples:
   python ice_detention_scraper.py --no-auto-find
   python ice_detention_scraper.py --extract-json
   python ice_detention_scraper.py --extract-from-file "path/to/existing/excel.xlsx"
-        """
+        """,
     )
 
     parser.add_argument(
-        '--url',
-        help='Direct URL to the Excel file (optional)',
-        default=None
+        "--url", help="Direct URL to the Excel file (optional)", default=None
     )
 
     parser.add_argument(
-        '--output-dir',
-        help='Directory to save the downloaded file (default: data)',
-        default='data'
+        "--output-dir",
+        help="Directory to save the downloaded file (default: data)",
+        default="data",
     )
 
     parser.add_argument(
-        '--no-auto-find',
-        action='store_true',
-        help='Disable auto-finding the latest link (use default URL instead)'
+        "--no-auto-find",
+        action="store_true",
+        help="Disable auto-finding the latest link (use default URL instead)",
     )
 
     parser.add_argument(
-        '--verify',
-        action='store_true',
-        help='Verify the downloaded file by attempting to read it'
+        "--verify",
+        action="store_true",
+        help="Verify the downloaded file by attempting to read it",
     )
 
     parser.add_argument(
-        '--extract-json',
-        action='store_true',
-        help='Extract facilities data to JSON file after downloading'
+        "--extract-json",
+        action="store_true",
+        help="Extract facilities data to JSON file after downloading",
     )
 
     parser.add_argument(
-        '--extract-from-file',
-        help='Extract facilities data to JSON from an existing Excel file'
+        "--extract-from-file",
+        help="Extract facilities data to JSON from an existing Excel file",
     )
 
     args = parser.parse_args()
@@ -442,7 +484,9 @@ Examples:
 
     # Handle extraction from existing file
     if args.extract_from_file:
-        logger.info(f"Extracting facilities data from existing file: {args.extract_from_file}")
+        logger.info(
+            f"Extracting facilities data from existing file: {args.extract_from_file}"
+        )
         if not os.path.exists(args.extract_from_file):
             logger.error(f"File not found: {args.extract_from_file}")
             sys.exit(1)
@@ -462,9 +506,7 @@ Examples:
 
     # Download the file
     result = download_ice_detention_stats(
-        url=args.url,
-        output_dir=args.output_dir,
-        auto_find_link=not args.no_auto_find
+        url=args.url, output_dir=args.output_dir, auto_find_link=not args.no_auto_find
     )
 
     if result[0]:  # filepath is not None
