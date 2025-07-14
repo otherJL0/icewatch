@@ -7,7 +7,10 @@ import icewatch.render_facilities_map as renderer
 
 
 def main():
-    parser = argparse.ArgumentParser(prog="icewatch")
+    parser = argparse.ArgumentParser(
+        prog="icewatch",
+        description="Command line tool to download ICE detention statistics",
+    )
 
     subparsers = parser.add_subparsers(
         dest="command",
@@ -18,8 +21,10 @@ def main():
     subparsers.add_parser("geocode", add_help=False)
     subparsers.add_parser("render", add_help=False)
 
-    args, remaining_argv = parser.parse_known_args()
-    sys.argv = [f"{sys.argv[0]}"] + remaining_argv
+    args, argv_tail = parser.parse_known_args()
+    sys.argv = [
+        f"{sys.argv[0]} {args.command}"
+    ] + argv_tail  # modify sys.argv to remove subcommand
     match args.command:
         case "scrape":
             return scraper.main()
