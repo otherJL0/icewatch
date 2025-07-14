@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="utf-8" />
-    <title>ICEWatch</title>
+    <title>ICE Detention Map</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
     <link rel="stylesheet" href="css/styles.css" />
@@ -11,9 +11,9 @@
     <header>
         <nav id="header-bar">
             <div id="header-left">
-                <div id="header-title">ICEWatch</div>
-                <div id="header-stats">Total in ICE detention: <b>47,221</b> &nbsp;|&nbsp; Percentage criminal: <b>29%</b> &nbsp;|&nbsp; Last updated: <b>2025-07-12</b></div>
+                <div id="header-title">ICE Detention Map</div>
             </div>
+            <div id="header-stats"><div class="stat-item"><strong>47,221</strong> people in ICE detention</div><div class="stat-item"><strong>71%</strong> without criminal records</div></div>
             <div id="header-nav">
                 <a href="index.html" class="active">Map</a>
                 <a href="info.html">Info</a>
@@ -32,11 +32,10 @@
             <div class="legend-row"><span class="legend-icon" style="background:rgba(244,67,54,0.7);width:30px;height:30px;border-radius:50%;border:2px solid #222;"></span><span class="legend-label">500+ people</span></div>
         </div>
     </main>
-    <footer id="footer-bar">
-        <a href="https://lockdown.systems/" target="_blank" rel="noopener">
-            <img id="footer-logo" src="img/logo-wide.svg" alt="Lockdown Systems homepage" />
-        </a>
-    </footer>
+    <div id="last-updated">last updated 2025-07-13</div>
+    <a id="logo-link" href="https://lockdown.systems/" target="_blank" rel="noopener">
+        <img id="footer-logo" src="img/logo-wide.svg" alt="Lockdown Systems" />
+    </a>
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     <script>
     var map = L.map('map').setView([39.8283, -98.5795], 4);
@@ -52,13 +51,13 @@
         if (legend.style.display === 'none') {
             legend.style.display = '';
             btn.textContent = 'Hide Legend';
-            btn.style.bottom = '90px';
+            btn.style.bottom = '100px';
             btn.style.left = 'auto';
-            btn.style.right = '20px'; // Position button to the right of legend
+            btn.style.right = '30px'; // Position button to the right of legend
         } else {
             legend.style.display = 'none';
             btn.textContent = 'Show Legend';
-            btn.style.bottom = '90px';
+            btn.style.bottom = '30px';
             btn.style.left = '20px';
             btn.style.right = 'auto'; // Return to original left position
         }

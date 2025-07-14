@@ -5,6 +5,7 @@ Popups show name, address, rounded criminal/non-criminal counts, and ICE Threat 
 """
 import json
 import argparse
+from datetime import datetime
 from pathlib import Path
 from math import isnan
 
@@ -83,38 +84,34 @@ def render_html(facilities, output_path, metadata=None):
         total_noncriminals += safe_int(fac.get('Male Non-Crim')) + safe_int(fac.get('Female Non-Crim'))
     total_people = total_criminals + total_noncriminals
     if total_people > 0:
-        pct_criminal = f"{round(100 * total_criminals / total_people)}%"
+        pct_noncriminal = f"{round(100 * total_noncriminals / total_people)}%"
     else:
-        pct_criminal = "N/A"
+        pct_noncriminal = "N/A"
 
     # Get dates from metadata
-    source_date = None
     extraction_date = None
     if metadata:
-        source_date = metadata.get('source_date')
         extraction_date = metadata.get('extraction_date')
 
     # Center on US
     center_lat, center_lon = 39.8283, -98.5795
 
     # Build the header stats with last updated date
-    header_stats = f"Total in ICE detention: <b>{total_people:,}</b> &nbsp;|&nbsp; Percentage criminal: <b>{pct_criminal}</b>"
+    header_stats = f'<div class="stat-item"><strong>{total_people:,}</strong> people in ICE detention</div>'
+    header_stats += f'<div class="stat-item"><strong>{pct_noncriminal}</strong> without criminal records</div>'
     if extraction_date:
         # Format extraction date nicely (remove time if present)
         try:
-            from datetime import datetime
             parsed_date = datetime.fromisoformat(extraction_date.replace('Z', '+00:00'))
             formatted_date = parsed_date.strftime('%Y-%m-%d')
-            header_stats += f" &nbsp;|&nbsp; Last updated: <b>{formatted_date}</b>"
-        except:
-            # Fallback to showing the raw date
-            header_stats += f" &nbsp;|&nbsp; Last updated: <b>{extraction_date[:10]}</b>"
+        except ValueError:
+            formatted_date = extraction_date.split('T')[0]  # Fallback to just the date part
 
     html = f'''<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
-    <title>ICEWatch</title>
+    <title>ICE Detention Map</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
     <link rel="stylesheet" href="css/styles.css" />
@@ -123,9 +120,9 @@ def render_html(facilities, output_path, metadata=None):
     <header>
         <nav id="header-bar">
             <div id="header-left">
-                <div id="header-title">ICEWatch</div>
-                <div id="header-stats">{header_stats}</div>
+                <div id="header-title">ICE Detention Map</div>
             </div>
+            <div id="header-stats">{header_stats}</div>
             <div id="header-nav">
                 <a href="index.html" class="active">Map</a>
                 <a href="info.html">Info</a>
@@ -144,11 +141,10 @@ def render_html(facilities, output_path, metadata=None):
             <div class="legend-row"><span class="legend-icon" style="background:rgba(244,67,54,0.7);width:30px;height:30px;border-radius:50%;border:2px solid #222;"></span><span class="legend-label">500+ people</span></div>
         </div>
     </main>
-    <footer id="footer-bar">
-        <a href="https://lockdown.systems/" target="_blank" rel="noopener">
-            <img id="footer-logo" src="img/logo-wide.svg" alt="Lockdown Systems homepage" />
-        </a>
-    </footer>
+    <div id="last-updated">last updated {formatted_date}</div>
+    <a id="logo-link" href="https://lockdown.systems/" target="_blank" rel="noopener">
+        <img id="footer-logo" src="img/logo-wide.svg" alt="Lockdown Systems" />
+    </a>
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     <script>
     var map = L.map('map').setView([{center_lat}, {center_lon}], 4);
@@ -164,13 +160,13 @@ def render_html(facilities, output_path, metadata=None):
         if (legend.style.display === 'none') {{
             legend.style.display = '';
             btn.textContent = 'Hide Legend';
-            btn.style.bottom = '90px';
+            btn.style.bottom = '100px';
             btn.style.left = 'auto';
-            btn.style.right = '20px'; // Position button to the right of legend
+            btn.style.right = '30px'; // Position button to the right of legend
         }} else {{
             legend.style.display = 'none';
             btn.textContent = 'Show Legend';
-            btn.style.bottom = '90px';
+            btn.style.bottom = '30px';
             btn.style.left = '20px';
             btn.style.right = 'auto'; // Return to original left position
         }}
