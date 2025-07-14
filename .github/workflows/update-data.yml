@@ -3,7 +3,7 @@ name: Update ICEWatch Data
 on:
   workflow_dispatch:
   schedule:
-    - cron: '0 12 * * *'  # every day at noon UTC
+    - cron: "0 12 * * *" # every day at noon UTC
 
 jobs:
   update-data:
@@ -15,7 +15,7 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
-          python-version: '3.11'
+          python-version: "3.11"
 
       - name: Install dependencies
         run: |
@@ -60,3 +60,4 @@ jobs:
         with:
           commit_message: "Automated update: refresh ICEWatch data and site"
           file_pattern: docs/index.html data/*.json data/*.xlsx data/geocode_cache.json
+
