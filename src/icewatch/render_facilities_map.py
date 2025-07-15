@@ -3,20 +3,24 @@
 Render a static HTML map of facilities using Leaflet.js.
 Popups show name, address, rounded criminal/non-criminal counts, and ICE Threat Level.
 """
-import json
-import argparse
-from datetime import datetime
-from pathlib import Path
-from math import isnan
 
-def load_facilities(path):
-    with open(path, 'r', encoding='utf-8') as f:
+import argparse
+import json
+from datetime import datetime
+from math import isnan
+from pathlib import Path
+from typing import Any
+
+
+def load_facilities(path: Path | str) -> tuple[list, dict]:
+    with open(path, "r", encoding="utf-8") as f:
         data = json.load(f)
-    facilities = data.get('facilities', [])
-    metadata = data.get('metadata', {})
+    facilities = data.get("facilities", [])
+    metadata = data.get("metadata", {})
     return facilities, metadata
 
-def safe_int(val):
+
+def safe_int(val: Any) -> int:
     try:
         if val is None or (isinstance(val, float) and isnan(val)):
             return 0
@@ -24,25 +28,28 @@ def safe_int(val):
     except Exception:
         return 0
 
-def make_popup(fac):
-    name = fac.get('Name', 'Unknown')
-    addr = fac.get('Address', '')
-    city = fac.get('City', '')
-    state = fac.get('State', '')
-    zipc = fac.get('Zip', '')
-    criminals = safe_int(fac.get('Male Crim')) + safe_int(fac.get('Female Crim'))
-    noncriminals = safe_int(fac.get('Male Non-Crim')) + safe_int(fac.get('Female Non-Crim'))
+
+def make_popup(fac: dict):
+    name = fac.get("Name", "Unknown")
+    addr = fac.get("Address", "")
+    city = fac.get("City", "")
+    state = fac.get("State", "")
+    zipc = fac.get("Zip", "")
+    criminals = safe_int(fac.get("Male Crim")) + safe_int(fac.get("Female Crim"))
+    noncriminals = safe_int(fac.get("Male Non-Crim")) + safe_int(
+        fac.get("Female Non-Crim")
+    )
     total = criminals + noncriminals
     if total > 0:
         pct_criminal = f"{round(100 * criminals / total)}%"
     else:
         pct_criminal = "N/A"
     lines = [
-        f'<b>{name}</b>',
-        f'{addr}, {city}, {state} {zipc}',
-        f'Criminals: <b>{criminals}</b>',
-        f'Non-Criminals: <b>{noncriminals}</b>',
-        f'Percentage Criminal: <b>{pct_criminal}</b>'
+        f"<b>{name}</b>",
+        f"{addr}, {city}, {state} {zipc}",
+        f"Criminals: <b>{criminals}</b>",
+        f"Non-Criminals: <b>{noncriminals}</b>",
+        f"Percentage Criminal: <b>{pct_criminal}</b>",
     ]
     # Add ICE Threat Level breakdown if present
     threat_levels = [
@@ -53,35 +60,45 @@ def make_popup(fac):
     ]
     if any(val is not None for _, val in threat_levels):
         lines.append('<hr style="margin:0.3em 0;">')
-        lines.append('<b>ICE Threat Level Breakdown</b>')
+        lines.append("<b>ICE Threat Level Breakdown</b>")
         for label, val in threat_levels:
             if val is not None:
-                lines.append(f'{label}: <b>{safe_int(val)}</b>')
-    return '<br/>'.join(lines)
+                lines.append(f"{label}: <b>{safe_int(val)}</b>")
+    return "<br/>".join(lines)
 
-def get_marker_style(total):
+
+def get_marker_style(total: int) -> tuple[str, int]:
     # Define thresholds for color and size (smaller, semi-transparent)
     if total < 50:
-        color = 'rgba(76,175,80,0.7)'  # green
+        color = "rgba(76,175,80,0.7)"  # green
         size = 12
     elif total < 200:
-        color = 'rgba(255,235,59,0.7)'  # yellow
+        color = "rgba(255,235,59,0.7)"  # yellow
         size = 18
     elif total < 500:
-        color = 'rgba(255,152,0,0.7)'  # orange
+        color = "rgba(255,152,0,0.7)"  # orange
         size = 24
     else:
-        color = 'rgba(244,67,54,0.7)'  # red
+        color = "rgba(244,67,54,0.7)"  # red
         size = 30
     return color, size
 
-def render_html(facilities, output_path, metadata=None):
+
+def render_html(
+    facilities: list,
+    output_path: Path | str,
+    metadata: dict | None = None,
+):
     # Calculate totals
     total_criminals = 0
     total_noncriminals = 0
     for fac in facilities:
-        total_criminals += safe_int(fac.get('Male Crim')) + safe_int(fac.get('Female Crim'))
-        total_noncriminals += safe_int(fac.get('Male Non-Crim')) + safe_int(fac.get('Female Non-Crim'))
+        total_criminals += safe_int(fac.get("Male Crim")) + safe_int(
+            fac.get("Female Crim")
+        )
+        total_noncriminals += safe_int(fac.get("Male Non-Crim")) + safe_int(
+            fac.get("Female Non-Crim")
+        )
     total_people = total_criminals + total_noncriminals
     if total_people > 0:
         pct_noncriminal = f"{round(100 * total_noncriminals / total_people)}%"
@@ -91,7 +108,7 @@ def render_html(facilities, output_path, metadata=None):
     # Get dates from metadata
     extraction_date = None
     if metadata:
-        extraction_date = metadata.get('extraction_date')
+        extraction_date = metadata.get("extraction_date")
 
     # Center on US
     center_lat, center_lon = 39.8283, -98.5795
@@ -102,12 +119,14 @@ def render_html(facilities, output_path, metadata=None):
     if extraction_date:
         # Format extraction date nicely (remove time if present)
         try:
-            parsed_date = datetime.fromisoformat(extraction_date.replace('Z', '+00:00'))
-            formatted_date = parsed_date.strftime('%Y-%m-%d')
+            parsed_date = datetime.fromisoformat(extraction_date.replace("Z", "+00:00"))
+            formatted_date = parsed_date.strftime("%Y-%m-%d")
         except ValueError:
-            formatted_date = extraction_date.split('T')[0]  # Fallback to just the date part
+            formatted_date = extraction_date.split("T")[
+                0
+            ]  # Fallback to just the date part
 
-    html = f'''<!DOCTYPE html>
+    html = f"""<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -186,14 +205,16 @@ def render_html(facilities, output_path, metadata=None):
             document.getElementById('legend-box').style.display = '';
         }}
     }});
-    '''
+    """
     for fac in facilities:
-        lat = fac.get('latitude')
-        lon = fac.get('longitude')
+        lat = fac.get("latitude")
+        lon = fac.get("longitude")
         if lat is None or lon is None:
             continue
-        criminals = safe_int(fac.get('Male Crim')) + safe_int(fac.get('Female Crim'))
-        noncriminals = safe_int(fac.get('Male Non-Crim')) + safe_int(fac.get('Female Non-Crim'))
+        criminals = safe_int(fac.get("Male Crim")) + safe_int(fac.get("Female Crim"))
+        noncriminals = safe_int(fac.get("Male Non-Crim")) + safe_int(
+            fac.get("Female Non-Crim")
+        )
         total = criminals + noncriminals
         color, size = get_marker_style(total)
         popup = make_popup(fac).replace("'", "&#39;").replace("\n", " ")
@@ -211,24 +232,30 @@ def render_html(facilities, output_path, metadata=None):
 </body>
 </html>
 """
-    with open(output_path, 'w', encoding='utf-8') as f:
+    with open(output_path, "w", encoding="utf-8") as f:
         f.write(html)
     print(f"Map written to: {output_path}")
 
+
 def main():
-    parser = argparse.ArgumentParser(description="Render a static HTML map of facilities.")
-    parser.add_argument('--input', required=True, help='Input geocoded facilities JSON file')
-    parser.add_argument('--output', help='Output HTML file (default: docs/index.html)')
+    parser = argparse.ArgumentParser(
+        description="Render a static HTML map of facilities."
+    )
+    parser.add_argument(
+        "--input", required=True, help="Input geocoded facilities JSON file"
+    )
+    parser.add_argument("--output", help="Output HTML file (default: docs/index.html)")
     args = parser.parse_args()
     input_path = Path(args.input)
     if args.output:
         output_path = args.output
     else:
-        output_path = Path('docs/index.html')
+        output_path = Path("docs/index.html")
     # Ensure the output directory exists
     Path(output_path).parent.mkdir(parents=True, exist_ok=True)
     facilities, metadata = load_facilities(input_path)
     render_html(facilities, output_path, metadata)
+
 
 if __name__ == "__main__":
     main()
