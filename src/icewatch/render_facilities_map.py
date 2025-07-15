@@ -9,10 +9,38 @@ import json
 from datetime import datetime
 from math import isnan
 from pathlib import Path
-from typing import Any
+from typing import Any, TypedDict
 
 
-def load_facilities(path: Path | str) -> tuple[list, dict]:
+class Metadata(TypedDict):
+    source_file: str
+    extraction_date: str
+    total_facilities: int
+
+
+Facility = TypedDict(
+    "Facility",
+    {
+        "Name": str,
+        "Address": str,
+        "City": str,
+        "Zip": int,
+        "State": str,
+        "Male Crim": float,
+        "Male Non-Crim": float,
+        "Female Crim": float,
+        "Female Non-Crim": float,
+        "ICE Threat Level 1": float,
+        "ICE Threat Level 2": float,
+        "ICE Threat Level 3": float,
+        "No ICE Threat Level": float,
+        "latitude": float,
+        "longitude": float,
+    },
+)
+
+
+def load_facilities(path: Path | str) -> tuple[list[Facility], Metadata]:
     with open(path, "r", encoding="utf-8") as f:
         data = json.load(f)
     facilities = data.get("facilities", [])
@@ -29,7 +57,7 @@ def safe_int(val: Any) -> int:
         return 0
 
 
-def make_popup(fac: dict):
+def make_popup(fac: Facility):
     name = fac.get("Name", "Unknown")
     addr = fac.get("Address", "")
     city = fac.get("City", "")
@@ -85,9 +113,9 @@ def get_marker_style(total: int) -> tuple[str, int]:
 
 
 def render_html(
-    facilities: list,
+    facilities: list[Facility],
     output_path: Path | str,
-    metadata: dict | None = None,
+    metadata: Metadata | None = None,
 ):
     # Calculate totals
     total_criminals = 0
