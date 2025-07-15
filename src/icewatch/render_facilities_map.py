@@ -113,7 +113,7 @@ def render_html(
     # Center on US
     center_lat, center_lon = 39.8283, -98.5795
 
-    # Build the header stats with last updated date
+    # Build the header stats with last checked date
     header_stats = f'<div class="stat-item"><strong>{total_people:,}</strong> people in ICE detention</div>'
     header_stats += f'<div class="stat-item"><strong>{pct_noncriminal}</strong> without criminal records</div>'
     if extraction_date:
@@ -160,7 +160,7 @@ def render_html(
             <div class="legend-row"><span class="legend-icon" style="background:rgba(244,67,54,0.7);width:30px;height:30px;border-radius:50%;border:2px solid #222;"></span><span class="legend-label">500+ people</span></div>
         </div>
     </main>
-    <div id="last-updated">last updated {formatted_date}</div>
+    <div id="last-updated">last checked {formatted_date}</div>
     <a id="logo-link" href="https://lockdown.systems/" target="_blank" rel="noopener">
         <img id="footer-logo" src="img/logo-wide.svg" alt="Lockdown Systems" />
     </a>
