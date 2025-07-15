@@ -15,6 +15,7 @@ from typing import Any, TypedDict
 class Metadata(TypedDict):
     source_file: str
     extraction_date: str
+    last_checked_date: str
     total_facilities: int
 
 
@@ -135,8 +136,10 @@ def render_html(
 
     # Get dates from metadata
     extraction_date = None
+    last_checked_date = None
     if metadata:
         extraction_date = metadata.get("extraction_date")
+        last_checked_date = metadata.get("last_checked")
 
     # Center on US
     center_lat, center_lon = 39.8283, -98.5795
@@ -144,7 +147,9 @@ def render_html(
     # Build the header stats with last checked date
     header_stats = f'<div class="stat-item"><strong>{total_people:,}</strong> people in ICE detention</div>'
     header_stats += f'<div class="stat-item"><strong>{pct_noncriminal}</strong> without criminal records</div>'
-    if extraction_date:
+    if last_checked_date:
+        formatted_date = last_checked_date
+    elif extraction_date:
         # Format extraction date nicely (remove time if present)
         try:
             parsed_date = datetime.fromisoformat(extraction_date.replace("Z", "+00:00"))
