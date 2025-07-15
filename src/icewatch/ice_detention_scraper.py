@@ -360,7 +360,7 @@ def extract_facilities_data(filepath, source_date=None):
         metadata = {
             "source_file": filepath,
             "extraction_date": datetime.now().isoformat(),
-            "last_checked": source_date,
+            "last_checked_date": source_date,
             "total_facilities": len(facilities_data),
         }
 
