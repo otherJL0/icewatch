@@ -4,14 +4,15 @@ Render a static HTML map of facilities using Leaflet.js.
 Popups show name, address, rounded criminal/non-criminal counts, and ICE Threat Level.
 """
 
-import json
 import argparse
+import json
 from datetime import datetime
-from pathlib import Path
 from math import isnan
+from pathlib import Path
+from typing import Any
 
 
-def load_facilities(path):
+def load_facilities(path: Path | str) -> tuple[list, dict]:
     with open(path, "r", encoding="utf-8") as f:
         data = json.load(f)
     facilities = data.get("facilities", [])
@@ -19,7 +20,7 @@ def load_facilities(path):
     return facilities, metadata
 
 
-def safe_int(val):
+def safe_int(val: Any) -> int:
     try:
         if val is None or (isinstance(val, float) and isnan(val)):
             return 0
@@ -28,7 +29,7 @@ def safe_int(val):
         return 0
 
 
-def make_popup(fac):
+def make_popup(fac: dict):
     name = fac.get("Name", "Unknown")
     addr = fac.get("Address", "")
     city = fac.get("City", "")
@@ -66,7 +67,7 @@ def make_popup(fac):
     return "<br/>".join(lines)
 
 
-def get_marker_style(total):
+def get_marker_style(total: int) -> tuple[str, int]:
     # Define thresholds for color and size (smaller, semi-transparent)
     if total < 50:
         color = "rgba(76,175,80,0.7)"  # green
@@ -83,7 +84,11 @@ def get_marker_style(total):
     return color, size
 
 
-def render_html(facilities, output_path, metadata=None):
+def render_html(
+    facilities: list,
+    output_path: Path | str,
+    metadata: dict | None = None,
+):
     # Calculate totals
     total_criminals = 0
     total_noncriminals = 0

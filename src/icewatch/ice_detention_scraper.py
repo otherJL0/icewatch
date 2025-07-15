@@ -10,15 +10,17 @@ Author: Your Name
 Date: 2024
 """
 
-import requests
+import logging
 import os
-import sys
 import re
+import sys
 from datetime import datetime
 from pathlib import Path
-import logging
+from typing import TypedDict
 from urllib.parse import urljoin, urlparse
-from bs4 import BeautifulSoup
+
+import requests
+from bs4 import BeautifulSoup, Tag
 
 # Configure logging
 logging.basicConfig(
@@ -82,8 +84,8 @@ def extract_date_from_filename(url: str) -> str | None:
 
 
 def find_detention_stats_link(
-    base_url="https://www.ice.gov/detain/detention-management",
-):
+    base_url: str = "https://www.ice.gov/detain/detention-management",
+) -> str | None:
     """
     Scrape the ICE detention management page to find the latest statistics download link.
 
@@ -126,11 +128,17 @@ def find_detention_stats_link(
             "FY2025",
         ]
 
-        found_links = []
+        class RelevantLink(TypedDict):
+            url: str
+            text: str
+            relevance_score: int
+
+        found_links: list[RelevantLink] = []
 
         # Search for all links on the page
         for link in soup.find_all("a", href=True):
-            href = link.get("href", "").lower()
+            assert isinstance(link, Tag)  # this pleases mypy
+            href = str(link.get("href", "")).lower()
             text = link.get_text().lower()
 
             # Check if link text or href contains relevant keywords
@@ -140,7 +148,7 @@ def find_detention_stats_link(
             )
 
             if is_relevant:
-                full_url = urljoin(base_url, link["href"])
+                full_url = urljoin(base_url, str(link["href"]))
                 link_text = link.get_text().strip()
                 found_links.append(
                     {
@@ -179,7 +187,11 @@ def find_detention_stats_link(
         return None
 
 
-def download_ice_detention_stats(url=None, output_dir="data", auto_find_link=True):
+def download_ice_detention_stats(
+    url: str | None = None,
+    output_dir: str = "data",
+    auto_find_link: bool = True,
+) -> tuple[str | None, str | None]:
     """
     Download ICE detention statistics Excel file.
 

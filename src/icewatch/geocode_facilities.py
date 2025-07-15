@@ -3,12 +3,13 @@
 Geocode facilities from a JSON file using OpenStreetMap Nominatim, with caching.
 """
 
-import os
-import json
-import time
 import argparse
-from pathlib import Path
+import json
+import os
+import time
 from datetime import datetime
+from pathlib import Path
+
 import requests
 
 CACHE_FILENAME = "geocode_cache.json"
@@ -16,29 +17,29 @@ NOMINATIM_URL = "https://nominatim.openstreetmap.org/search"
 USER_AGENT = "icewatch/1.0 (collective@lockdown.systems)"
 
 
-def load_json(path):
+def load_json(path: Path | str) -> dict:
     with open(path, "r", encoding="utf-8") as f:
         return json.load(f)
 
 
-def save_json(data, path):
+def save_json(data: dict, path: Path | str) -> None:
     with open(path, "w", encoding="utf-8") as f:
         json.dump(data, f, indent=2, ensure_ascii=False)
 
 
-def load_cache(cache_path):
+def load_cache(cache_path: Path | str) -> dict:
     if os.path.exists(cache_path):
         with open(cache_path, "r", encoding="utf-8") as f:
             return json.load(f)
     return {}
 
 
-def save_cache(cache, cache_path):
+def save_cache(cache: dict, cache_path: Path | str) -> None:
     with open(cache_path, "w", encoding="utf-8") as f:
         json.dump(cache, f, indent=2, ensure_ascii=False)
 
 
-def build_address(facility):
+def build_address(facility: dict) -> str:
     parts = [
         facility.get("Address", ""),
         facility.get("City", ""),
@@ -48,11 +49,13 @@ def build_address(facility):
     return ", ".join([str(p).strip() for p in parts if p and str(p).strip()])
 
 
-def geocode_address(address, session=None):
+def geocode_address(
+    address: str, session: requests.Session | None = None
+) -> dict | None:
     params = {
         "q": address,
         "format": "json",
-        "limit": 1,
+        "limit": "1",  # set as string to match request param type
     }
     headers = {"User-Agent": USER_AGENT}
     s = session or requests.Session()
