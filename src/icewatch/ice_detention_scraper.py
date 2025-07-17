@@ -359,8 +359,8 @@ def extract_facilities_data(filepath, source_date=None):
 
         metadata = {
             "source_file": filepath,
-            "extraction_date": datetime.now().isoformat(),
-            "last_checked_date": source_date,
+            "extraction_date": source_date,
+            "last_checked_date": datetime.now().isoformat(),
             "total_facilities": len(facilities_data),
         }
 

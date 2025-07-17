@@ -149,13 +149,15 @@ def render_html(
     # Build the header stats with last checked date
     header_stats = f'<div class="stat-item"><strong>{total_people:,}</strong> people in ICE detention</div>'
     header_stats += f'<div class="stat-item"><strong>{pct_noncriminal}</strong> without criminal records</div>'
-    if extraction_date:
+    if last_checked_date:
         # Format extraction date nicely (remove time if present)
         try:
-            parsed_date = datetime.fromisoformat(extraction_date.replace("Z", "+00:00"))
+            parsed_date = datetime.fromisoformat(
+                last_checked_date.replace("Z", "+00:00")
+            )
             formatted_date = parsed_date.strftime("%Y-%m-%d")
         except ValueError:
-            formatted_date = extraction_date.split("T")[
+            formatted_date = last_checked_date.split("T")[
                 0
             ]  # Fallback to just the date part
 
@@ -193,7 +195,7 @@ def render_html(
             <div class="legend-row"><span class="legend-icon" style="background:rgba(244,67,54,0.7);width:30px;height:30px;border-radius:50%;border:2px solid #222;"></span><span class="legend-label">500+ people</span></div>
         </div>
     </main>
-    <div id="last-updated">last checked: {last_checked_date} | last updated: {formatted_date}</div>
+    <div id="last-updated">last checked: {formatted_date} | last updated: {extraction_date}</div>
     <a id="logo-link" href="https://lockdown.systems/" target="_blank" rel="noopener">
         <img id="footer-logo" src="img/logo-wide.svg" alt="Lockdown Systems" />
     </a>
