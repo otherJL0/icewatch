@@ -6,6 +6,8 @@ Popups show name, address, rounded criminal/non-criminal counts, and ICE Threat 
 
 import argparse
 import json
+import os
+import webbrowser
 from datetime import datetime
 from math import isnan
 from pathlib import Path
@@ -288,6 +290,11 @@ def main():
     Path(output_path).parent.mkdir(parents=True, exist_ok=True)
     facilities, metadata = load_facilities(input_path)
     render_html(facilities, output_path, metadata)
+    if not os.getenv("GITHUB_ACTIONS"):
+        try:
+            webbrowser.open(str(output_path))
+        except Exception as e:
+            print(f"Unable to open map: {e}")
 
 
 if __name__ == "__main__":
