@@ -56,8 +56,10 @@ jobs:
           icewatch render --input "${{ steps.geocode.outputs.geojson_file }}"
 
       - name: Create Pull Request
+        id: cpr
         uses: peter-evans/create-pull-request@v7
         with:
+          token: $ {{ secrets.ICEWATCH_PAT }}
           commit-message: "Automated update: refresh ICEWatch data and site"
           title: "Automated update: refresh ICEWatch data and site"
           body: |
@@ -67,4 +69,8 @@ jobs:
           branch: automated-update
           branch-suffix: timestamp
           delete-branch: true
-          sign-commits: true
+
+      - name: Enable PR Automerge
+        run: gh pr merge --merge --auto "${{ steps.cpr.outputs.pull-request-number }}"
+        env:
+          GH_TOKEN: ${{ secrets.ICEWATCH_PAT }}
