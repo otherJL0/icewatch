@@ -141,7 +141,7 @@ def render_html(
     last_checked_date = None
     if metadata:
         extraction_date = metadata.get("extraction_date")
-        last_checked_date = metadata.get("last_checked")
+        last_checked_date = metadata.get("last_checked_date")
 
     # Center on US
     center_lat, center_lon = 39.8283, -98.5795
