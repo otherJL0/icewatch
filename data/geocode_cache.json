@@ -735,5 +735,9 @@
   "145 FT COLLIER RD, WINCHESTER, VA, 22603": {
     "lat": 39.1903758,
     "lon": -78.1410542
+  },
+  "100 29TH STREET, BROOKLYN, NY, 11232": {
+    "lat": 40.6597866,
+    "lon": -74.0029582
   }
 }
