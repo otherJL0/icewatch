@@ -347,6 +347,9 @@ def extract_facilities_data(filepath, source_date=None):
         # Remove rows where all values are NaN
         df = df.dropna(how="all")
 
+        # Ensure zip codes are of length 5
+        df["Zip"] = df["Zip"].str.zfill(5)
+
         # Convert to list of dictionaries
         facilities_data = []
         for index, row in df.iterrows():
