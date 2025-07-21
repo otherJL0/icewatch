@@ -310,27 +310,35 @@ def extract_facilities_data(filepath, source_date=None):
     try:
         import pandas as pd
 
-        # Read the "Facilities FY25" sheet, starting from row 7 (index 6)
-        df = pd.read_excel(filepath, sheet_name="Facilities FY25", header=6)
         # Expected column names
-        expected_columns = [
-            "Name",
-            "Address",
-            "City",
-            "State",
-            "Zip",
-            "Male Crim",
-            "Male Non-Crim",
-            "Female Crim",
-            "Female Non-Crim",
-            "ICE Threat Level 1",
-            "ICE Threat Level 2",
-            "ICE Threat Level 3",
-            "No ICE Threat Level",
-        ]
+        expected_columns: dict[str, type] = {
+            "Name": str,
+            "Address": str,
+            "City": str,
+            "State": str,
+            "Zip": str,
+            "Male Crim": float,
+            "Male Non-Crim": float,
+            "Female Crim": float,
+            "Female Non-Crim": float,
+            "ICE Threat Level 1": float,
+            "ICE Threat Level 2": float,
+            "ICE Threat Level 3": float,
+            "No ICE Threat Level": float,
+        }
+
+        # Read the "Facilities FY25" sheet, starting from row 7 (index 6)
+        df = pd.read_excel(
+            filepath,
+            sheet_name="Facilities FY25",
+            header=6,
+            dtype=expected_columns,
+        )
 
         # Check if we have the expected columns
-        missing_columns = [col for col in expected_columns if col not in df.columns]
+        missing_columns = [
+            col for col in expected_columns.keys() if col not in df.columns
+        ]
         if missing_columns:
             logger.warning(f"Missing expected columns: {missing_columns}")
             logger.info(f"Available columns: {list(df.columns)}")
@@ -343,7 +351,7 @@ def extract_facilities_data(filepath, source_date=None):
         facilities_data = []
         for index, row in df.iterrows():
             facility = {}
-            for col in expected_columns:
+            for col in expected_columns.keys():
                 if col in df.columns:
                     value = row[col]
                     # Convert NaN to None for JSON serialization
