@@ -515,7 +515,11 @@ Examples:
             logger.error(f"File not found: {args.extract_from_file}")
             sys.exit(1)
 
-        if facilities_data := extract_facilities_data(args.extract_from_file):
+        # Extract date from the filename
+        source_date = extract_date_from_filename(args.extract_from_file)
+        if facilities_data := extract_facilities_data(
+            args.extract_from_file, source_date
+        ):
             if json_filepath := save_facilities_json(facilities_data, args.output_dir):
                 logger.info("JSON extraction completed successfully!")
                 print(json_filepath)
