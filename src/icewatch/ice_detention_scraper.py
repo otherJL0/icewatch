@@ -296,7 +296,9 @@ def download_ice_detention_stats(
         return None, None
 
 
-def extract_facilities_data(filepath, source_date=None):
+def extract_facilities_data(
+    filepath: str, source_date: str | None = None
+) -> dict | None:
     """
     Extract facilities data from the "Facilities FY25" tab and convert to JSON.
 
@@ -353,11 +355,10 @@ def extract_facilities_data(filepath, source_date=None):
         # Convert to list of dictionaries
         facilities_data = []
         for index, row in df.iterrows():
-            facility = {}
+            facility: dict[str, str | float | None] = {}
             for col in expected_columns.keys():
                 if col in df.columns:
                     value = row[col]
-                    # Convert NaN to None for JSON serialization
                     if pd.isna(value):
                         facility[col] = None
                     else:
@@ -385,7 +386,7 @@ def extract_facilities_data(filepath, source_date=None):
         return None
 
 
-def save_facilities_json(data, output_dir="data"):
+def save_facilities_json(data: dict, output_dir: str = "data") -> str | None:
     """
     Save facilities data to a JSON file.
 
@@ -419,7 +420,7 @@ def save_facilities_json(data, output_dir="data"):
         return None
 
 
-def verify_download(filepath):
+def verify_download(filepath: str) -> bool:
     """
     Verify that the downloaded file is a valid Excel file.
 
