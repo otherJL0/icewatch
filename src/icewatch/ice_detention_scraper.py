@@ -296,7 +296,9 @@ def download_ice_detention_stats(
         return None, None
 
 
-def extract_facilities_data(filepath, source_date=None):
+def extract_facilities_data(
+    filepath: str, source_date: str | None = None
+) -> dict | None:
     """
     Extract facilities data from the "Facilities FY25" tab and convert to JSON.
 
@@ -353,11 +355,10 @@ def extract_facilities_data(filepath, source_date=None):
         # Convert to list of dictionaries
         facilities_data = []
         for index, row in df.iterrows():
-            facility = {}
+            facility: dict[str, str | float | None] = {}
             for col in expected_columns.keys():
                 if col in df.columns:
                     value = row[col]
-                    # Convert NaN to None for JSON serialization
                     if pd.isna(value):
                         facility[col] = None
                     else:
@@ -385,7 +386,7 @@ def extract_facilities_data(filepath, source_date=None):
         return None
 
 
-def save_facilities_json(data, output_dir="data"):
+def save_facilities_json(data: dict, output_dir: str = "data") -> str | None:
     """
     Save facilities data to a JSON file.
 
@@ -419,7 +420,7 @@ def save_facilities_json(data, output_dir="data"):
         return None
 
 
-def verify_download(filepath):
+def verify_download(filepath: str) -> bool:
     """
     Verify that the downloaded file is a valid Excel file.
 
@@ -520,9 +521,9 @@ Examples:
         if facilities_data := extract_facilities_data(
             args.extract_from_file, source_date
         ):
-            json_filepath = save_facilities_json(facilities_data, args.output_dir)
-            if json_filepath:
+            if json_filepath := save_facilities_json(facilities_data, args.output_dir):
                 logger.info("JSON extraction completed successfully!")
+                print(json_filepath)
                 return
             else:
                 logger.error("Failed to save JSON file!")
@@ -532,40 +533,39 @@ Examples:
             sys.exit(1)
 
     # Download the file
-    result = download_ice_detention_stats(
+    filepath, source_date = download_ice_detention_stats(
         url=args.url, output_dir=args.output_dir, auto_find_link=not args.no_auto_find
     )
 
-    if result[0]:  # filepath is not None
-        filepath, source_date = result
-        logger.info("Download completed successfully!")
-
-        # Verify the file if requested
-        if args.verify:
-            logger.info("Verifying downloaded file...")
-            if verify_download(filepath):
-                logger.info("File verification successful!")
-            else:
-                logger.error("File verification failed!")
-                sys.exit(1)
-
-        # Extract JSON if requested
-        if args.extract_json:
-            logger.info("Extracting facilities data to JSON...")
-            facilities_data = extract_facilities_data(filepath, source_date)
-            if facilities_data:
-                json_filepath = save_facilities_json(facilities_data, args.output_dir)
-                if json_filepath:
-                    logger.info("JSON extraction completed successfully!")
-                else:
-                    logger.error("Failed to save JSON file!")
-                    sys.exit(1)
-            else:
-                logger.error("Failed to extract facilities data!")
-                sys.exit(1)
-    else:
+    if filepath is None:
         logger.error("Download failed!")
         sys.exit(1)
+    logger.info("Download completed successfully!")
+
+    # Verify the file if requested
+    if args.verify:
+        logger.info("Verifying downloaded file...")
+        if verify_download(filepath):
+            logger.info("File verification successful!")
+        else:
+            logger.error("File verification failed!")
+            sys.exit(1)
+
+    # Extract JSON if requested
+    if args.extract_json:
+        logger.info("Extracting facilities data to JSON...")
+        if facilities_data := extract_facilities_data(filepath, source_date):
+            if json_filepath := save_facilities_json(facilities_data, args.output_dir):
+                logger.info("JSON extraction completed successfully!")
+                print(json_filepath)
+            else:
+                logger.error("Failed to save JSON file!")
+                sys.exit(1)
+        else:
+            logger.error("Failed to extract facilities data!")
+            sys.exit(1)
+    else:
+        print(filepath)
 
 
 if __name__ == "__main__":
