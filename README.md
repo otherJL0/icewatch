@@ -115,7 +115,7 @@ icewatch render --input data/facilities_geocoded_YYYYMMDD.json
 - By default, this will create `docs/index.html` (and the `docs` directory if it doesn't exist).
 - You can specify a custom output path with `--output` if desired.
 
-## Local Development
+## Development
 
 ### Install `uv`
 
@@ -125,7 +125,7 @@ icewatch render --input data/facilities_geocoded_YYYYMMDD.json
 curl -LsSf https://astral.sh/uv/install.sh | sh
 ```
 
-You can verify your installation by running:
+Verify your installation by running:
 
 ```bash
 uv --version
@@ -140,7 +140,7 @@ git clone https://github.com/lockdown-systems/icewatch.git
 cd icewatch
 ```
 
-Alternatively, if you have the [gh](https://github.com/cli/cli) command line tool installed, clone the repo with the following command:
+If you have the [gh](https://github.com/cli/cli) command line tool installed, clone the repo with the following command:
 
 ```bash
 gh repo clone lockdown-systems/icewatch
@@ -149,7 +149,7 @@ cd icewatch
 
 ### Setup virtual environment
 
-In your cloned repository, you can set up your Python virtual environment with all development dependencies with the following command:
+In your cloned repository,set up your Python virtual environment with all development dependencies:
 
 ```bash
 # Create project virtual environment with all dependencies
@@ -159,7 +159,7 @@ uv sync --dev
 source .venv/bin/activate
 ```
 
-To verify that your environment was set up correctly, try to run `icewatch` with `uv`:
+Verify that your environment was set up correctly by running `icewatch` with `uv`:
 
 ```bash
 uv run icewatch --help
@@ -167,9 +167,9 @@ uv run icewatch --help
 
 ### Setup pre-commit git hooks (Optional)
 
-This step is optional and runs the same checks on your local code that run on every PR.
+This step is optional and runs the same checks on your local codebase that run on every PR.
 
-Install [pre-commit](https://github.com/pre-commit/pre-commit). The following command uses `uv` to install `pre-commit` globally:
+Install [pre-commit](https://github.com/pre-commit/pre-commit):
 
 ```bash
 # Install pre-commit globally using pre-commit
