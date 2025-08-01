@@ -427,7 +427,6 @@
     "lat": 25.778835871616227,
     "lon": -80.19334441968891
   },
-  "UNAVAILABLE, MIAMI, FL, 33101": null,
   "2300 EAST STREET, TEXARKANA, AR, 71854": {
     "lat": 33.401201,
     "lon": -94.0225542
@@ -771,5 +770,21 @@
   "950 HIGH STREET, CENTRAL FALLS, RI, 02863": {
     "lat": 41.8928106,
     "lon": -71.3831998
+  },
+  "897 FRONT STREET, BINGHAMTON, NY, 13905": {
+    "lat": 42.1155155,
+    "lon": -75.9082511
+  },
+  "3000 DECKER CRANE LANE, COVINGTON, KY, 41017": {
+    "lat": 39.002731,
+    "lon": -84.531531
+  },
+  "695 JUSTICE WAY, INDIANAPOLIS, IN, 46203": {
+    "lat": 39.7550409,
+    "lon": -86.1144189
+  },
+  "750 SOUTH 5300 WEST, HURRICANE, UT, 84737": {
+    "lat": 37.159618,
+    "lon": -113.4122002
   }
 }
