@@ -59,7 +59,7 @@ jobs:
         id: cpr
         uses: peter-evans/create-pull-request@v7
         with:
-          token: $ {{ secrets.ICEWATCH_PAT }}
+          token: ${{ secrets.ICEWATCH_PAT }}
           commit-message: "Automated update: refresh ICEWatch data and site"
           title: "Automated update: refresh ICEWatch data and site"
           body: |
