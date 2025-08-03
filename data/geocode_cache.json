@@ -427,7 +427,6 @@
     "lat": 25.778835871616227,
     "lon": -80.19334441968891
   },
-  "UNAVAILABLE, MIAMI, FL, 33101": null,
   "2300 EAST STREET, TEXARKANA, AR, 71854": {
     "lat": 33.401201,
     "lon": -94.0225542
@@ -735,5 +734,57 @@
   "145 FT COLLIER RD, WINCHESTER, VA, 22603": {
     "lat": 39.1903758,
     "lon": -78.1410542
+  },
+  "100 29TH STREET, BROOKLYN, NY, 11232": {
+    "lat": 40.6597866,
+    "lon": -74.0029582
+  },
+  "897 FRONT STREET, BINGHAMTON, NY, 13905": {
+    "lat": 42.1155155,
+    "lon": -75.9082511
+  },
+  "50 COUNTY WAY, PORTLAND, ME, 04102": {
+    "lat": 43.6508623,
+    "lon": -70.2816197
+  },
+  "451 DOREMUS AVENUE, NEWARK, NJ, 07105": {
+    "lat": 40.7187782,
+    "lon": -74.126752
+  },
+  "625 EVANS STREET, ELIZABETH, NJ, 07201": {
+    "lat": 40.6662036,
+    "lon": -74.1896718
+  },
+  "3000 DECKER CRANE LANE, COVINGTON, KY, 41017": {
+    "lat": 39.002731,
+    "lon": -84.531531
+  },
+  "695 JUSTICE WAY, INDIANAPOLIS, IN, 46203": {
+    "lat": 39.7550409,
+    "lon": -86.1144189
+  },
+  "26 LONG POND ROAD, PLYMOUTH, MA, 02360": {
+    "lat": 41.9318079,
+    "lon": -70.6512992
+  },
+  "266 COUNTY FARM ROAD, DOVER, NH, 03820": {
+    "lat": 43.2192302,
+    "lon": -70.9386083
+  },
+  "522 BATH RD, WISCASSET, ME, 04578": {
+    "lat": 43.9781192,
+    "lon": -69.6989264
+  },
+  "7 FARRELL STREET, SOUTH BURLINGTON, VT, 05403": {
+    "lat": 44.4464191,
+    "lon": -73.2054841
+  },
+  "750 SOUTH 5300 WEST, HURRICANE, UT, 84737": {
+    "lat": 37.159618,
+    "lon": -113.4122002
+  },
+  "950 HIGH STREET, CENTRAL FALLS, RI, 02863": {
+    "lat": 41.8928106,
+    "lon": -71.3831998
   }
 }
