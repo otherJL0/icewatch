@@ -119,7 +119,7 @@ icewatch render --input data/facilities_geocoded_YYYYMMDD.json
 
 ### Install `uv`
 
-`icewatch` uses [uv](https://astral.sh/uv/) as its project manager. Please install using the official [installer](https://docs.astral.sh/uv/#installation):
+`icewatch` uses [uv](https://docs.astral.sh/uv/) as its project manager. Please install using the official [installer](https://docs.astral.sh/uv/#installation):
 
 ```bash
 curl -LsSf https://astral.sh/uv/install.sh | sh
