@@ -1,4 +1,5 @@
 import requests
+from icewatch.geocode.types import Coordinates
 
 NOMINATIM_URL = "https://nominatim.openstreetmap.org/search"
 USER_AGENT = "icewatch/1.0 (collective@lockdown.systems)"
@@ -6,7 +7,7 @@ USER_AGENT = "icewatch/1.0 (collective@lockdown.systems)"
 
 def geocode_address(
     address: str, session: requests.Session | None = None
-) -> dict | None:
+) -> Coordinates | None:
     params = {
         "q": address,
         "format": "json",
