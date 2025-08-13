@@ -55,6 +55,13 @@ jobs:
         run: |
           icewatch render --input "${{ steps.geocode.outputs.geojson_file }}"
 
+      - name: Add all changes
+        run: |
+          git add -A
+          git status
+          echo "Files to be committed:"
+          git diff --cached --name-only
+
       - name: Create Pull Request
         id: cpr
         uses: peter-evans/create-pull-request@v7
