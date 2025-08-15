@@ -30,12 +30,15 @@ jobs:
           # Check if the XLS file is new or changed
           if [ -z "$(git status --porcelain $XLS)" ]; then
             echo "No new XLS file. Exiting workflow."
-            exit 0
+            echo "new_file=false" >> $GITHUB_OUTPUT
+          else
+            echo "xls_file=$XLS" >> $GITHUB_OUTPUT
+            echo "new_file=true" >> $GITHUB_OUTPUT
           fi
-          echo "xls_file=$XLS" >> $GITHUB_OUTPUT
 
       - name: Parse XLS to JSON
         id: parse
+        if: steps.download.new_file == 'true'
         run: |
           icewatch scrape --extract-from-file "${{ steps.download.outputs.xls_file }}"
           JSON=$(ls -t data/ice_facilities_*.json | head -n1)
@@ -43,6 +46,7 @@ jobs:
 
       - name: Geocode facilities
         id: geocode
+        if: steps.download.new_file == 'true'
         run: |
           GEOJSON="data/facilities_geocoded_$(date +%Y%m%d).json"
           icewatch geocode --input "${{ steps.parse.outputs.json_file }}" --output "$GEOJSON" --cache data/geocode_cache.json
@@ -56,6 +60,7 @@ jobs:
           icewatch render --input "${{ steps.geocode.outputs.geojson_file }}"
 
       - name: Add all changes
+        if: steps.download.new_file == 'true'
         run: |
           git add -A
           git status
@@ -64,6 +69,7 @@ jobs:
 
       - name: Create Pull Request
         id: cpr
+        if: steps.download.new_file == 'true'
         uses: peter-evans/create-pull-request@v7
         with:
           token: ${{ secrets.ICEWATCH_PAT }}
@@ -79,5 +85,6 @@ jobs:
 
       - name: Enable PR Automerge
         run: gh pr merge --merge --auto "${{ steps.cpr.outputs.pull-request-number }}"
+        if: steps.download.new_file == 'true'
         env:
           GH_TOKEN: ${{ secrets.ICEWATCH_PAT }}
