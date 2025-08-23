@@ -43,6 +43,17 @@ Facility = TypedDict(
 )
 
 
+def get_latest_file(data_dir: Path) -> Path:
+    ts, file_path = 0, None
+    for facility in data_dir.glob("facilities_geocoded*.json"):
+        created_time = facility.lstat().st_ctime
+        if created_time > ts:
+            file_path = facility
+    if file_path is None:
+        raise RuntimeError("No geocoded facilites found")
+    return file_path
+
+
 def load_facilities(path: Path | str) -> tuple[list[Facility], Metadata]:
     with open(path, "r", encoding="utf-8") as f:
         data = json.load(f)
