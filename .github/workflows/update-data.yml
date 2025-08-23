@@ -53,11 +53,10 @@ jobs:
           if grep -q '\"latitude\": null' "$GEOJSON"; then
             echo "::warning ::Some facilities could not be geocoded. Please update geocode_cache.json."
           fi
-          echo "geojson_file=$GEOJSON" >> $GITHUB_OUTPUT
 
       - name: Render site
         run: |
-          icewatch render --input "${{ steps.geocode.outputs.geojson_file }}"
+          icewatch render --latest
 
       - name: Add all changes
         if: steps.download.new_file == 'true'
