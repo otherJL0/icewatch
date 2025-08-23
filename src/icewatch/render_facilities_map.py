@@ -302,7 +302,13 @@ def main():
     )
     parser.add_argument("--output", help="Output HTML file (default: docs/index.html)")
     args = parser.parse_args()
-    input_path = Path(args.input)
+    if args.latest:
+        data_dir = Path("data")
+        assert data_dir.exists()
+        print(f"{data_dir=}")
+        input_path = get_latest_file(data_dir)
+    else:
+        input_path = Path(args.input)
     if args.output:
         output_path = args.output
     else:
