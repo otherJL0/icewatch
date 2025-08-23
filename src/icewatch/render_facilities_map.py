@@ -289,8 +289,16 @@ def main():
     parser = argparse.ArgumentParser(
         description="Render a static HTML map of facilities."
     )
-    parser.add_argument(
-        "--input", required=True, help="Input geocoded facilities JSON file"
+    group = parser.add_mutually_exclusive_group()
+    group.add_argument(
+        "--input",
+        type=Path,
+        help="Input geocoded facilities JSON file",
+    )
+    group.add_argument(
+        "--latest",
+        action="store_true",
+        help="Latest geocoded facilities JSON file",
     )
     parser.add_argument("--output", help="Output HTML file (default: docs/index.html)")
     args = parser.parse_args()
