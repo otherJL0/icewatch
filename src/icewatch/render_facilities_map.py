@@ -43,6 +43,17 @@ Facility = TypedDict(
 )
 
 
+def get_latest_file(data_dir: Path) -> Path:
+    ts, file_path = 0, None
+    for facility in data_dir.glob("facilities_geocoded*.json"):
+        created_time = facility.lstat().st_ctime
+        if created_time > ts:
+            file_path = facility
+    if file_path is None:
+        raise RuntimeError("No geocoded facilites found")
+    return file_path
+
+
 def load_facilities(path: Path | str) -> tuple[list[Facility], Metadata]:
     with open(path, "r", encoding="utf-8") as f:
         data = json.load(f)
@@ -278,12 +289,26 @@ def main():
     parser = argparse.ArgumentParser(
         description="Render a static HTML map of facilities."
     )
-    parser.add_argument(
-        "--input", required=True, help="Input geocoded facilities JSON file"
+    group = parser.add_mutually_exclusive_group()
+    group.add_argument(
+        "--input",
+        type=Path,
+        help="Input geocoded facilities JSON file",
+    )
+    group.add_argument(
+        "--latest",
+        action="store_true",
+        help="Latest geocoded facilities JSON file",
     )
     parser.add_argument("--output", help="Output HTML file (default: docs/index.html)")
     args = parser.parse_args()
-    input_path = Path(args.input)
+    if args.latest:
+        data_dir = Path("data")
+        assert data_dir.exists()
+        print(f"{data_dir=}")
+        input_path = get_latest_file(data_dir)
+    else:
+        input_path = Path(args.input)
     if args.output:
         output_path = args.output
     else:
