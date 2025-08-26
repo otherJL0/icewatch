@@ -75,7 +75,17 @@ def main():
         default=2,
         help="Delay between API requests (seconds, default: 2)",
     )
+
+    parser.add_argument(
+        "-q",
+        "--quiet",
+        action="store_true",
+    )
+
     args = parser.parse_args()
+
+    if args.quiet:
+        logger.disabled = True
 
     input_path = Path(args.input)
     output_path = args.output or str(
