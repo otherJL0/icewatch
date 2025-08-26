@@ -224,7 +224,7 @@ def download_ice_detention_stats(
     Path(output_dir).mkdir(parents=True, exist_ok=True)
 
     # Extract date from the URL filename
-    source_date = extract_date_from_filename(url)
+    source_date = extract_date_from_filename(url) if url else None
 
     # Use original filename from URL, or generate one with timestamp
     original_filename = os.path.basename(urlparse(url).path)
@@ -546,7 +546,7 @@ Examples:
     # Verify the file if requested
     if args.verify:
         logger.info("Verifying downloaded file...")
-        if verify_download(filepath):
+        if filepath and verify_download(filepath):
             logger.info("File verification successful!")
         else:
             logger.error("File verification failed!")
@@ -555,7 +555,11 @@ Examples:
     # Extract JSON if requested
     if args.extract_json:
         logger.info("Extracting facilities data to JSON...")
-        if facilities_data := extract_facilities_data(filepath, source_date):
+        if (
+            facilities_data := extract_facilities_data(filepath, source_date)
+            if filepath
+            else None
+        ):
             if json_filepath := save_facilities_json(facilities_data, args.output_dir):
                 logger.info("JSON extraction completed successfully!")
                 print(json_filepath)
