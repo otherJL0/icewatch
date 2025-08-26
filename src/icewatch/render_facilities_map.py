@@ -306,7 +306,6 @@ def main():
     if args.latest:
         data_dir = Path("data")
         assert data_dir.exists()
-        print(f"{data_dir=}")
         input_path = get_latest_file(data_dir)
     else:
         input_path = Path(args.input)
