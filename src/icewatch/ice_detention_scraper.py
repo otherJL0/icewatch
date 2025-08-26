@@ -504,7 +504,16 @@ Examples:
         help="Extract facilities data to JSON from an existing Excel file",
     )
 
+    parser.add_argument(
+        "-q",
+        "--quiet",
+        action="store_true",
+    )
+
     args = parser.parse_args()
+
+    if args.quiet:
+        logger.disabled = True
 
     logger.info("ICE Detention Statistics Scraper and Downloader")
     logger.info("=" * 50)
