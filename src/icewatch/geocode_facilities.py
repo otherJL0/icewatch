@@ -46,6 +46,17 @@ def save_cache(cache: dict, cache_path: Path | str) -> None:
         json.dump(cache, f, indent=2, ensure_ascii=False)
 
 
+def get_latest_file(data_dir: Path) -> Path:
+    ts, file_path = 0, None
+    for facility in data_dir.glob("ice_facilities*.json"):
+        created_time = facility.lstat().st_ctime
+        if created_time > ts:
+            file_path = facility
+    if file_path is None:
+        raise RuntimeError("No geocoded facilites found")
+    return file_path
+
+
 def build_address(facility: dict) -> str:
     parts = [
         facility.get("Address", ""),
@@ -60,7 +71,13 @@ def main():
     parser = argparse.ArgumentParser(
         description="Geocode facilities JSON using OpenStreetMap Nominatim with caching."
     )
-    parser.add_argument("--input", required=True, help="Input facilities JSON file")
+    group = parser.add_mutually_exclusive_group()
+    group.add_argument(
+        "--latest",
+        action="store_true",
+        help="Latest facilities JSON file",
+    )
+    group.add_argument("--input", type=Path, help="Input facilities JSON file")
     parser.add_argument(
         "--output",
         help="Output JSON file (default: facilities_geocoded_TIMESTAMP.json in same dir)",
@@ -87,7 +104,17 @@ def main():
     if args.quiet:
         logger.disabled = True
 
-    input_path = Path(args.input)
+    if args.latest:
+        data_dir = Path("data")
+        try:
+            assert data_dir.exists()
+        except AssertionError:
+            logger.warning(
+                "Could not find data directory, please provide --input instead"
+            )
+        input_path = get_latest_file(data_dir)
+    else:
+        input_path = Path(args.input)
     output_path = args.output or str(
         input_path.parent
         / f"facilities_geocoded_{datetime.now().strftime('%Y%m%d_%H%M%S')}.json"
