@@ -220,6 +220,7 @@ def download_ice_detention_stats(
         # Fallback to default URL if auto-find is disabled and no URL provided
         url = "https://www.ice.gov/doclib/detention/FY25_detentionStats06202025.xlsx"
 
+    assert url is not None
     # Create output directory if it doesn't exist
     Path(output_dir).mkdir(parents=True, exist_ok=True)
 
