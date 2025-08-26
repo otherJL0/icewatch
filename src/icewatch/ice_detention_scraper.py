@@ -21,6 +21,7 @@ from urllib.parse import urljoin, urlparse
 
 import requests
 from bs4 import BeautifulSoup, Tag
+from requests.exceptions import RequestException
 
 # Configure logging
 logging.basicConfig(
@@ -179,7 +180,7 @@ def find_detention_stats_link(
 
         return best_match["url"]
 
-    except requests.exceptions.RequestException as e:
+    except RequestException as e:
         logger.error(f"Failed to scrape page: {e}")
         return None
     except Exception as e:
@@ -288,7 +289,7 @@ def download_ice_detention_stats(
 
         return filepath, source_date
 
-    except requests.exceptions.RequestException as e:
+    except RequestException as e:
         logger.error(f"Download failed: {e}")
         return None, None
     except Exception as e:
