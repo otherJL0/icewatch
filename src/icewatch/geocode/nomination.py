@@ -1,4 +1,7 @@
+from logging import Logger
+
 import requests
+
 from icewatch.geocode.types import Coordinates
 
 NOMINATIM_URL = "https://nominatim.openstreetmap.org/search"
@@ -6,8 +9,11 @@ USER_AGENT = "icewatch/1.0 (collective@lockdown.systems)"
 
 
 def geocode_address(
-    address: str, session: requests.Session | None = None
+    address: str,
+    logger: Logger,
+    session: requests.Session | None = None,
 ) -> Coordinates | None:
+    logger.warning("No MAPBOX_ACCESS_TOKEN found, falling back to nomination")
     params = {
         "q": address,
         "format": "json",

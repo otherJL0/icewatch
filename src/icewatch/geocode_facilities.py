@@ -108,7 +108,7 @@ def main():
         else:
             logger.info(f"[{i + 1}/{len(facilities)}] Geocoding: {address}")
             try:
-                result = geocode_address(address, session=session)
+                result = geocode_address(address, logger, session)
                 time.sleep(args.delay)
             except Exception as e:
                 logger.info(f"    Error geocoding '{address}': {e}")
