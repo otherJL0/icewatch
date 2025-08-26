@@ -138,7 +138,6 @@ def main():
 
     logger.info(f"Writing geocoded facilities to: {output_path}")
     save_json(data, output_path)
-    print(output_path)
 
     if updated:
         logger.info(f"Updating geocode cache: {cache_path}")
@@ -147,6 +146,7 @@ def main():
         logger.info("No new addresses geocoded; cache unchanged.")
 
     logger.info("Done.")
+    print(output_path)
 
 
 if __name__ == "__main__":
