@@ -126,6 +126,37 @@ def get_marker_style(total: int) -> tuple[str, int]:
     return color, size
 
 
+def add_facilities(facilities: list[Facility]) -> str:
+    html = ""
+    for fac in facilities:
+        lat = fac.get("latitude")
+        lon = fac.get("longitude")
+        if lat is None or lon is None:
+            continue
+        criminals = safe_int(fac.get("Male Crim")) + safe_int(fac.get("Female Crim"))
+        noncriminals = safe_int(fac.get("Male Non-Crim")) + safe_int(
+            fac.get("Female Non-Crim")
+        )
+        total = criminals + noncriminals
+        color, size = get_marker_style(total)
+        popup = make_popup(fac).replace("'", "&#39;").replace("\n", " ")
+        html += f"""
+    L.marker([{lat}, {lon}], {{
+        icon: L.divIcon({{
+            className: 'custom-marker',
+            html: `<span style=\"display:inline-block;width:{size}px;height:{size}px;background:{color};opacity:0.7;border:2px solid #222;border-radius:50%;box-shadow:0 1px 4px rgba(0,0,0,0.12);\"></span>`
+        }})
+    }}).addTo(map)
+        .bindPopup('{popup}');
+    """
+    html += """
+    </script>
+</body>
+</html>
+"""
+    return html
+
+
 def render_html(
     facilities: list[Facility],
     output_path: Path | str,
@@ -254,32 +285,7 @@ def render_html(
         }}
     }});
     """
-    for fac in facilities:
-        lat = fac.get("latitude")
-        lon = fac.get("longitude")
-        if lat is None or lon is None:
-            continue
-        criminals = safe_int(fac.get("Male Crim")) + safe_int(fac.get("Female Crim"))
-        noncriminals = safe_int(fac.get("Male Non-Crim")) + safe_int(
-            fac.get("Female Non-Crim")
-        )
-        total = criminals + noncriminals
-        color, size = get_marker_style(total)
-        popup = make_popup(fac).replace("'", "&#39;").replace("\n", " ")
-        html += f"""
-    L.marker([{lat}, {lon}], {{
-        icon: L.divIcon({{
-            className: 'custom-marker',
-            html: `<span style=\"display:inline-block;width:{size}px;height:{size}px;background:{color};opacity:0.7;border:2px solid #222;border-radius:50%;box-shadow:0 1px 4px rgba(0,0,0,0.12);\"></span>`
-        }})
-    }}).addTo(map)
-        .bindPopup('{popup}');
-    """
-    html += """
-    </script>
-</body>
-</html>
-"""
+    html += add_facilities(facilities)
     with open(output_path, "w", encoding="utf-8") as f:
         f.write(html)
     print(f"Map written to: {output_path}")
