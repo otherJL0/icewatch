@@ -239,6 +239,43 @@ def add_facilities(facilities: list[Facility]) -> str:
     """
     return html
 
+def add_leaflet_in_view() -> str:
+    html = """
+    function facilitiesInView(facs) {
+        return facs.filter((fac) => fac.marker != null).filter((fac) =>
+            map.getBounds().contains(fac.marker.getLatLng())
+        );
+    }
+
+    function calculateTotalCriminal(facs) {
+        return facs.filter((fac) => fac.criminals != null).reduce(
+            (total, fac) => total + fac.criminals,
+            0,
+        );
+    }
+
+    function calculateTotalNoncriminal(facilities) {
+        return facilities.filter((fac) => fac.criminals != null).reduce(
+            (total, fac) => total + fac.noncriminals,
+            0,
+        );
+    }
+
+    map.on("zoomend", function (e) {
+        const visibleFacilities = facilitiesInView(facilities);
+        const totalCriminal = calculateTotalCriminal(visibleFacilities);
+        const totalNoncriminal = calculateTotalNoncriminal(visibleFacilities);
+        const pct_criminal = Math.round(
+            100 * (totalCriminal / (totalNoncriminal + totalCriminal)),
+        );
+        console.log(totalCriminal);
+        console.log(totalNoncriminal);
+        console.log(pct_criminal);
+    });
+
+    """
+    return html
+
 
 def render_html(
     facilities: list[Facility],
@@ -369,6 +406,7 @@ def render_html(
     }});
     """
     html += add_facilities(facilities)
+    html += add_leaflet_in_view()
     html += """
     </script>
 </body>
