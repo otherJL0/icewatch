@@ -224,6 +224,9 @@ def add_facilities(facilities: list[Facility]) -> str:
     html += """
     ];
     for (const fac of facilities) {
+        if (fac.lat == null || fac.lon == null) {
+            continue;
+        }
         L.marker([fac.lat, fac.lon], {
             icon: L.divIcon({
             className: "custom-marker",
