@@ -117,6 +117,7 @@ def create_facility_js_class() -> str:
             const [color, size] = this.getMarkerStyle();
             this.color = color;
             this.size = size;
+            this.marker = this.makeMarker();
         }
 
         getMarkerStyle() {
@@ -170,6 +171,18 @@ def create_facility_js_class() -> str:
         makeHtml() {
             return `<span style=\"display:inline-block;width:${this.size}px;height:${this.size}px;background:${this.color};opacity:0.7;border:2px solid #222;border-radius:50%;box-shadow:0 1px 4px rgba(0,0,0,0.12);\"></span>`;
         }
+
+        makeMarker() {
+            if (this.lat == null || this.lon == null) {
+                return null;
+            }
+           return L.marker([this.lat, this.lon], {
+            icon: L.divIcon({
+                className: "customMarker",
+                html: this.makeHtml(),
+            }),
+           });
+        }
     }
     """
 
@@ -218,16 +231,10 @@ def add_facilities(facilities: list[Facility]) -> str:
     html += """
     ];
     for (const fac of facilities) {
-        if (fac.lat == null || fac.lon == null) {
+        if (fac.marker == null) {
             continue;
         }
-        L.marker([fac.lat, fac.lon], {
-            icon: L.divIcon({
-            className: "custom-marker",
-            html: fac.makeHtml(),
-            }),
-        }).addTo(map)
-            .bindPopup(fac.makePopup());
+        fac.marker.addTo(map).bindPopup(fac.makePopup());
     }
     """
     return html
