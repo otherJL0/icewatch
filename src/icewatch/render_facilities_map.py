@@ -164,7 +164,7 @@ def create_facility_js_class() -> str:
             '<hr style="margin:0.3em 0;">',
             "<b>ICE Threat Level Breakdown</b>",
         );
-        for (const [label, val] in threatLevels) {
+        for (const [label, val] of threatLevels) {
             if (val != null) {
             lines.push(`${label}: <b>${val}</b>`);
             }
@@ -221,7 +221,7 @@ def add_facilities(facilities: list[Facility]) -> str:
         html += f"{facility_to_js(fac)},"
     html += """
     ];
-    for (const fac in facilities) {
+    for (const fac of facilities) {
         L.marker([fac.lat, fac.lon], {
             icon: L.divIcon({
             className: "custom-marker",
