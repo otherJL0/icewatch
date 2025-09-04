@@ -44,7 +44,7 @@ Facility = TypedDict(
 def get_js(fac: Facility, key: str) -> str:
     if value := fac.get(key):
         if isinstance(value, str):
-            return f"'{value}'"
+            return f'"{value}"'
         assert isinstance(value, float) or isinstance(value, int)
         return str(value)
     return "null"
