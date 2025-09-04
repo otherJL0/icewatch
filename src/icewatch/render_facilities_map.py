@@ -87,6 +87,8 @@ def create_facility_js_class() -> str:
         city,
         state,
         zipc,
+        lat,
+        lon,
         criminals,
         noncriminals,
         threatLevels,
@@ -198,7 +200,7 @@ def facility_to_js(fac: Facility) -> str:
         get_js(fac, "ICE Threat Level 3"),
     ]
     return f"""
-    Facility(
+    new Facility(
         {name},
         {addr},
         {city},
