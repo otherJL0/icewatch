@@ -21,6 +21,7 @@ from urllib.parse import urljoin, urlparse
 
 import requests
 from bs4 import BeautifulSoup, Tag
+from requests.exceptions import RequestException
 
 # Configure logging
 logging.basicConfig(
@@ -179,7 +180,7 @@ def find_detention_stats_link(
 
         return best_match["url"]
 
-    except requests.exceptions.RequestException as e:
+    except RequestException as e:
         logger.error(f"Failed to scrape page: {e}")
         return None
     except Exception as e:
@@ -219,11 +220,12 @@ def download_ice_detention_stats(
         # Fallback to default URL if auto-find is disabled and no URL provided
         url = "https://www.ice.gov/doclib/detention/FY25_detentionStats06202025.xlsx"
 
+    assert url is not None
     # Create output directory if it doesn't exist
     Path(output_dir).mkdir(parents=True, exist_ok=True)
 
     # Extract date from the URL filename
-    source_date = extract_date_from_filename(url)
+    source_date = extract_date_from_filename(url) if url else None
 
     # Use original filename from URL, or generate one with timestamp
     original_filename = os.path.basename(urlparse(url).path)
@@ -288,7 +290,7 @@ def download_ice_detention_stats(
 
         return filepath, source_date
 
-    except requests.exceptions.RequestException as e:
+    except RequestException as e:
         logger.error(f"Download failed: {e}")
         return None, None
     except Exception as e:
@@ -502,7 +504,16 @@ Examples:
         help="Extract facilities data to JSON from an existing Excel file",
     )
 
+    parser.add_argument(
+        "-q",
+        "--quiet",
+        action="store_true",
+    )
+
     args = parser.parse_args()
+
+    if args.quiet:
+        logger.disabled = True
 
     logger.info("ICE Detention Statistics Scraper and Downloader")
     logger.info("=" * 50)
@@ -545,7 +556,7 @@ Examples:
     # Verify the file if requested
     if args.verify:
         logger.info("Verifying downloaded file...")
-        if verify_download(filepath):
+        if filepath and verify_download(filepath):
             logger.info("File verification successful!")
         else:
             logger.error("File verification failed!")
@@ -554,7 +565,11 @@ Examples:
     # Extract JSON if requested
     if args.extract_json:
         logger.info("Extracting facilities data to JSON...")
-        if facilities_data := extract_facilities_data(filepath, source_date):
+        if (
+            facilities_data := extract_facilities_data(filepath, source_date)
+            if filepath
+            else None
+        ):
             if json_filepath := save_facilities_json(facilities_data, args.output_dir):
                 logger.info("JSON extraction completed successfully!")
                 print(json_filepath)

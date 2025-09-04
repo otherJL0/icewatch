@@ -46,6 +46,17 @@ def save_cache(cache: dict, cache_path: Path | str) -> None:
         json.dump(cache, f, indent=2, ensure_ascii=False)
 
 
+def get_latest_file(data_dir: Path) -> Path:
+    ts, file_path = 0, None
+    for facility in data_dir.glob("ice_facilities*.json"):
+        created_time = facility.lstat().st_ctime
+        if created_time > ts:
+            file_path = facility
+    if file_path is None:
+        raise RuntimeError("No geocoded facilites found")
+    return file_path
+
+
 def build_address(facility: dict) -> str:
     parts = [
         facility.get("Address", ""),
@@ -60,7 +71,13 @@ def main():
     parser = argparse.ArgumentParser(
         description="Geocode facilities JSON using OpenStreetMap Nominatim with caching."
     )
-    parser.add_argument("--input", required=True, help="Input facilities JSON file")
+    group = parser.add_mutually_exclusive_group()
+    group.add_argument(
+        "--latest",
+        action="store_true",
+        help="Latest facilities JSON file",
+    )
+    group.add_argument("--input", type=Path, help="Input facilities JSON file")
     parser.add_argument(
         "--output",
         help="Output JSON file (default: facilities_geocoded_TIMESTAMP.json in same dir)",
@@ -75,9 +92,29 @@ def main():
         default=2,
         help="Delay between API requests (seconds, default: 2)",
     )
+
+    parser.add_argument(
+        "-q",
+        "--quiet",
+        action="store_true",
+    )
+
     args = parser.parse_args()
 
-    input_path = Path(args.input)
+    if args.quiet:
+        logger.disabled = True
+
+    if args.latest:
+        data_dir = Path("data")
+        try:
+            assert data_dir.exists()
+        except AssertionError:
+            logger.warning(
+                "Could not find data directory, please provide --input instead"
+            )
+        input_path = get_latest_file(data_dir)
+    else:
+        input_path = Path(args.input)
     output_path = args.output or str(
         input_path.parent
         / f"facilities_geocoded_{datetime.now().strftime('%Y%m%d_%H%M%S')}.json"
@@ -108,7 +145,7 @@ def main():
         else:
             logger.info(f"[{i + 1}/{len(facilities)}] Geocoding: {address}")
             try:
-                result = geocode_address(address, session=session)
+                result = geocode_address(address, logger, session)
                 time.sleep(args.delay)
             except Exception as e:
                 logger.info(f"    Error geocoding '{address}': {e}")
@@ -128,7 +165,6 @@ def main():
 
     logger.info(f"Writing geocoded facilities to: {output_path}")
     save_json(data, output_path)
-    print(output_path)
 
     if updated:
         logger.info(f"Updating geocode cache: {cache_path}")
@@ -137,6 +173,7 @@ def main():
         logger.info("No new addresses geocoded; cache unchanged.")
 
     logger.info("Done.")
+    print(output_path)
 
 
 if __name__ == "__main__":

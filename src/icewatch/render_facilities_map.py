@@ -301,11 +301,11 @@ def main():
         help="Latest geocoded facilities JSON file",
     )
     parser.add_argument("--output", help="Output HTML file (default: docs/index.html)")
+    parser.add_argument("--web", help="Open HTML file in browser", action="store_true")
     args = parser.parse_args()
     if args.latest:
         data_dir = Path("data")
         assert data_dir.exists()
-        print(f"{data_dir=}")
         input_path = get_latest_file(data_dir)
     else:
         input_path = Path(args.input)
@@ -317,7 +317,7 @@ def main():
     Path(output_path).parent.mkdir(parents=True, exist_ok=True)
     facilities, metadata = load_facilities(input_path)
     render_html(facilities, output_path, metadata)
-    if not os.getenv("GITHUB_ACTIONS"):
+    if args.web and not os.getenv("GITHUB_ACTIONS"):
         try:
             webbrowser.open(str(output_path))
         except Exception as e:
