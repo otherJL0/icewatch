@@ -80,103 +80,92 @@
     });
     
     class Facility {
-    constructor(
-        name,
-        addr,
-        city,
-        state,
-        zipc,
-        lat,
-        lon,
-        criminals,
-        noncriminals,
-        threatLevels,
-    ) {
-        this.name = name;
-        this.addr = addr;
-        this.city = city;
-        this.state = state;
-        this.zipc = zipc;
-        this.lat = lat;
-        this.lon = lon;
-        this.criminals = criminals;
-        this.noncriminals = noncriminals;
-        this.threatLevels = threatLevels;
-        this.total = this.criminals + this.noncriminals;
-        this.pct_criminal = this.total > 0
-        ? `${
-            Math.round(
-            100 * (this.criminals / (this.noncriminals + this.criminals)),
-            )
-        }%`
-        : "N/A";
-        const [color, size] = this.getMarkerStyle();
-        this.color = color;
-        this.size = size;
-    }
-
-    getMarkerStyle() {
-        // Green
-        if (this.total < 50) {
-        return [
-            "rgba(76,175,80,0.7)",
-            12,
-        ];
+        constructor(
+            name,
+            addr,
+            city,
+            state,
+            zipc,
+            lat,
+            lon,
+            criminals,
+            noncriminals,
+            threatLevels,
+        ) {
+            this.name = name;
+            this.addr = addr;
+            this.city = city;
+            this.state = state;
+            this.zipc = zipc;
+            this.lat = lat;
+            this.lon = lon;
+            this.criminals = criminals;
+            this.noncriminals = noncriminals;
+            this.threatLevels = threatLevels;
+            this.total = this.criminals + this.noncriminals;
+            this.pct_criminal = this.total > 0
+            ? `${
+                Math.round(
+                100 * (this.criminals / (this.noncriminals + this.criminals)),
+                )
+            }%`
+            : "N/A";
+            const [color, size] = this.getMarkerStyle();
+            this.color = color;
+            this.size = size;
         }
 
-        // Yellow
-        if (this.total < 200) {
-        return [
-            "rgba(255,235,59,0.7)",
-            18,
-        ];
-        }
-
-        // Orange
-        if (this.total < 500) {
-        return [
-            "rgba(255,152,0,0.7)",
-            24,
-        ];
-        }
-        // Red
-        return [
-        "rgba(244,67,54,0.7)",
-        30,
-        ];
-    }
-
-    makePopup() {
-        const lines = [
-        `<b>${this.name}</b>`,
-        `${this.addr}, ${this.city}, ${this.state} ${this.zipc}`,
-        `Criminals: <b>${this.criminals}</b>`,
-        `Non-Criminals: <b>${this.noncriminals}</b>`,
-        `Percentage Criminal: <b>${this.pct_criminal}</b>`,
-        ];
-        const threatLevels = [
-        ["ICE Threat Level 1", this.threatLevels[1]],
-        ["ICE Threat Level 2", this.threatLevels[2]],
-        ["ICE Threat Level 3", this.threatLevels[3]],
-        ["No ICE Threat Level", this.threatLevels[0]],
-        ];
-        if (threatLevels.some(([_, val]) => val != null)) {
-        lines.push(
-            '<hr style="margin:0.3em 0;">',
-            "<b>ICE Threat Level Breakdown</b>",
-        );
-        for (const [label, val] of threatLevels) {
-            if (val != null) {
-            lines.push(`${label}: <b>${val}</b>`);
+        getMarkerStyle() {
+            // Green
+            if (this.total < 50) {
+                return ["rgba(76,175,80,0.7)", 12];
             }
-        }
-        }
-        return lines.join("<br/>");
-    }
 
-    makeHtml() {
-        return `<span style="display:inline-block;width:${this.size}px;height:${this.size}px;background:${this.color};opacity:0.7;border:2px solid #222;border-radius:50%;box-shadow:0 1px 4px rgba(0,0,0,0.12);"></span>`;
-    }
+            // Yellow
+            if (this.total < 200) {
+                return ["rgba(255,235,59,0.7)", 18];
+            }
+
+            // Orange
+            if (this.total < 500) {
+                return ["rgba(255,152,0,0.7)", 24];
+            }
+
+            // Red
+            return ["rgba(244,67,54,0.7)", 30];
+        }
+
+        makePopup() {
+            const lines = [
+            `<b>${this.name}</b>`,
+            `${this.addr}, ${this.city}, ${this.state} ${this.zipc}`,
+            `Criminals: <b>${this.criminals}</b>`,
+            `Non-Criminals: <b>${this.noncriminals}</b>`,
+            `Percentage Criminal: <b>${this.pct_criminal}</b>`,
+            ];
+            const threatLevels = [
+            ["ICE Threat Level 1", this.threatLevels[1]],
+            ["ICE Threat Level 2", this.threatLevels[2]],
+            ["ICE Threat Level 3", this.threatLevels[3]],
+            ["No ICE Threat Level", this.threatLevels[0]],
+            ];
+            if (threatLevels.some(([_, val]) => val != null)) {
+            lines.push(
+                '<hr style="margin:0.3em 0;">',
+                "<b>ICE Threat Level Breakdown</b>",
+            );
+            for (const [label, val] of threatLevels) {
+                if (val != null) {
+                lines.push(`${label}: <b>${val}</b>`);
+                }
+            }
+            }
+            return lines.join("<br/>");
+        }
+
+        makeHtml() {
+            return `<span style="display:inline-block;width:${this.size}px;height:${this.size}px;background:${this.color};opacity:0.7;border:2px solid #222;border-radius:50%;box-shadow:0 1px 4px rgba(0,0,0,0.12);"></span>`;
+        }
     }
     
     const facilities = [
