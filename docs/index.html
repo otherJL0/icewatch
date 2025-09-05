@@ -2364,7 +2364,8 @@
     }
     
     function facilitiesInView(facs) {
-        return facs.filter((fac) => fac.marker != null).filter((fac) =>
+        return facs.filter((fac) =>
+            fac.marker != null &&
             map.getBounds().contains(fac.marker.getLatLng())
         );
     }
@@ -2376,28 +2377,34 @@
         );
     }
 
-    function calculateTotalNoncriminal(facilities) {
-        return facilities.filter((fac) => fac.criminals != null).reduce(
+    function calculateTotalNoncriminal(facs) {
+        return facs.filter((fac) => fac.criminals != null).reduce(
             (total, fac) => total + fac.noncriminals,
             0,
         );
     }
 
-    function calculateInviewStats(e) {
+    function calculatePctNoncriminal(totalCriminal, totalNoncriminal) {
+        const total = totalCriminal + totalNoncriminal;
+        if (total == 0) {
+            return "N/A";
+        }
+        const pctNoncriminal = Math.round(100 * (totalNoncriminal / total));
+        return `${pctNoncriminal}%`;
+    }
+
+    function calculateInViewStats(e) {
         const visibleFacilities = facilitiesInView(facilities);
         const totalCriminal = calculateTotalCriminal(visibleFacilities);
         const totalNoncriminal = calculateTotalNoncriminal(visibleFacilities);
-        const pct_criminal = `${Math.round(
-            100 * (totalNoncriminal / (totalNoncriminal + totalCriminal)),
-        )}%`;
+        const pctNoncriminal = calculatePctNoncriminal(totalCriminal, totalNoncriminal);
+
         const [total, percentage] = document.getElementById("header-stats").childNodes;
         total.innerHTML = `<strong>${totalCriminal + totalNoncriminal}</strong> people in ICE detention`;
-        percentage.innerHTML = `<strong>${pct_criminal}</strong> without criminal records`;
+        percentage.innerHTML = `<strong>${pctNoncriminal}</strong> without criminal records`;
     }
 
-    for (const changeEvent of ["zoom", "move"]) {
-        map.on(changeEvent, calculateInviewStats);
-    }
+    ["zoomend", "moveend"].forEach(event => map.on(event, calculateInViewStats));
     
     </script>
 </body>
