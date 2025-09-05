@@ -261,18 +261,21 @@ def add_leaflet_in_view() -> str:
         );
     }
 
-    map.on("zoomend", function (e) {
+    function calculateInViewStats(e) {
         const visibleFacilities = facilitiesInView(facilities);
         const totalCriminal = calculateTotalCriminal(visibleFacilities);
         const totalNoncriminal = calculateTotalNoncriminal(visibleFacilities);
-        const pct_criminal = Math.round(
-            100 * (totalCriminal / (totalNoncriminal + totalCriminal)),
-        );
-        console.log(totalCriminal);
-        console.log(totalNoncriminal);
-        console.log(pct_criminal);
-    });
+        const pct_criminal = `${Math.round(
+            100 * (totalNoncriminal / (totalNoncriminal + totalCriminal)),
+        )}%`;
+        const [total, percentage] = document.getElementById("header-stats").childNodes;
+        total.innerHTML = `<strong>${totalCriminal + totalNoncriminal}</strong> people in ICE detention`;
+        percentage.innerHTML = `<strong>${pct_criminal}</strong> without criminal records`;
+    }
 
+    for (const changeEvent of ["zoomend", "moveend"]) {
+        map.on(changeEvent, calculateInviewStats);
+    }
     """
     return html
 
