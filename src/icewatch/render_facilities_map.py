@@ -84,8 +84,10 @@ def facility_to_embedded_js(facility: Facility) -> str:
         "zipc": facility.get("Zip"),
         "lat": facility.get("latitude"),
         "lon": facility.get("longitude"),
-        "criminals": facility.get("Male Crim") + facility.get("Female Crim"),
-        "noncriminals": facility.get("Male Non-Crim") + facility.get("Female Non-Crim"),
+        "criminals": safe_int(facility.get("Male Crim"))
+        + safe_int(facility.get("Female Crim")),
+        "noncriminals": safe_int(facility.get("Male Non-Crim"))
+        + safe_int(facility.get("Female Non-Crim")),
         "threatLevels": [
             facility.get(level)
             for level in (
