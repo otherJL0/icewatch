@@ -27,7 +27,7 @@ Facility = TypedDict(
         "Name": str,
         "Address": str,
         "City": str,
-        "Zip": int,
+        "Zip": str,
         "State": str,
         "Male Crim": float,
         "Male Non-Crim": float,
@@ -41,6 +41,15 @@ Facility = TypedDict(
         "longitude": float,
     },
 )
+
+
+def get_js(fac: Facility, key: str) -> str:
+    if value := fac.get(key):
+        if isinstance(value, str):
+            return f'"{value}"'
+        assert isinstance(value, float) or isinstance(value, int)
+        return str(value)
+    return "null"
 
 
 def get_latest_file(data_dir: Path) -> Path:
@@ -71,59 +80,164 @@ def safe_int(val: Any) -> int:
         return 0
 
 
-def make_popup(fac: Facility):
-    name = fac.get("Name", "Unknown")
-    addr = fac.get("Address", "")
-    city = fac.get("City", "")
-    state = fac.get("State", "")
-    zipc = fac.get("Zip", "")
+def create_facility_js_class() -> str:
+    """Create Facility class definition in JavaScript"""
+    return """
+    class Facility {
+        constructor(
+            name,
+            addr,
+            city,
+            state,
+            zipc,
+            lat,
+            lon,
+            criminals,
+            noncriminals,
+            threatLevels,
+        ) {
+            this.name = name;
+            this.addr = addr;
+            this.city = city;
+            this.state = state;
+            this.zipc = zipc;
+            this.lat = lat;
+            this.lon = lon;
+            this.criminals = criminals;
+            this.noncriminals = noncriminals;
+            this.threatLevels = threatLevels;
+            this.total = this.criminals + this.noncriminals;
+            this.pct_criminal = this.total > 0
+            ? `${
+                Math.round(
+                100 * (this.criminals / (this.noncriminals + this.criminals)),
+                )
+            }%`
+            : "N/A";
+            const [color, size] = this.getMarkerStyle();
+            this.color = color;
+            this.size = size;
+            this.marker = this.makeMarker();
+        }
+
+        getMarkerStyle() {
+            // Green
+            if (this.total < 50) {
+                return ["rgba(76,175,80,0.7)", 12];
+            }
+
+            // Yellow
+            if (this.total < 200) {
+                return ["rgba(255,235,59,0.7)", 18];
+            }
+
+            // Orange
+            if (this.total < 500) {
+                return ["rgba(255,152,0,0.7)", 24];
+            }
+
+            // Red
+            return ["rgba(244,67,54,0.7)", 30];
+        }
+
+        makePopup() {
+            const lines = [
+            `<b>${this.name}</b>`,
+            `${this.addr}, ${this.city}, ${this.state} ${this.zipc}`,
+            `Criminals: <b>${this.criminals}</b>`,
+            `Non-Criminals: <b>${this.noncriminals}</b>`,
+            `Percentage Criminal: <b>${this.pct_criminal}</b>`,
+            ];
+            const threatLevels = [
+            ["ICE Threat Level 1", this.threatLevels[1]],
+            ["ICE Threat Level 2", this.threatLevels[2]],
+            ["ICE Threat Level 3", this.threatLevels[3]],
+            ["No ICE Threat Level", this.threatLevels[0]],
+            ];
+            if (threatLevels.some(([_, val]) => val != null)) {
+            lines.push(
+                '<hr style="margin:0.3em 0;">',
+                "<b>ICE Threat Level Breakdown</b>",
+            );
+            for (const [label, val] of threatLevels) {
+                if (val != null) {
+                lines.push(`${label}: <b>${val}</b>`);
+                }
+            }
+            }
+            return lines.join("<br/>");
+        }
+
+        makeHtml() {
+            return `<span style=\"display:inline-block;width:${this.size}px;height:${this.size}px;background:${this.color};opacity:0.7;border:2px solid #222;border-radius:50%;box-shadow:0 1px 4px rgba(0,0,0,0.12);\"></span>`;
+        }
+
+        makeMarker() {
+            if (this.lat == null || this.lon == null) {
+                return null;
+            }
+           return L.marker([this.lat, this.lon], {
+            icon: L.divIcon({
+                className: "customMarker",
+                html: this.makeHtml(),
+            }),
+           });
+        }
+    }
+    """
+
+
+def facility_to_js(fac: Facility) -> str:
+    """Create JavaScript Facility class instance from Python Facility dict"""
+    name = get_js(fac, "Name")
+    addr = get_js(fac, "Address")
+    city = get_js(fac, "City")
+    state = get_js(fac, "State")
+    zipc = get_js(fac, "Zip")
+    lat = get_js(fac, "latitude")
+    lon = get_js(fac, "longitude")
     criminals = safe_int(fac.get("Male Crim")) + safe_int(fac.get("Female Crim"))
     noncriminals = safe_int(fac.get("Male Non-Crim")) + safe_int(
         fac.get("Female Non-Crim")
     )
-    total = criminals + noncriminals
-    if total > 0:
-        pct_criminal = f"{round(100 * criminals / total)}%"
-    else:
-        pct_criminal = "N/A"
-    lines = [
-        f"<b>{name}</b>",
-        f"{addr}, {city}, {state} {zipc}",
-        f"Criminals: <b>{criminals}</b>",
-        f"Non-Criminals: <b>{noncriminals}</b>",
-        f"Percentage Criminal: <b>{pct_criminal}</b>",
-    ]
-    # Add ICE Threat Level breakdown if present
     threat_levels = [
-        ("ICE Threat Level 1", fac.get("ICE Threat Level 1")),
-        ("ICE Threat Level 2", fac.get("ICE Threat Level 2")),
-        ("ICE Threat Level 3", fac.get("ICE Threat Level 3")),
-        ("No ICE Threat Level", fac.get("No ICE Threat Level")),
+        get_js(fac, "No ICE Threat Level"),
+        get_js(fac, "ICE Threat Level 1"),
+        get_js(fac, "ICE Threat Level 2"),
+        get_js(fac, "ICE Threat Level 3"),
     ]
-    if any(val is not None for _, val in threat_levels):
-        lines.append('<hr style="margin:0.3em 0;">')
-        lines.append("<b>ICE Threat Level Breakdown</b>")
-        for label, val in threat_levels:
-            if val is not None:
-                lines.append(f"{label}: <b>{safe_int(val)}</b>")
-    return "<br/>".join(lines)
+    return f"""
+    new Facility(
+        {name},
+        {addr},
+        {city},
+        {state},
+        {zipc},
+        {lat},
+        {lon},
+        {criminals},
+        {noncriminals},
+        [{",".join(map(str, threat_levels))}]
+    )"""
 
 
-def get_marker_style(total: int) -> tuple[str, int]:
-    # Define thresholds for color and size (smaller, semi-transparent)
-    if total < 50:
-        color = "rgba(76,175,80,0.7)"  # green
-        size = 12
-    elif total < 200:
-        color = "rgba(255,235,59,0.7)"  # yellow
-        size = 18
-    elif total < 500:
-        color = "rgba(255,152,0,0.7)"  # orange
-        size = 24
-    else:
-        color = "rgba(244,67,54,0.7)"  # red
-        size = 30
-    return color, size
+def add_facilities(facilities: list[Facility]) -> str:
+    html = create_facility_js_class()
+    html += """
+    const facilities = [
+    """
+    for fac in facilities:
+        html += f"{facility_to_js(fac)},"
+    html += """
+    ];
+    for (const fac of facilities) {
+        if (fac.marker == null) {
+            continue;
+        }
+        fac.marker.addTo(map).bindPopup(fac.makePopup());
+    }
+    """
+    return html
 
 
 def render_html(
@@ -254,27 +368,7 @@ def render_html(
         }}
     }});
     """
-    for fac in facilities:
-        lat = fac.get("latitude")
-        lon = fac.get("longitude")
-        if lat is None or lon is None:
-            continue
-        criminals = safe_int(fac.get("Male Crim")) + safe_int(fac.get("Female Crim"))
-        noncriminals = safe_int(fac.get("Male Non-Crim")) + safe_int(
-            fac.get("Female Non-Crim")
-        )
-        total = criminals + noncriminals
-        color, size = get_marker_style(total)
-        popup = make_popup(fac).replace("'", "&#39;").replace("\n", " ")
-        html += f"""
-    L.marker([{lat}, {lon}], {{
-        icon: L.divIcon({{
-            className: 'custom-marker',
-            html: `<span style=\"display:inline-block;width:{size}px;height:{size}px;background:{color};opacity:0.7;border:2px solid #222;border-radius:50%;box-shadow:0 1px 4px rgba(0,0,0,0.12);\"></span>`
-        }})
-    }}).addTo(map)
-        .bindPopup('{popup}');
-    """
+    html += add_facilities(facilities)
     html += """
     </script>
 </body>
