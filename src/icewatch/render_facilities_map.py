@@ -53,11 +53,10 @@ def get_js(fac: Facility, key: str) -> str:
 
 
 def get_latest_file(data_dir: Path) -> Path:
-    ts, file_path = 0, None
-    for facility in data_dir.glob("facilities_geocoded*.json"):
-        created_time = facility.lstat().st_ctime
-        if created_time > ts:
-            file_path = facility
+    latest, file_path = "", None
+    for geocoded_file in data_dir.glob("facilities_geocoded*.json"):
+        if geocoded_file.name > latest:
+            file_path = geocoded_file
     if file_path is None:
         raise RuntimeError("No geocoded facilites found")
     return file_path
