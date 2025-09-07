@@ -395,6 +395,11 @@ def main():
     )
     parser.add_argument("--output", help="Output HTML file (default: docs/index.html)")
     parser.add_argument("--web", help="Open HTML file in browser", action="store_true")
+    parser.add_argument(
+        "--update-last-checked",
+        help="Update 'last checked' date to today",
+        action="store_true",
+    )
     args = parser.parse_args()
     if args.latest:
         data_dir = Path("data")
@@ -409,6 +414,8 @@ def main():
     # Ensure the output directory exists
     Path(output_path).parent.mkdir(parents=True, exist_ok=True)
     facilities, metadata = load_facilities(input_path)
+    if args.update_last_checked:
+        metadata["last_checked_date"] = datetime.now().strftime("%Y-%m-%d")
     render_html(facilities, output_path, metadata)
     if args.web and not os.getenv("GITHUB_ACTIONS"):
         try:
