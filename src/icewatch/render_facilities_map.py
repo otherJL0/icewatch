@@ -415,7 +415,7 @@ def main():
     Path(output_path).parent.mkdir(parents=True, exist_ok=True)
     facilities, metadata = load_facilities(input_path)
     if args.update_last_checked:
-        metadata["last_checked_date"] = datetime.now().strftime("%Y-%m-%d")
+        metadata["last_checked_date"] = datetime.now().isoformat()
     render_html(facilities, output_path, metadata)
     if args.web and not os.getenv("GITHUB_ACTIONS"):
         try:
