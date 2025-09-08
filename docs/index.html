@@ -622,7 +622,7 @@
         return `${pctNoncriminal}%`;
       }
 
-      function calculateHeaderStats(facs, e) {
+      function updateHeaderStats(facs, e) {
         const totalCriminal = calculateTotalCriminal(facs);
         const totalNoncriminal = calculateTotalNoncriminal(facs);
         const pctNoncriminal = calculatePctNoncriminal(
@@ -635,12 +635,12 @@
         percentage.innerHTML = `<strong>${pctNoncriminal}</strong> without criminal records`;
       }
 
-      function calculateInViewStats(e) {
+      function updateInViewStats(e) {
         const facilitiesInView = getFacilitiesInView(facilities);
-        calculateHeaderStats(facilitiesInView, e);
+        updateHeaderStats(facilitiesInView, e);
       }
 
-      ["load", "zoomend", "moveend"].forEach((event) => map.on(event, calculateInViewStats));
+      ["load", "zoomend", "moveend"].forEach((event) => map.on(event, updateInViewStats));
     </script>
   </body>
 </html>
