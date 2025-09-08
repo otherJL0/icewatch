@@ -227,7 +227,7 @@
         {% endfor %}
       ];
 
-      function facilitiesInView(facs) {
+      function getFacilitiesInView(facs) {
         return facs.filter((fac) =>
           fac.marker != null &&
           map.getBounds().contains(fac.marker.getLatLng())
@@ -276,8 +276,8 @@
       }
 
       function calculateInViewStats(e) {
-        const visibleFacilities = facilitiesInView(facilities);
-        calculateHeaderStats(visibleFacilities, e);
+        const facilitiesInView = getFacilitiesInView(facilities);
+        calculateHeaderStats(facilitiesInView, e);
       }
 
       ["load", "zoomend", "moveend"].forEach((event) => map.on(event, calculateInViewStats));
