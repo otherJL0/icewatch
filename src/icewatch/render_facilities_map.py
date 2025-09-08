@@ -14,7 +14,15 @@ from pathlib import Path
 from typing import Any, TypedDict
 from jinja2 import Environment, PackageLoader
 
-env = Environment(loader=PackageLoader("icewatch"))
+env = Environment(
+    loader=PackageLoader("icewatch"),
+    variable_start_string="/*{{",
+    variable_end_string="}}*/",
+    block_start_string="/*{%",
+    block_end_string="%}*/",
+    comment_start_string="/*{#",
+    comment_end_string="#}*/",
+)
 template = env.get_template("map.html")
 
 

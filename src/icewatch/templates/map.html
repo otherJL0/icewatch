@@ -21,7 +21,10 @@
         <div id="header-left">
           <div id="header-title">ICE Detention Map</div>
         </div>
-        <div id="header-stats"><span><strong>{{ total_people }}</strong> people in ICE detention</span><span><strong>{{ pct_noncriminal }}</strong> without criminal records</span></div>
+        <div id="header-stats">
+          <span><strong>/*{{ total_people }}*/</strong> people in ICE detention</span>
+          <span><strong>/*{{ pct_noncriminal }}*/</strong> without criminal records</span>
+        </div>
         <div id="header-nav">
           <a href="index.html" class="active">Map</a>
           <a href="info.html">Info</a>
@@ -66,7 +69,7 @@
       </div>
     </main>
     <div id="last-updated">
-      last checked: {{ formatted_date }} | last updated: {{ extraction_date }}
+      last checked: /*{{ formatted_date }}*/ | last updated: /*{{ extraction_date }}*/
     </div>
     <a
       id="logo-link"
@@ -222,9 +225,9 @@
       }
 
       const facilities = [
-        {% for facility in facilities %}
-          new Facility({{ facility | safe }}),
-        {% endfor %}
+        /*{% for facility in facilities %}*/
+        new Facility(/*{{ facility | safe }}*/),
+        /*{% endfor %}*/
       ];
 
       function getFacilitiesInView(facs) {
