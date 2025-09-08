@@ -622,12 +622,9 @@
         return `${pctNoncriminal}%`;
       }
 
-      function calculateInViewStats(e) {
-        const visibleFacilities = facilitiesInView(facilities);
-        const totalCriminal = calculateTotalCriminal(visibleFacilities);
-        const totalNoncriminal = calculateTotalNoncriminal(
-          visibleFacilities,
-        );
+      function calculateHeaderStats(facs, e) {
+        const totalCriminal = calculateTotalCriminal(facs);
+        const totalNoncriminal = calculateTotalNoncriminal(facs);
         const pctNoncriminal = calculatePctNoncriminal(
           totalCriminal,
           totalNoncriminal,
@@ -637,6 +634,12 @@
         total.innerHTML = `<strong>${totalCriminal + totalNoncriminal}</strong> people in ICE detention`;
         percentage.innerHTML = `<strong>${pctNoncriminal}</strong> without criminal records`;
       }
+
+      function calculateInViewStats(e) {
+        const visibleFacilities = facilitiesInView(facilities);
+        calculateHeaderStats(visibleFacilities, e);
+      }
+
       ["load", "zoomend", "moveend"].forEach((event) => map.on(event, calculateInViewStats));
     </script>
   </body>
