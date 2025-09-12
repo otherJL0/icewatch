@@ -88,7 +88,7 @@ def facility_to_embedded_js(facility: Facility) -> str:
         "noncriminals": safe_int(facility.get("Male Non-Crim"))
         + safe_int(facility.get("Female Non-Crim")),
         "threatLevels": [
-            facility.get(level)
+            safe_int(facility.get(level))
             for level in (
                 "No ICE Threat Level",
                 "ICE Threat Level 1",
