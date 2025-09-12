@@ -866,5 +866,13 @@
   "7000 NW 41ST ST., MIAMI, FL, 33166": {
     "lat": 25.8111329,
     "lon": -80.3108541
+  },
+  "22844 VIRGINIA BOULEVARD, CALIFORNIA CITY, CA, 93505": {
+    "lat": 35.1531066,
+    "lon": -117.8591019
+  },
+  "1000 RIVER ROAD, HOPEWELL, VA, 23860": {
+    "lat": 37.2950331,
+    "lon": -77.321649
   }
 }
