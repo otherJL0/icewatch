@@ -53,11 +53,10 @@ def get_js(fac: Facility, key: str) -> str:
 
 
 def get_latest_file(data_dir: Path) -> Path:
-    ts, file_path = 0, None
-    for facility in data_dir.glob("facilities_geocoded*.json"):
-        created_time = facility.lstat().st_ctime
-        if created_time > ts:
-            file_path = facility
+    latest, file_path = "", None
+    for geocoded_file in data_dir.glob("facilities_geocoded*.json"):
+        if geocoded_file.name > latest:
+            file_path = geocoded_file
     if file_path is None:
         raise RuntimeError("No geocoded facilites found")
     return file_path
@@ -396,6 +395,11 @@ def main():
     )
     parser.add_argument("--output", help="Output HTML file (default: docs/index.html)")
     parser.add_argument("--web", help="Open HTML file in browser", action="store_true")
+    parser.add_argument(
+        "--update-last-checked",
+        help="Update 'last checked' date to today",
+        action="store_true",
+    )
     args = parser.parse_args()
     if args.latest:
         data_dir = Path("data")
@@ -410,6 +414,8 @@ def main():
     # Ensure the output directory exists
     Path(output_path).parent.mkdir(parents=True, exist_ok=True)
     facilities, metadata = load_facilities(input_path)
+    if args.update_last_checked:
+        metadata["last_checked_date"] = datetime.now().isoformat()
     render_html(facilities, output_path, metadata)
     if args.web and not os.getenv("GITHUB_ACTIONS"):
         try:

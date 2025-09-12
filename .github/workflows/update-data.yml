@@ -56,7 +56,7 @@ jobs:
 
       - name: Render site
         run: |
-          icewatch render --latest
+          icewatch render --latest --update-last-checked
 
       - name: Add all changes
         run: |
