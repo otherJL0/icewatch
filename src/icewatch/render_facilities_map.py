@@ -51,6 +51,7 @@ def get_latest_file(data_dir: Path) -> Path:
     latest, file_path = "", None
     for geocoded_file in data_dir.glob("facilities_geocoded*.json"):
         if geocoded_file.name > latest:
+            latest = geocoded_file.name
             file_path = geocoded_file
     if file_path is None:
         raise RuntimeError("No geocoded facilites found")
